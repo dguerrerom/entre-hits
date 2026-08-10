@@ -9,9 +9,9 @@ const annualYears = [...new Set(annualCharts.map((chart) => chart.year))].sort((
 <BaseLayout title="Archivo">
   <div class="archive-shell">
     <header class="archive-header">
-      <p>Archivo editorial</p>
+      <p class="archive-eyebrow">Archivo editorial</p>
       <h1>Todos los conteos.<br /><span>Una historia semanal.</span></h1>
-      <p>Consulta las ediciones disponibles de Entre Hits. Los domingos sin programa no generan una página vacía.</p>
+      <p class="archive-dek">Consulta las ediciones disponibles de Entre Hits. Los domingos sin programa no generan una página vacía.</p>
     </header>
 
     <section class="annual-archive" aria-labelledby="annual-title">
@@ -23,8 +23,8 @@ const annualYears = [...new Set(annualCharts.map((chart) => chart.year))].sort((
         {annualYears.map((year) => (
           <article>
             <strong>{year}</strong>
-            <a href={annualPath("national", year)}>Nacional</a>
-            <a href={annualPath("international", year)}>Internacional</a>
+            <a href={annualPath("national", year)} aria-label={`Top 20 anual nacional ${year}`}>Nacional</a>
+            <a href={annualPath("international", year)} aria-label={`Top 20 anual internacional ${year}`}>Internacional</a>
           </article>
         ))}
       </div>
@@ -34,7 +34,7 @@ const annualYears = [...new Set(annualCharts.map((chart) => chart.year))].sort((
       <div class="archive-section-title">
         <p class="section-number">02</p>
         <h2 id="weekly-title">Conteos semanales</h2>
-        <p>{weeklyEditions.length} ediciones disponibles</p>
+        <p class="archive-count">{weeklyEditions.length} ediciones disponibles</p>
       </div>
       {years.map((year) => (
         <details open={year === years[0]}>
@@ -44,8 +44,8 @@ const annualYears = [...new Set(annualCharts.map((chart) => chart.year))].sort((
               <li>
                 <span>#{edition.number}</span>
                 <time datetime={edition.date}>{formatDate(edition.date, { month: "short" })}</time>
-                <a href={weeklyPath("national", edition.date)}>Nacional</a>
-                <a href={weeklyPath("international", edition.date)}>Internacional</a>
+                <a class="archive-national-link" href={weeklyPath("national", edition.date)} aria-label={`Conteo #${edition.number} nacional, ${formatDate(edition.date)}`}>Nacional</a>
+                <a class="archive-international-link" href={weeklyPath("international", edition.date)} aria-label={`Conteo #${edition.number} internacional, ${formatDate(edition.date)}`}>Internacional</a>
               </li>
             ))}
           </ol>

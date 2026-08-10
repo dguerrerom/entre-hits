@@ -16,7 +16,7 @@ Sitio estático de la lista de éxitos del programa **Entre Mezclas** de Radio H
 
 ## Desarrollo
 
-Requiere Node.js 24 y el comando de sistema `unzip` para reconstruir la migración histórica.
+Requiere Node.js 24.
 
 ```bash
 npm install
@@ -83,13 +83,13 @@ Si no existen autores o enlaces verificados, la interfaz oculta esos campos.
 
 ## Datos Históricos
 
-`scripts/build-chart-data.mjs` migra la hoja `Data` de los XLSX históricos, aplica las correcciones documentadas y genera:
+`scripts/build-chart-data.mjs` valida las fuentes CSV de `content/` y genera:
 
 - `src/data/weekly-editions.json`
 - `src/data/annual-charts.json`
 - `src/data/songs.json`
 
-Las hojas auxiliares de puntuación no forman parte de la web.
+El histórico consolidado se conserva en `content/weekly/history.csv` y `content/annual/history.csv`. Los créditos y enlaces verificados se mantienen en `content/songs/metadata.csv`.
 
 ## Publicación
 

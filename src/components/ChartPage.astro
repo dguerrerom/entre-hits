@@ -17,52 +17,70 @@ import {
   weeklyPath,
 } from "../lib/charts";
 
-interface Props {
-  variant: "weekly" | "annual";
+type Props = {
+  variant: "weekly";
   category: Category;
-  edition?: WeeklyEdition;
-  annual?: AnnualChart;
+  edition: WeeklyEdition;
   autoCurrent?: boolean;
-}
+} | {
+  variant: "annual";
+  category: Category;
+  annual: AnnualChart;
+  autoCurrent?: false;
+};
 
-const { variant, category, edition, annual, autoCurrent = false } = Astro.props;
+const props = Astro.props as Props;
+const { variant, category, autoCurrent = false } = props;
+const edition = props.variant === "weekly" ? props.edition : undefined;
+const annual = props.variant === "annual" ? props.annual : undefined;
 const label = categoryLabels[category];
 const otherCategory: Category = category === "national" ? "international" : "national";
-const entries = variant === "weekly"
-  ? edition!.charts[category].map((entry) => ({ ...entry, song: songsById.get(entry.songId)! }))
-  : annual!.entries.map((entry) => ({ ...entry, song: songsById.get(entry.songId)! }));
+const getSong = (songId: string) => {
+  const song = songsById.get(songId);
+  if (!song) throw new Error(`Chart references missing song ${songId}`);
+  return song;
+};
+const entries = props.variant === "weekly"
+  ? props.edition.charts[category].map((entry) => ({ ...entry, song: getSong(entry.songId) }))
+  : props.annual.entries.map((entry) => ({ ...entry, song: getSong(entry.songId) }));
 const adjacent: { previous?: WeeklyEdition; next?: WeeklyEdition } = edition
   ? getAdjacentEditions(edition.date)
   : {};
 const annualYears = [...new Set(annualCharts.map((chart) => chart.year))].sort((a, b) => b - a);
-const title = variant === "weekly"
-  ? `Lista #${edition!.number} ${label} · ${formatDate(edition!.date)}`
-  : `Top 20 ${label} · Cierre ${annual!.year}`;
-const download = variant === "weekly"
-  ? imagePath("semanal", category, edition!.date)
-  : imagePath("anual", category, annual!.year);
-const switchPath = variant === "weekly"
-  ? weeklyPath(otherCategory, edition!.date)
-  : annualPath(otherCategory, annual!.year);
+const title = props.variant === "weekly"
+  ? `Lista #${props.edition.number} ${label} · ${formatDate(props.edition.date)}`
+  : `Top 20 ${label} · Cierre ${props.annual.year}`;
+const download = props.variant === "weekly"
+  ? imagePath("semanal", category, props.edition.date)
+  : imagePath("anual", category, props.annual.year);
+const switchPath = props.variant === "weekly"
+  ? weeklyPath(otherCategory, props.edition.date)
+  : annualPath(otherCategory, props.annual.year);
+const currentCategoryPath = props.variant === "weekly"
+  ? weeklyPath(category, props.edition.date)
+  : annualPath(category, props.annual.year);
+const weeklyTabPath = variant === "weekly" ? currentCategoryPath : weeklyPath(category);
+const annualTabPath = variant === "annual" ? currentCategoryPath : annualPath(category);
 ---
 
 <BaseLayout title={title} image={download}>
+  <div class:list={["chart-page", `chart-page--${category}`]}>
   <div class="page-shell">
     <div class="edition-kicker">
       <p>{variant === "weekly" ? "Lista semanal" : "Cierre anual"}</p>
       <p>Entre Mezclas · Radio Holguín La Nueva</p>
     </div>
 
-    <div class="variant-tabs" aria-label="Tipo de lista">
-      <a class:list={{ active: variant === "weekly" }} href={weeklyPath(category)}>Semanal</a>
-      <a class:list={{ active: variant === "annual" }} href={annualPath(category)}>Anual</a>
-    </div>
+    <nav class="variant-tabs" aria-label="Tipo de lista">
+      <a class:list={{ active: variant === "weekly" }} href={weeklyTabPath} aria-current={variant === "weekly" ? "page" : undefined}>Semanal</a>
+      <a class:list={{ active: variant === "annual" }} href={annualTabPath} aria-current={variant === "annual" ? "page" : undefined}>Anual</a>
+    </nav>
 
     <div class="chart-toolbar">
-      <div class="category-tabs" aria-label="Categoría">
-        <a class:list={{ active: category === "national" }} href={category === "national" ? "#chart" : switchPath}>Nacional</a>
-        <a class:list={{ active: category === "international" }} href={category === "international" ? "#chart" : switchPath}>Internacional</a>
-      </div>
+      <nav class="category-tabs" aria-label="Categoría">
+        <a class:list={{ active: category === "national" }} href={category === "national" ? currentCategoryPath : switchPath} aria-current={category === "national" ? "page" : undefined}>Nacional</a>
+        <a class:list={{ active: category === "international" }} href={category === "international" ? currentCategoryPath : switchPath} aria-current={category === "international" ? "page" : undefined}>Internacional</a>
+      </nav>
       <a class="download-link" href={download} download>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 17v3h16v-3"/></svg>
         Descargar imagen
@@ -82,12 +100,20 @@ const switchPath = variant === "weekly"
     {variant === "annual" && annual && (
       <nav class="year-navigation" aria-label="Seleccionar cierre anual">
         {annualYears.map((year) => (
-          <a class:list={{ active: year === annual.year }} href={annualPath(category, year)}>{year}</a>
+          <a class:list={{ active: year === annual.year }} href={annualPath(category, year)} aria-current={year === annual.year ? "page" : undefined}>{year}</a>
         ))}
       </nav>
     )}
 
-    <div id="chart">
+    {variant === "weekly" && (
+      <p class="chart-legend" aria-label="Leyenda de columnas">
+        <span><b>L</b> Lugar</span>
+        <span><b>S</b> Semanas</span>
+        <span><b>▲ ▼</b> Movimiento</span>
+      </p>
+    )}
+
+    <div id="chart" class="chart-frame">
       <ChartBoard
         category={category}
         variant={variant}
@@ -102,6 +128,7 @@ const switchPath = variant === "weekly"
       <a href={`${basePath}/archivo/`}>Explorar el archivo completo</a>
       <p>Autores y enlaces se incorporan progresivamente a partir de fuentes verificadas.</p>
     </div>
+  </div>
   </div>
 
   {autoCurrent && edition && (

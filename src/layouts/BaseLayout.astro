@@ -21,6 +21,12 @@ const {
 const pageTitle = title === "Entre Hits" ? title : `${title} | Entre Hits`;
 const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
 const imageUrl = image ? new URL(image, Astro.site) : undefined;
+const currentPath = Astro.url.pathname;
+const navigation = [
+  { label: "Semanal", href: `${basePath}/semanal/nacional/`, section: "/semanal/" },
+  { label: "Anual", href: `${basePath}/anual/nacional/`, section: "/anual/" },
+  { label: "Archivo", href: `${basePath}/archivo/`, section: "/archivo/" },
+];
 ---
 
 <!doctype html>
@@ -50,9 +56,15 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
         <span>ENTRE</span><strong>HITS</strong>
       </a>
       <nav class="site-nav" aria-label="Navegación principal">
-        <a href={`${basePath}/semanal/nacional/`}>Semanal</a>
-        <a href={`${basePath}/anual/nacional/`}>Anual</a>
-        <a href={`${basePath}/archivo/`}>Archivo</a>
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class:list={{ active: currentPath.includes(item.section) }}
+            aria-current={currentPath.includes(item.section) ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
       <a
         class="live-link"
@@ -60,17 +72,28 @@ const imageUrl = image ? new URL(image, Astro.site) : undefined;
         target="_blank"
         rel="noopener noreferrer"
       >
-        <span aria-hidden="true"></span> Escuchar CMKE en vivo
+        <span class="live-dot" aria-hidden="true"></span>
+        <span class="live-label">Escuchar CMKE en vivo</span>
+        <span class="live-short" aria-hidden="true">En vivo</span>
       </a>
     </header>
     <main id="contenido">
       <slot />
     </main>
     <footer class="site-footer">
-      <img src={`${basePath}/brand/entre-mezclas.png`} alt="Entre Mezclas" width="72" height="72" />
-      <div>
-        <p><strong>Entre Hits</strong> es la lista de éxitos del programa Entre Mezclas de Radio Holguín La Nueva.</p>
-        <p>© 2026 Radio Holguín La Nueva. Contenido editorial y elementos de marca: todos los derechos reservados.</p>
+      <div class="site-footer-inner">
+        <div class="footer-identity">
+          <img src={`${basePath}/brand/entre-mezclas.png`} alt="Entre Mezclas" width="76" height="76" />
+          <div>
+            <p class="footer-wordmark"><span>ENTRE</span> HITS</p>
+            <p>La lista de éxitos del programa Entre Mezclas de Radio Holguín La Nueva.</p>
+          </div>
+        </div>
+        <nav class="footer-nav" aria-label="Navegación secundaria">
+          {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+          <a href="https://icecast.teveo.cu/dn9JTKtH" target="_blank" rel="noopener noreferrer">CMKE en vivo</a>
+        </nav>
+        <p class="footer-legal">© 2026 Radio Holguín La Nueva. Contenido editorial y elementos de marca: todos los derechos reservados.</p>
       </div>
     </footer>
   </body>

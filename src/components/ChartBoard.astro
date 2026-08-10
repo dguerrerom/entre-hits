@@ -31,10 +31,10 @@ const heading = variant === "weekly" ? `LISTA #${number} ${label.toUpperCase()}`
     <h1><span>{heading}</span></h1>
   </header>
 
-  <div class="chart-columns" aria-hidden="true">
-    <span>L</span>
-    {variant === "weekly" && <span>S</span>}
-    {variant === "weekly" && <span></span>}
+  <div class="chart-columns">
+    <span aria-label="Lugar"><abbr title="Lugar">L</abbr></span>
+    {variant === "weekly" && <span aria-label="Semanas"><abbr title="Semanas">S</abbr></span>}
+    {variant === "weekly" && <span><span class="sr-only">Movimiento</span></span>}
     <span>Canción / Artista</span>
   </div>
 
@@ -69,8 +69,8 @@ const heading = variant === "weekly" ? `LISTA #${number} ${label.toUpperCase()}`
           {entry.song.authors && <p class="song-authors">{entry.song.authors}</p>}
           {(entry.song.youtube || entry.song.spotify) && (
             <p class="song-links">
-              {entry.song.youtube && <a href={entry.song.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>}
-              {entry.song.spotify && <a href={entry.song.spotify} target="_blank" rel="noopener noreferrer">Spotify</a>}
+              {entry.song.youtube && <a href={entry.song.youtube} target="_blank" rel="noopener noreferrer" aria-label={`Escuchar ${entry.song.title} en YouTube (abre en una pestaña nueva)`}>YouTube</a>}
+              {entry.song.spotify && <a href={entry.song.spotify} target="_blank" rel="noopener noreferrer" aria-label={`Escuchar ${entry.song.title} en Spotify (abre en una pestaña nueva)`}>Spotify</a>}
             </p>
           )}
         </div>
