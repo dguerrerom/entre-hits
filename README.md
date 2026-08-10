@@ -10,6 +10,7 @@ Sitio estático de la lista de éxitos del programa **Entre Mezclas** de Radio H
 - Calendario con las semanas realmente disponibles.
 - Selección automática del último domingo publicado según `America/Havana`.
 - Indicadores de movimiento, nueva entrada y reingreso.
+- Historial por canción con mejor puesto, apariciones, recorridos y cierres anuales.
 - Descarga PNG en `1080x1350` para semanales y `1080x1920` para anuales.
 - Enlace externo a la señal en vivo de CMKE, sin reproductor integrado.
 - Generación completamente estática para GitHub Pages.
@@ -80,6 +81,17 @@ title,artists,authors,youtube,spotify
 ```
 
 Si no existen autores o enlaces verificados, la interfaz oculta esos campos.
+
+## Alias De Canciones
+
+Las variantes editoriales que representan la misma grabación se normalizan en `content/songs/aliases.csv`:
+
+```csv
+aliasTitle,aliasArtists,title,artists
+"Sonríele","DY","Sonríele","Daddy Yankee"
+```
+
+El generador aplica estos alias antes de calcular IDs, movimiento e historial. Canciones distintas que comparten título se mantienen como registros independientes.
 
 ## Datos Históricos
 

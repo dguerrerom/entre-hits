@@ -37,10 +37,28 @@ export interface AnnualChart {
   entries: Array<{ rank: number; songId: string }>;
 }
 
+export interface SongHistoryPoint {
+  edition: WeeklyEdition;
+  entry?: WeeklyEntry;
+}
+
+export interface SongChartHistory {
+  category: Category;
+  points: SongHistoryPoint[];
+  appearances: Array<{ edition: WeeklyEdition; entry: WeeklyEntry }>;
+  peak: number;
+  numberOnes: number;
+  runs: number;
+  annualPlacements: Array<{ year: number; rank: number }>;
+}
+
 export const songs = songData as Song[];
 export const weeklyEditions = weeklyData as WeeklyEdition[];
 export const annualCharts = annualData as AnnualChart[];
 export const songsById = new Map(songs.map((song) => [song.id, song]));
+export const weeklySongIds = new Set(
+  weeklyEditions.flatMap((edition) => categories.flatMap((category) => edition.charts[category].map((entry) => entry.songId))),
+);
 
 export const categoryLabels: Record<Category, string> = {
   national: "Nacional",
@@ -80,6 +98,10 @@ export function annualPath(category: Category, year?: number) {
   return `${basePath}/anual/${categorySlugs[category]}${suffix}/`;
 }
 
+export function songPath(songId: string) {
+  return `${basePath}/cancion/${songId}/`;
+}
+
 export function imagePath(
   variant: "semanal" | "anual",
   category: Category,
@@ -98,6 +120,34 @@ export function getAdjacentEditions(date: string) {
     previous: index > 0 ? weeklyEditions[index - 1] : undefined,
     next: index >= 0 && index < weeklyEditions.length - 1 ? weeklyEditions[index + 1] : undefined,
   };
+}
+
+export function getSongHistories(songId: string): SongChartHistory[] {
+  return categories.flatMap((category) => {
+    const appearanceIndexes = weeklyEditions.flatMap((edition, index) =>
+      edition.charts[category].some((entry) => entry.songId === songId) ? [index] : [],
+    );
+    if (!appearanceIndexes.length) return [];
+
+    const firstIndex = appearanceIndexes[0];
+    const lastIndex = appearanceIndexes.at(-1) ?? firstIndex;
+    const points = weeklyEditions.slice(firstIndex, lastIndex + 1).map((edition) => ({
+      edition,
+      entry: edition.charts[category].find((entry) => entry.songId === songId),
+    }));
+    const appearances = points.flatMap(({ edition, entry }) => entry ? [{ edition, entry }] : []);
+    const peak = Math.min(...appearances.map(({ entry }) => entry.rank));
+    const numberOnes = appearances.filter(({ entry }) => entry.rank === 1).length;
+    const runs = points.reduce((count, point, index) =>
+      point.entry && !points[index - 1]?.entry ? count + 1 : count, 0);
+    const annualPlacements = annualCharts.flatMap((chart) => {
+      if (chart.category !== category) return [];
+      const entry = chart.entries.find((candidate) => candidate.songId === songId);
+      return entry ? [{ year: chart.year, rank: entry.rank }] : [];
+    });
+
+    return [{ category, points, appearances, peak, numberOnes, runs, annualPlacements }];
+  });
 }
 
 export function getLatestPublishedEdition(reference = new Date()) {

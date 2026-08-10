@@ -69,6 +69,10 @@ function readCsvDirectory(directory) {
     .flatMap((filename) => parseCsv(readFileSync(join(directory, filename), "utf8"), filename));
 }
 
+function readCsvFile(filename) {
+  return existsSync(filename) ? parseCsv(readFileSync(filename, "utf8"), filename) : [];
+}
+
 function identityPart(value) {
   return cleanWhitespace(value)
     .normalize("NFD")
@@ -116,10 +120,31 @@ function songId(identity, title) {
 
 class SongCatalog {
   #songs = new Map();
+  #aliases = new Map();
+
+  constructor(aliasRows) {
+    for (const row of aliasRows) {
+      assert(row.aliasTitle && row.aliasArtists && row.title && row.artists, "Song alias CSV requires aliasTitle, aliasArtists, title and artists");
+      const aliasIdentity = songIdentity(row.aliasTitle, row.aliasArtists);
+      const canonical = {
+        title: normalizeTitle(row.title),
+        artists: normalizeArtists(row.artists),
+      };
+      assert(aliasIdentity !== songIdentity(canonical.title, canonical.artists), `Redundant song alias for ${row.aliasTitle} / ${row.aliasArtists}`);
+      assert(!this.#aliases.has(aliasIdentity), `Duplicate song alias for ${row.aliasTitle} / ${row.aliasArtists}`);
+      this.#aliases.set(aliasIdentity, canonical);
+    }
+    for (const canonical of this.#aliases.values()) {
+      assert(!this.#aliases.has(songIdentity(canonical.title, canonical.artists)), `Song alias target must be canonical: ${canonical.title} / ${canonical.artists}`);
+    }
+  }
 
   register(title, artists, authoritative = false) {
-    const normalizedTitle = normalizeTitle(title);
-    const normalizedArtists = normalizeArtists(artists);
+    const sourceTitle = normalizeTitle(title);
+    const sourceArtists = normalizeArtists(artists);
+    const canonical = this.#aliases.get(songIdentity(sourceTitle, sourceArtists));
+    const normalizedTitle = canonical?.title ?? sourceTitle;
+    const normalizedArtists = canonical?.artists ?? sourceArtists;
     const identity = songIdentity(normalizedTitle, normalizedArtists);
     let song = this.#songs.get(identity);
 
@@ -314,9 +339,12 @@ function validate({ weeklyEditions, annualCharts, songs }) {
     assert(chart.year >= 2024, `${chart.id}: unsupported annual year`);
     assert(["national", "international"].includes(chart.category), `${chart.id}: invalid category`);
     assert(chart.entries.length === 20, `${chart.id}: expected 20 ranks`);
+    const chartSongIds = new Set();
     chart.entries.forEach((entry, index) => {
       assert(entry.rank === index + 1, `${chart.id}: ranks must be 1-20`);
       assert(songIds.has(entry.songId), `${chart.id}: missing catalog song ${entry.songId}`);
+      assert(!chartSongIds.has(entry.songId), `${chart.id}: duplicate song ${entry.songId}`);
+      chartSongIds.add(entry.songId);
     });
   }
 
@@ -334,6 +362,11 @@ function validate({ weeklyEditions, annualCharts, songs }) {
   assert(first2026?.date === "2026-01-18", "2026 #1 date correction was not preserved");
   const amante = songs.filter((song) => identityPart(song.title) === identityPart("Amante"));
   assert(amante.length >= 1 && amante.every((song) => song.title === "Amante"), "Amante title correction was not preserved");
+  const sonriele = songs.filter((song) => identityPart(song.title) === identityPart("Sonríele"));
+  assert(sonriele.length === 1 && sonriele[0].artists === "Daddy Yankee", "Sonríele alias was not resolved to Daddy Yankee");
+  const returnEdition = weeklyEditions.find((edition) => edition.date === "2026-01-18");
+  const returnEntry = returnEdition?.charts.international.find((entry) => entry.songId === sonriele[0].id);
+  assert(returnEntry?.movement === -6, "Sonríele must move from #4 to #10 on the next published chart");
 }
 
 function writeJson(filename, value) {
@@ -341,11 +374,11 @@ function writeJson(filename, value) {
 }
 
 function main() {
-  const catalog = new SongCatalog();
+  const catalog = new SongCatalog(readCsvFile(join(contentDir, "songs", "aliases.csv")));
   const weeklyEditions = readWeeklyEditions(catalog);
   deriveWeeklyFields(weeklyEditions);
   const annualCharts = readAnnualCharts(catalog);
-  catalog.addMetadata(readCsvDirectory(join(contentDir, "songs")));
+  catalog.addMetadata(readCsvFile(join(contentDir, "songs", "metadata.csv")));
   const songs = catalog.output();
   const songsWithAuthors = songs.filter((song) => song.authors).length;
 

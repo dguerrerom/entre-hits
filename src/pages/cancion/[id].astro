@@ -1,0 +1,51 @@
+---
+import SongPerformance from "../../components/SongPerformance.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { basePath, getSongHistories, songPath, songs, type Song, type SongChartHistory } from "../../lib/charts";
+
+export function getStaticPaths() {
+  return songs.flatMap((song) => {
+    const histories = getSongHistories(song.id);
+    return histories.length ? [{ params: { id: song.id }, props: { song, histories } }] : [];
+  });
+}
+
+interface Props {
+  song: Song;
+  histories: SongChartHistory[];
+}
+
+const { song, histories } = Astro.props;
+const primaryCategory = histories[0]?.category ?? "international";
+const appearances = histories.reduce((total, history) => total + history.appearances.length, 0);
+const description = `Historial de ${song.title} por ${song.artists}: posiciones y desempeño en ${appearances} conteos de Entre Hits.`;
+---
+
+<BaseLayout title={`${song.title} · Historial`} description={description} canonical={songPath(song.id)}>
+  <div class:list={["song-page", `song-page--${primaryCategory}`]}>
+    <div class="song-shell">
+      <nav class="song-breadcrumb" aria-label="Ruta de navegación">
+        <a href={`${basePath}/archivo/`}>Archivo</a><span aria-hidden="true">/</span><span>Historial de canción</span>
+      </nav>
+
+      <header class="song-header">
+        <p>Desempeño en Entre Hits</p>
+        <h1>{song.title}</h1>
+        <p class="song-page-artists">{song.artists}</p>
+        {song.authors && <p class="song-page-authors"><strong>Autoría:</strong> {song.authors}</p>}
+        {(song.youtube || song.spotify) && (
+          <div class="song-page-links">
+            {song.youtube && <a href={song.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>}
+            {song.spotify && <a href={song.spotify} target="_blank" rel="noopener noreferrer">Spotify</a>}
+          </div>
+        )}
+      </header>
+
+      {histories.map((history) => <SongPerformance song={song} history={history} />)}
+
+      <div class="song-page-return">
+        <a href={`${basePath}/archivo/`}>Explorar todos los conteos</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

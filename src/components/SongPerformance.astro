@@ -1,0 +1,152 @@
+---
+import type { Song, SongChartHistory } from "../lib/charts";
+import { annualPath, categoryLabels, formatDate, movementText, weeklyPath } from "../lib/charts";
+
+interface Props {
+  song: Song;
+  history: SongChartHistory;
+}
+
+const { song, history } = Astro.props;
+const first = history.appearances[0];
+const latest = history.appearances.at(-1) ?? first;
+const label = categoryLabels[history.category];
+const appearanceLabel = history.appearances.length === 1 ? "aparición" : "apariciones";
+const runLabel = history.runs === 1 ? "recorrido" : "recorridos";
+const titleId = `performance-title-${song.id}-${history.category}`;
+const chartTitleId = `performance-chart-title-${song.id}-${history.category}`;
+const descriptionId = `performance-description-${song.id}-${history.category}`;
+const chartWidth = 800;
+const chartHeight = 360;
+const left = 82;
+const right = 20;
+const top = 24;
+const rankHeight = 252;
+const offChartY = 314;
+const plotWidth = chartWidth - left - right;
+const xFor = (index: number) => history.points.length === 1
+  ? left + plotWidth / 2
+  : left + (index / (history.points.length - 1)) * plotWidth;
+const yFor = (rank?: number) => rank ? top + ((rank - 1) / 9) * rankHeight : offChartY;
+const summary = `Debutó en el #${first.entry.rank} el ${formatDate(first.edition.date)}, alcanzó el #${history.peak} y suma ${history.appearances.length} ${appearanceLabel} en ${history.runs} ${runLabel}.`;
+const chartDescription = `Posiciones de ${song.title} en la lista ${label}. ${summary} Las marcas en la banda inferior indican conteos en los que estuvo fuera del Top 10.`;
+---
+
+<section class:list={["song-performance", `song-performance--${history.category}`]} aria-labelledby={titleId}>
+  <header class="performance-heading">
+    <div>
+      <p>Desempeño semanal</p>
+      <h2 id={titleId}>{label}</h2>
+    </div>
+    <p class="performance-range">
+      <time datetime={first.edition.date}>{formatDate(first.edition.date, { month: "short" })}</time>
+      <span aria-hidden="true">→</span>
+      <time datetime={latest.edition.date}>{formatDate(latest.edition.date, { month: "short" })}</time>
+    </p>
+  </header>
+
+  <dl class="performance-metrics">
+    <div><dt>Mejor puesto</dt><dd>#{history.peak}</dd></div>
+    <div><dt>Apariciones</dt><dd>{history.appearances.length}</dd></div>
+    <div><dt>Conteos #1</dt><dd>{history.numberOnes}</dd></div>
+    <div><dt>Recorridos</dt><dd>{history.runs}</dd></div>
+  </dl>
+
+  <p class="performance-summary">{summary}</p>
+
+  <div class="performance-graphic">
+    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} role="img" aria-labelledby={`${chartTitleId} ${descriptionId}`}>
+      <title id={chartTitleId}>Posiciones de {song.title} en la lista {label}</title>
+      <desc id={descriptionId}>{chartDescription}</desc>
+      <rect class="performance-off-band" x={left} y={offChartY - 14} width={plotWidth} height="28" />
+      <text class="performance-off-label" x={left - 10} y={offChartY + 4} text-anchor="end">FUERA</text>
+
+      {Array.from({ length: 10 }, (_, index) => index + 1).map((rank) => (
+        <g class:list={["performance-grid", { "performance-grid--one": rank === 1 }]}>
+          <line x1={left} y1={yFor(rank)} x2={chartWidth - right} y2={yFor(rank)} />
+          <text x={left - 10} y={yFor(rank) + 4} text-anchor="end">#{rank}</text>
+        </g>
+      ))}
+
+      {history.points.slice(0, -1).map((point, index) => {
+        const next = history.points[index + 1];
+        const continuous = Boolean(point.entry && next?.entry);
+        return (
+          <line
+            class:list={["performance-line", { "performance-line--gap": !continuous }]}
+            x1={xFor(index)}
+            y1={yFor(point.entry?.rank)}
+            x2={xFor(index + 1)}
+            y2={yFor(next?.entry?.rank)}
+          />
+        );
+      })}
+
+      {history.points.map((point, index) => point.entry ? (
+        <circle
+          class:list={["performance-point", { "performance-point--return": point.entry.movement === "R" }]}
+          cx={xFor(index)}
+          cy={yFor(point.entry.rank)}
+          r="5.5"
+        />
+      ) : (
+        <g class="performance-off-point">
+          <line x1={xFor(index) - 4} y1={offChartY - 4} x2={xFor(index) + 4} y2={offChartY + 4} />
+          <line x1={xFor(index) + 4} y1={offChartY - 4} x2={xFor(index) - 4} y2={offChartY + 4} />
+        </g>
+      ))}
+
+      {history.points.length === 1 ? (
+        <text class="performance-date-label" x={left + plotWidth / 2} y={chartHeight - 8} text-anchor="middle">
+          {formatDate(first.edition.date, { month: "short" })}
+        </text>
+      ) : (
+        <>
+          <text class="performance-date-label" x={left} y={chartHeight - 8} text-anchor="start">
+            {formatDate(first.edition.date, { month: "short" })}
+          </text>
+          <text class="performance-date-label" x={chartWidth - right} y={chartHeight - 8} text-anchor="end">
+            {formatDate(latest.edition.date, { month: "short" })}
+          </text>
+        </>
+      )}
+    </svg>
+    <p>Cada punto representa un conteo publicado. Los domingos sin programa no generan una posición.</p>
+  </div>
+
+  {history.annualPlacements.length > 0 && (
+    <div class="performance-annual">
+      <p>Cierres anuales</p>
+      <ul>
+        {history.annualPlacements.map((placement) => (
+          <li><a href={annualPath(history.category, placement.year)}>{placement.year} <strong>#{placement.rank}</strong></a></li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  <details class="performance-details">
+    <summary>
+      <span>Ver recorrido completo</span>
+      <small>{history.points.length} conteos publicados</small>
+    </summary>
+    <div class="performance-table-wrap">
+      <table>
+        <caption class="sr-only">Recorrido de {song.title} en la lista {label}</caption>
+        <thead>
+          <tr><th>Conteo</th><th>Fecha</th><th>Lugar</th><th>Movimiento</th></tr>
+        </thead>
+        <tbody>
+          {history.points.map(({ edition, entry }) => (
+            <tr class:list={{ "performance-row--off": !entry }}>
+              <td><a href={weeklyPath(history.category, edition.date)}>#{edition.number}</a></td>
+              <td><time datetime={edition.date}>{formatDate(edition.date, { month: "short" })}</time></td>
+              <td>{entry ? `#${entry.rank}` : "Fuera"}</td>
+              <td>{entry ? movementText(entry.movement) : "Fuera del Top 10"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</section>
