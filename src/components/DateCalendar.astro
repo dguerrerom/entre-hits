@@ -12,6 +12,12 @@ interface Props {
 
 const { category, current, editions, previous, next } = Astro.props;
 const manifest = editions.map(({ date, number }) => ({ date, number }));
+const years = [...new Set(editions.map(({ year }) => year))].sort((left, right) => left - right);
+const monthNames = Array.from({ length: 12 }, (_, month) =>
+  new Intl.DateTimeFormat("es-CU", { month: "short", timeZone: "UTC" })
+    .format(new Date(Date.UTC(2024, month, 1)))
+    .replace(".", ""),
+);
 ---
 
 <div class="date-navigation">
@@ -30,25 +36,51 @@ const manifest = editions.map(({ date, number }) => ({ date, number }));
 <dialog
   id="chart-calendar"
   class="calendar-dialog"
-  aria-labelledby="calendar-month-label"
+  aria-labelledby="calendar-dialog-title"
   data-current={current.date}
   data-category={categorySlugs[category]}
   data-base={basePath}
 >
   <script is:inline type="application/json" class="calendar-data" set:html={JSON.stringify(manifest)} />
   <div class="calendar-header">
-    <button type="button" class="calendar-month-button calendar-month-previous" aria-label="Mes anterior">←</button>
-    <h2 id="calendar-month-label" class="calendar-month-label" aria-live="polite"></h2>
-    <button type="button" class="calendar-month-button calendar-month-next" aria-label="Mes siguiente">→</button>
+    <h2 id="calendar-dialog-title">Elegir conteo semanal</h2>
     <button type="button" class="calendar-close" aria-label="Cerrar calendario">×</button>
+  </div>
+
+  <div class="calendar-jump">
+    <div class="calendar-jump-group">
+      <p>Año</p>
+      <div class="calendar-year-picker" role="group" aria-label="Elegir año">
+        {years.map((year) => <button type="button" data-calendar-year={year}>{year}</button>)}
+      </div>
+    </div>
+    <div class="calendar-jump-group">
+      <p>Mes</p>
+      <div class="calendar-month-picker" role="group" aria-label="Elegir mes">
+        {monthNames.map((month, index) => (
+          <button type="button" data-calendar-month={index}>
+            <span>{month}</span><small aria-hidden="true">—</small>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar-month-navigation">
+    <button type="button" class="calendar-month-button calendar-month-previous" aria-label="Mes disponible anterior">←</button>
+    <p id="calendar-month-label" class="calendar-month-label" aria-live="polite" aria-atomic="true"></p>
+    <button type="button" class="calendar-month-button calendar-month-next" aria-label="Mes disponible siguiente">→</button>
   </div>
   <div class="calendar-weekdays" aria-hidden="true">
     <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
   </div>
   <div class="calendar-grid"></div>
   <div class="calendar-footer">
-    <a class="calendar-latest" href={`${basePath}/semanal/${categorySlugs[category]}/`}>Último disponible</a>
-    <p>Las semanas comienzan el domingo.</p>
+    <div class="calendar-footer-actions">
+      <button type="button" class="calendar-selected-return">Conteo seleccionado</button>
+      <a class="calendar-latest" href={`${basePath}/semanal/${categorySlugs[category]}/`}>Último disponible</a>
+    </div>
+    <p>Solo se muestran domingos con conteos publicados.</p>
   </div>
 </dialog>
 
@@ -61,11 +93,13 @@ const manifest = editions.map(({ date, number }) => ({ date, number }));
     const byDate = new Map(entries.map((entry) => [entry.date, entry]));
     const selected = dialog.dataset.current ?? entries.at(-1)?.date ?? "";
     const [selectedYear, selectedMonth] = selected.split("-").map(Number);
-    let view = new Date(Date.UTC(selectedYear, selectedMonth - 1, 1));
     const grid = dialog.querySelector<HTMLElement>(".calendar-grid");
     const monthLabel = dialog.querySelector<HTMLElement>(".calendar-month-label");
     const previousMonthButton = dialog.querySelector<HTMLButtonElement>(".calendar-month-previous");
     const nextMonthButton = dialog.querySelector<HTMLButtonElement>(".calendar-month-next");
+    const selectedReturnButton = dialog.querySelector<HTMLButtonElement>(".calendar-selected-return");
+    const yearButtons = [...dialog.querySelectorAll<HTMLButtonElement>("[data-calendar-year]")];
+    const monthButtons = [...dialog.querySelectorAll<HTMLButtonElement>("[data-calendar-month]")];
     const base = dialog.dataset.base ?? "";
     const category = dialog.dataset.category ?? "nacional";
 
@@ -80,22 +114,67 @@ const manifest = editions.map(({ date, number }) => ({ date, number }));
       return date.toISOString().slice(0, 10);
     };
 
+    const currentWeek = cubaWeekStart();
+    const publishedEntries = entries.filter((entry) => entry.date <= currentWeek);
+    const monthIndexFor = (date: string) => {
+      const [year, month] = date.split("-").map(Number);
+      return year * 12 + month - 1;
+    };
+    const selectedMonthIndex = selectedYear * 12 + selectedMonth - 1;
+    const publishedMonthIndexes = [...new Set(publishedEntries.map((entry) => monthIndexFor(entry.date)))].sort((left, right) => left - right);
+    const publishedYears = [...new Set(publishedMonthIndexes.map((index) => Math.floor(index / 12)))];
+    const initialMonthIndex = publishedMonthIndexes.includes(selectedMonthIndex)
+      ? selectedMonthIndex
+      : publishedMonthIndexes.at(-1) ?? selectedMonthIndex;
+    let viewMonthIndex = initialMonthIndex;
+
+    const adjacentMonth = (direction: -1 | 1) => direction < 0
+      ? [...publishedMonthIndexes].reverse().find((index) => index < viewMonthIndex)
+      : publishedMonthIndexes.find((index) => index > viewMonthIndex);
+
+    const nearestMonthInYear = (year: number, targetMonth: number) => publishedMonthIndexes
+      .filter((index) => Math.floor(index / 12) === year)
+      .sort((left, right) => Math.abs(left % 12 - targetMonth) - Math.abs(right % 12 - targetMonth) || left - right)[0];
+
+    const focusCalendarDate = (preferLast = false) => requestAnimationFrame(() => {
+      const dates = [...(grid?.querySelectorAll<HTMLAnchorElement>("a.calendar-day") ?? [])];
+      const selectedDate = dates.find((date) => date.getAttribute("aria-current") === "date");
+      (selectedDate ?? (preferLast ? dates.at(-1) : dates[0]))?.focus();
+    });
+
     const render = () => {
       if (!grid || !monthLabel) return;
       grid.replaceChildren();
+      const year = Math.floor(viewMonthIndex / 12);
+      const month = viewMonthIndex % 12;
+      const view = new Date(Date.UTC(year, month, 1));
       const monthText = new Intl.DateTimeFormat("es-CU", { month: "long", year: "numeric", timeZone: "UTC" }).format(view);
       monthLabel.textContent = monthText.charAt(0).toUpperCase() + monthText.slice(1);
-      const year = view.getUTCFullYear();
-      const month = view.getUTCMonth();
       const firstWeekday = new Date(Date.UTC(year, month, 1)).getUTCDay();
       const days = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
-      const currentWeek = cubaWeekStart();
-      const availableDates = entries.filter((entry) => entry.date <= currentWeek).map((entry) => entry.date);
-      const earliest = new Date(`${availableDates[0] ?? selected}T12:00:00Z`);
-      const latest = new Date(`${availableDates.at(-1) ?? selected}T12:00:00Z`);
-      const monthIndex = year * 12 + month;
-      previousMonthButton?.toggleAttribute("disabled", monthIndex <= earliest.getUTCFullYear() * 12 + earliest.getUTCMonth());
-      nextMonthButton?.toggleAttribute("disabled", monthIndex >= latest.getUTCFullYear() * 12 + latest.getUTCMonth());
+      previousMonthButton?.toggleAttribute("disabled", adjacentMonth(-1) === undefined);
+      nextMonthButton?.toggleAttribute("disabled", adjacentMonth(1) === undefined);
+      selectedReturnButton?.toggleAttribute("disabled", viewMonthIndex === initialMonthIndex);
+
+      for (const button of yearButtons) {
+        const buttonYear = Number(button.dataset.calendarYear);
+        button.disabled = !publishedYears.includes(buttonYear);
+        button.setAttribute("aria-pressed", String(buttonYear === year));
+      }
+
+      for (const button of monthButtons) {
+        const buttonMonth = Number(button.dataset.calendarMonth);
+        const count = publishedEntries.filter((entry) => monthIndexFor(entry.date) === year * 12 + buttonMonth).length;
+        const monthName = new Intl.DateTimeFormat("es-CU", { month: "long", timeZone: "UTC" })
+          .format(new Date(Date.UTC(year, buttonMonth, 1)));
+        button.disabled = count === 0;
+        button.setAttribute("aria-pressed", String(buttonMonth === month));
+        button.setAttribute("aria-label", count
+          ? `${monthName}, ${count} ${count === 1 ? "conteo" : "conteos"}`
+          : `${monthName}, sin conteos publicados`);
+        const countLabel = button.querySelector("small");
+        if (countLabel) countLabel.textContent = count ? String(count) : "—";
+      }
 
       for (let index = 0; index < firstWeekday; index += 1) {
         const spacer = document.createElement("span");
@@ -115,6 +194,7 @@ const manifest = editions.map(({ date, number }) => ({ date, number }));
         if (entry && available && element instanceof HTMLAnchorElement) {
           element.href = `${base}/semanal/${category}/${date}/`;
           element.setAttribute("aria-label", `Conteo ${entry.number}, ${new Intl.DateTimeFormat("es-CU", { dateStyle: "full", timeZone: "UTC" }).format(new Date(`${date}T12:00:00Z`))}`);
+          element.tabIndex = -1;
           if (date === selected) element.setAttribute("aria-current", "date");
           const badge = document.createElement("small");
           badge.textContent = `#${entry.number}`;
@@ -124,20 +204,81 @@ const manifest = editions.map(({ date, number }) => ({ date, number }));
         }
         grid.append(element);
       }
+
+      const availableDays = [...grid.querySelectorAll<HTMLAnchorElement>("a.calendar-day")];
+      const tabStop = availableDays.find((day) => day.getAttribute("aria-current") === "date") ?? availableDays[0];
+      if (tabStop) tabStop.tabIndex = 0;
+    };
+
+    const moveMonth = (direction: -1 | 1, focusGrid = false) => {
+      const target = adjacentMonth(direction);
+      if (target === undefined) return;
+      viewMonthIndex = target;
+      render();
+      if (focusGrid) focusCalendarDate(direction < 0);
+    };
+
+    const moveYear = (direction: -1 | 1, focusGrid = false) => {
+      const year = Math.floor(viewMonthIndex / 12);
+      const position = publishedYears.indexOf(year);
+      const targetYear = publishedYears[position + direction];
+      if (targetYear === undefined) return;
+      const target = nearestMonthInYear(targetYear, viewMonthIndex % 12);
+      if (target === undefined) return;
+      viewMonthIndex = target;
+      render();
+      if (focusGrid) focusCalendarDate(direction < 0);
     };
 
     trigger.addEventListener("click", () => {
+      viewMonthIndex = initialMonthIndex;
       render();
       trigger.setAttribute("aria-expanded", "true");
       dialog.showModal();
-      requestAnimationFrame(() => dialog.querySelector<HTMLAnchorElement>(".calendar-day--selected")?.focus());
+      focusCalendarDate();
     });
     dialog.querySelector(".calendar-close")?.addEventListener("click", () => dialog.close());
-    dialog.querySelector(".calendar-month-previous")?.addEventListener("click", () => {
-      view = new Date(Date.UTC(view.getUTCFullYear(), view.getUTCMonth() - 1, 1)); render();
+    previousMonthButton?.addEventListener("click", () => moveMonth(-1));
+    nextMonthButton?.addEventListener("click", () => moveMonth(1));
+    selectedReturnButton?.addEventListener("click", () => {
+      viewMonthIndex = initialMonthIndex;
+      render();
+      focusCalendarDate();
     });
-    dialog.querySelector(".calendar-month-next")?.addEventListener("click", () => {
-      view = new Date(Date.UTC(view.getUTCFullYear(), view.getUTCMonth() + 1, 1)); render();
+    yearButtons.forEach((button) => button.addEventListener("click", () => {
+      const target = nearestMonthInYear(Number(button.dataset.calendarYear), viewMonthIndex % 12);
+      if (target === undefined) return;
+      viewMonthIndex = target;
+      render();
+    }));
+    monthButtons.forEach((button) => button.addEventListener("click", () => {
+      const target = Math.floor(viewMonthIndex / 12) * 12 + Number(button.dataset.calendarMonth);
+      if (!publishedMonthIndexes.includes(target)) return;
+      viewMonthIndex = target;
+      render();
+    }));
+    grid?.addEventListener("keydown", (event) => {
+      if (!(event.target instanceof HTMLAnchorElement)) return;
+      const dates = [...grid.querySelectorAll<HTMLAnchorElement>("a.calendar-day")];
+      const position = dates.indexOf(event.target);
+      let target: HTMLAnchorElement | undefined;
+
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") target = dates[position - 1];
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") target = dates[position + 1];
+      if (event.key === "Home") target = dates[0];
+      if (event.key === "End") target = dates.at(-1);
+      if (event.key === "PageUp" || event.key === "PageDown") {
+        event.preventDefault();
+        const direction = event.key === "PageUp" ? -1 : 1;
+        if (event.shiftKey) moveYear(direction, true);
+        else moveMonth(direction, true);
+        return;
+      }
+      if (!target) return;
+      event.preventDefault();
+      dates.forEach((date) => { date.tabIndex = -1; });
+      target.tabIndex = 0;
+      target.focus();
     });
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) dialog.close();

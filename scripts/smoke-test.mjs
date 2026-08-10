@@ -42,6 +42,25 @@ try {
   assert((await page.locator("a.calendar-day").count()) > 0, "Calendar has no available editions.");
   assert((await page.locator('.calendar-day[aria-current="date"]').count()) === 1, "Calendar must expose the selected date.");
   assert(await page.locator('.calendar-day[aria-current="date"]').evaluate((day) => day === document.activeElement), "Calendar must focus the selected date when opened.");
+  assert((await page.locator("[data-calendar-year]").count()) === 3, "Calendar must expose every available year.");
+  assert((await page.locator("[data-calendar-month]").count()) === 12, "Calendar must expose all twelve months.");
+  assert((await page.locator('[data-calendar-year="2026"]').getAttribute("aria-pressed")) === "true", "Calendar must expose the active year.");
+  assert((await page.locator('[data-calendar-month="7"]').getAttribute("aria-pressed")) === "true", "Calendar must expose the active month.");
+  assert(await page.locator('[data-calendar-month="8"]').isDisabled(), "Calendar must disable future months.");
+
+  await page.locator('[data-calendar-year="2025"]').click();
+  assert((await page.locator(".calendar-month-label").textContent())?.includes("2025"), "Year shortcut did not jump to 2025.");
+  assert(await page.locator('[data-calendar-month="10"]').isDisabled(), "Calendar must disable months without editions.");
+  await page.locator('[data-calendar-month="9"]').click();
+  assert((await page.locator(".calendar-month-label").textContent())?.toLocaleLowerCase("es").includes("octubre de 2025"), "Month shortcut did not jump to October 2025.");
+  await page.locator(".calendar-month-next").click();
+  assert((await page.locator(".calendar-month-label").textContent())?.toLocaleLowerCase("es").includes("enero de 2026"), "Month navigation must skip empty months.");
+
+  await page.locator('a.calendar-day[tabindex="0"]').press("Shift+PageUp");
+  assert((await page.locator(".calendar-month-label").textContent())?.toLocaleLowerCase("es").includes("enero de 2025"), "Shift+PageUp must jump to the previous year.");
+  await page.locator(".calendar-selected-return").click();
+  assert((await page.locator(".calendar-month-label").textContent())?.includes("2026"), "Selected-count shortcut did not restore the current month.");
+  assert(await page.locator('.calendar-day[aria-current="date"]').evaluate((day) => day === document.activeElement), "Selected-count shortcut must restore focus to the selected date.");
   assert(await page.locator(".calendar-month-next").isDisabled(), "Calendar must stop at the latest available month.");
   await page.keyboard.press("Escape");
   assert((await page.locator(".calendar-trigger").getAttribute("aria-expanded")) === "false", "Calendar trigger must expose its collapsed state.");
