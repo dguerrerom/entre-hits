@@ -1,0 +1,80 @@
+---
+import type { Category, Movement, Song } from "../lib/charts";
+import { categoryLabels, formatDate, movementText } from "../lib/charts";
+
+interface Entry {
+  rank: number;
+  song: Song;
+  movement?: Movement;
+  weeks?: number;
+}
+
+interface Props {
+  category: Category;
+  variant: "weekly" | "annual";
+  entries: Entry[];
+  date?: string;
+  number?: number;
+  year?: number;
+}
+
+const { category, variant, entries, date, number, year } = Astro.props;
+const label = categoryLabels[category];
+const heading = variant === "weekly" ? `LISTA #${number} ${label.toUpperCase()}` : `CIERRE ${year} ${label.toUpperCase()}`;
+---
+
+<article class:list={["chart-board", `chart-board--${category}`, { "chart-board--annual": variant === "annual" }]}>
+  <header class="chart-masthead">
+    <p class="chart-date">{variant === "weekly" && date ? formatDate(date) : `Cierre anual ${year}`}</p>
+    <p class="chart-brand">ENTRE HITS</p>
+    <img src={`${import.meta.env.BASE_URL}brand/entre-mezclas.png`} alt="Entre Mezclas" width="173" height="173" />
+    <h1><span>{heading}</span></h1>
+  </header>
+
+  <div class="chart-columns" aria-hidden="true">
+    <span>L</span>
+    {variant === "weekly" && <span>S</span>}
+    {variant === "weekly" && <span></span>}
+    <span>Canción / Artista</span>
+  </div>
+
+  <ol class="chart-list" aria-label={`${variant === "weekly" ? "Lista semanal" : "Lista anual"} ${label}`}>
+    {entries.map((entry) => (
+      <li class="chart-entry">
+        <span class="rank" aria-label={`Posición ${entry.rank}`}>{entry.rank}</span>
+        {variant === "weekly" && (
+          <span class="weeks" aria-label={`${entry.weeks} ${entry.weeks === 1 ? "semana" : "semanas"} en lista`}>
+            {entry.weeks}
+          </span>
+        )}
+        {variant === "weekly" && (
+          <span
+            class:list={[
+              "movement",
+              typeof entry.movement === "number" && entry.movement > 0 && "movement--up",
+              typeof entry.movement === "number" && entry.movement < 0 && "movement--down",
+              typeof entry.movement === "string" && "movement--status",
+            ]}
+            aria-label={entry.movement !== undefined ? movementText(entry.movement) : undefined}
+            title={entry.movement !== undefined ? movementText(entry.movement) : undefined}
+          >
+            {typeof entry.movement === "number" && entry.movement > 0 && <span aria-hidden="true">▲{entry.movement}</span>}
+            {typeof entry.movement === "number" && entry.movement < 0 && <span aria-hidden="true">▼{Math.abs(entry.movement)}</span>}
+            {entry.movement === "N" && <span aria-hidden="true">N</span>}
+            {entry.movement === "R" && <span aria-hidden="true">R</span>}
+          </span>
+        )}
+        <div class="song-details">
+          <p class="song-line"><strong>{entry.song.title}</strong><span aria-hidden="true"> / </span><span>{entry.song.artists}</span></p>
+          {entry.song.authors && <p class="song-authors">{entry.song.authors}</p>}
+          {(entry.song.youtube || entry.song.spotify) && (
+            <p class="song-links">
+              {entry.song.youtube && <a href={entry.song.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>}
+              {entry.song.spotify && <a href={entry.song.spotify} target="_blank" rel="noopener noreferrer">Spotify</a>}
+            </p>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+</article>

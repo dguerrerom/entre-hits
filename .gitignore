@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+fonts/*
+!fonts/FiraSans-Regular.ttf
+!fonts/FiraSans-Bold.ttf
+!fonts/FiraSans-Black.ttf

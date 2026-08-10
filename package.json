@@ -1,0 +1,25 @@
+{
+  "name": "entre-hits",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data": "node scripts/build-chart-data.mjs",
+    "dev": "npm run data && astro dev",
+    "check": "npm run data && astro check",
+    "build": "npm run data && astro check && astro build",
+    "preview": "astro preview",
+    "smoke": "node scripts/smoke-test.mjs"
+  },
+  "dependencies": {
+    "@fontsource/fira-sans": "^5.2.7",
+    "@resvg/resvg-js": "^2.6.2",
+    "astro": "^7.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@types/node": "^24.10.0",
+    "playwright-core": "^1.62.1",
+    "typescript": "^5.9.2"
+  }
+}

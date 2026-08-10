@@ -1,0 +1,19 @@
+---
+import ChartPage from "../../../components/ChartPage.astro";
+import { annualCharts, categories, categorySlugs, type AnnualChart, type Category } from "../../../lib/charts";
+
+export function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { category: categorySlugs[category] },
+    props: { category },
+  }));
+}
+
+interface Props { category: Category }
+const { category } = Astro.props as Props;
+const annual = [...annualCharts]
+  .filter((chart) => chart.category === category)
+  .sort((a, b) => b.year - a.year)[0] as AnnualChart;
+---
+
+<ChartPage variant="annual" category={category} annual={annual} />

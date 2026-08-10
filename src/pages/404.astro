@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { basePath } from "../lib/charts";
+---
+
+<BaseLayout title="Página no encontrada">
+  <div class="not-found">
+    <p>404</p>
+    <h1>Este conteo no está disponible.</h1>
+    <a href={`${basePath}/semanal/nacional/`}>Ir al último conteo</a>
+  </div>
+</BaseLayout>

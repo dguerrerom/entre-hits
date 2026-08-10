@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ChartBoard from "./ChartBoard.astro";
+import DateCalendar from "./DateCalendar.astro";
+import type { AnnualChart, Category, WeeklyEdition } from "../lib/charts";
+import {
+  annualPath,
+  annualCharts,
+  basePath,
+  categoryLabels,
+  categorySlugs,
+  formatDate,
+  getAdjacentEditions,
+  imagePath,
+  songsById,
+  weeklyEditions,
+  weeklyPath,
+} from "../lib/charts";
+
+interface Props {
+  variant: "weekly" | "annual";
+  category: Category;
+  edition?: WeeklyEdition;
+  annual?: AnnualChart;
+  autoCurrent?: boolean;
+}
+
+const { variant, category, edition, annual, autoCurrent = false } = Astro.props;
+const label = categoryLabels[category];
+const otherCategory: Category = category === "national" ? "international" : "national";
+const entries = variant === "weekly"
+  ? edition!.charts[category].map((entry) => ({ ...entry, song: songsById.get(entry.songId)! }))
+  : annual!.entries.map((entry) => ({ ...entry, song: songsById.get(entry.songId)! }));
+const adjacent: { previous?: WeeklyEdition; next?: WeeklyEdition } = edition
+  ? getAdjacentEditions(edition.date)
+  : {};
+const annualYears = [...new Set(annualCharts.map((chart) => chart.year))].sort((a, b) => b - a);
+const title = variant === "weekly"
+  ? `Lista #${edition!.number} ${label} · ${formatDate(edition!.date)}`
+  : `Top 20 ${label} · Cierre ${annual!.year}`;
+const download = variant === "weekly"
+  ? imagePath("semanal", category, edition!.date)
+  : imagePath("anual", category, annual!.year);
+const switchPath = variant === "weekly"
+  ? weeklyPath(otherCategory, edition!.date)
+  : annualPath(otherCategory, annual!.year);
+---
+
+<BaseLayout title={title} image={download}>
+  <div class="page-shell">
+    <div class="edition-kicker">
+      <p>{variant === "weekly" ? "Lista semanal" : "Cierre anual"}</p>
+      <p>Entre Mezclas · Radio Holguín La Nueva</p>
+    </div>
+
+    <div class="variant-tabs" aria-label="Tipo de lista">
+      <a class:list={{ active: variant === "weekly" }} href={weeklyPath(category)}>Semanal</a>
+      <a class:list={{ active: variant === "annual" }} href={annualPath(category)}>Anual</a>
+    </div>
+
+    <div class="chart-toolbar">
+      <div class="category-tabs" aria-label="Categoría">
+        <a class:list={{ active: category === "national" }} href={category === "national" ? "#chart" : switchPath}>Nacional</a>
+        <a class:list={{ active: category === "international" }} href={category === "international" ? "#chart" : switchPath}>Internacional</a>
+      </div>
+      <a class="download-link" href={download} download>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 17v3h16v-3"/></svg>
+        Descargar imagen
+      </a>
+    </div>
+
+    {variant === "weekly" && edition && (
+      <DateCalendar
+        category={category}
+        current={edition}
+        editions={weeklyEditions}
+        previous={adjacent.previous}
+        next={adjacent.next}
+      />
+    )}
+
+    {variant === "annual" && annual && (
+      <nav class="year-navigation" aria-label="Seleccionar cierre anual">
+        {annualYears.map((year) => (
+          <a class:list={{ active: year === annual.year }} href={annualPath(category, year)}>{year}</a>
+        ))}
+      </nav>
+    )}
+
+    <div id="chart">
+      <ChartBoard
+        category={category}
+        variant={variant}
+        entries={entries}
+        date={edition?.date}
+        number={edition?.number}
+        year={annual?.year}
+      />
+    </div>
+
+    <div class="after-chart">
+      <a href={`${basePath}/archivo/`}>Explorar el archivo completo</a>
+      <p>Autores y enlaces se incorporan progresivamente a partir de fuentes verificadas.</p>
+    </div>
+  </div>
+
+  {autoCurrent && edition && (
+    <script
+      is:inline
+      define:vars={{
+        editions: weeklyEditions.map(({ date }) => date),
+        currentDate: edition.date,
+        routeBase: `${basePath}/semanal/${categorySlugs[category]}`,
+      }}
+    >
+      (() => {
+        const parts = new Intl.DateTimeFormat("en-CA", {
+          year: "numeric", month: "2-digit", day: "2-digit", weekday: "short", timeZone: "America/Havana",
+        }).formatToParts(new Date());
+        const part = (type) => parts.find((item) => item.type === type)?.value || "";
+        const date = new Date(`${part("year")}-${part("month")}-${part("day")}T12:00:00Z`);
+        const index = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(part("weekday"));
+        date.setUTCDate(date.getUTCDate() - Math.max(index, 0));
+        const weekStart = date.toISOString().slice(0, 10);
+        const target = [...editions].reverse().find((entry) => entry <= weekStart) || editions[0];
+        if (target && target !== currentDate) window.location.replace(`${routeBase}/${target}/`);
+      })();
+    </script>
+  )}
+</BaseLayout>

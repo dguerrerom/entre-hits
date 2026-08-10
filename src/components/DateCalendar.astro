@@ -1,0 +1,133 @@
+---
+import type { Category, WeeklyEdition } from "../lib/charts";
+import { basePath, categorySlugs, formatDate } from "../lib/charts";
+
+interface Props {
+  category: Category;
+  current: WeeklyEdition;
+  editions: WeeklyEdition[];
+  previous?: WeeklyEdition;
+  next?: WeeklyEdition;
+}
+
+const { category, current, editions, previous, next } = Astro.props;
+const manifest = editions.map(({ date, number }) => ({ date, number }));
+---
+
+<div class="date-navigation">
+  {previous ? (
+    <a class="date-arrow" href={`${basePath}/semanal/${categorySlugs[category]}/${previous.date}/`} aria-label={`Conteo anterior, ${formatDate(previous.date)}`}>←</a>
+  ) : <span class="date-arrow date-arrow--disabled" aria-hidden="true">←</span>}
+  <button class="calendar-trigger" type="button" aria-haspopup="dialog" aria-controls="chart-calendar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v3M17 2v3M3.5 9h17M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>
+    <span><small>Conteo #{current.number}</small>{formatDate(current.date)}</span>
+  </button>
+  {next ? (
+    <a class="date-arrow" href={`${basePath}/semanal/${categorySlugs[category]}/${next.date}/`} aria-label={`Conteo siguiente, ${formatDate(next.date)}`}>→</a>
+  ) : <span class="date-arrow date-arrow--disabled" aria-hidden="true">→</span>}
+</div>
+
+<dialog
+  id="chart-calendar"
+  class="calendar-dialog"
+  data-current={current.date}
+  data-category={categorySlugs[category]}
+  data-base={basePath}
+>
+  <script is:inline type="application/json" class="calendar-data" set:html={JSON.stringify(manifest)} />
+  <div class="calendar-header">
+    <button type="button" class="calendar-month-button calendar-month-previous" aria-label="Mes anterior">←</button>
+    <h2 class="calendar-month-label"></h2>
+    <button type="button" class="calendar-month-button calendar-month-next" aria-label="Mes siguiente">→</button>
+    <button type="button" class="calendar-close" aria-label="Cerrar calendario">×</button>
+  </div>
+  <div class="calendar-weekdays" aria-hidden="true">
+    <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+  </div>
+  <div class="calendar-grid" aria-live="polite"></div>
+  <div class="calendar-footer">
+    <a class="calendar-latest" href={`${basePath}/semanal/${categorySlugs[category]}/`}>Último disponible</a>
+    <p>Las semanas comienzan el domingo.</p>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#chart-calendar");
+  const trigger = document.querySelector<HTMLButtonElement>(".calendar-trigger");
+
+  if (dialog && trigger) {
+    const entries = JSON.parse(dialog.querySelector(".calendar-data")?.textContent ?? "[]") as Array<{ date: string; number: number }>;
+    const byDate = new Map(entries.map((entry) => [entry.date, entry]));
+    const selected = dialog.dataset.current ?? entries.at(-1)?.date ?? "";
+    const [selectedYear, selectedMonth] = selected.split("-").map(Number);
+    let view = new Date(Date.UTC(selectedYear, selectedMonth - 1, 1));
+    const grid = dialog.querySelector<HTMLElement>(".calendar-grid");
+    const monthLabel = dialog.querySelector<HTMLElement>(".calendar-month-label");
+    const base = dialog.dataset.base ?? "";
+    const category = dialog.dataset.category ?? "nacional";
+
+    const cubaWeekStart = () => {
+      const parts = new Intl.DateTimeFormat("en-CA", {
+        year: "numeric", month: "2-digit", day: "2-digit", weekday: "short", timeZone: "America/Havana",
+      }).formatToParts(new Date());
+      const value = (type: string) => parts.find((part) => part.type === type)?.value ?? "";
+      const date = new Date(`${value("year")}-${value("month")}-${value("day")}T12:00:00Z`);
+      const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(value("weekday"));
+      date.setUTCDate(date.getUTCDate() - Math.max(weekday, 0));
+      return date.toISOString().slice(0, 10);
+    };
+
+    const render = () => {
+      if (!grid || !monthLabel) return;
+      grid.replaceChildren();
+      monthLabel.textContent = new Intl.DateTimeFormat("es-CU", { month: "long", year: "numeric", timeZone: "UTC" }).format(view);
+      const year = view.getUTCFullYear();
+      const month = view.getUTCMonth();
+      const firstWeekday = new Date(Date.UTC(year, month, 1)).getUTCDay();
+      const days = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+      const currentWeek = cubaWeekStart();
+
+      for (let index = 0; index < firstWeekday; index += 1) {
+        const spacer = document.createElement("span");
+        spacer.className = "calendar-spacer";
+        grid.append(spacer);
+      }
+
+      for (let day = 1; day <= days; day += 1) {
+        const date = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        const entry = byDate.get(date);
+        const available = Boolean(entry && date <= currentWeek);
+        const element = document.createElement(available ? "a" : "span");
+        element.className = "calendar-day";
+        if (date === selected) element.classList.add("calendar-day--selected");
+        if (entry && date > currentWeek) element.classList.add("calendar-day--future");
+        element.textContent = String(day);
+        if (entry && available && element instanceof HTMLAnchorElement) {
+          element.href = `${base}/semanal/${category}/${date}/`;
+          element.setAttribute("aria-label", `Conteo ${entry.number}, ${date}`);
+          const badge = document.createElement("small");
+          badge.textContent = `#${entry.number}`;
+          element.append(badge);
+        } else {
+          element.setAttribute("aria-disabled", "true");
+        }
+        grid.append(element);
+      }
+    };
+
+    trigger.addEventListener("click", () => {
+      render();
+      dialog.showModal();
+    });
+    dialog.querySelector(".calendar-close")?.addEventListener("click", () => dialog.close());
+    dialog.querySelector(".calendar-month-previous")?.addEventListener("click", () => {
+      view = new Date(Date.UTC(view.getUTCFullYear(), view.getUTCMonth() - 1, 1)); render();
+    });
+    dialog.querySelector(".calendar-month-next")?.addEventListener("click", () => {
+      view = new Date(Date.UTC(view.getUTCFullYear(), view.getUTCMonth() + 1, 1)); render();
+    });
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+</script>

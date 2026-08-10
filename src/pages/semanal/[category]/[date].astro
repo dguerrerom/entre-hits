@@ -1,0 +1,18 @@
+---
+import ChartPage from "../../../components/ChartPage.astro";
+import { categories, categorySlugs, weeklyEditions, type Category, type WeeklyEdition } from "../../../lib/charts";
+
+export function getStaticPaths() {
+  return weeklyEditions.flatMap((edition) =>
+    categories.map((category) => ({
+      params: { category: categorySlugs[category], date: edition.date },
+      props: { category, edition },
+    })),
+  );
+}
+
+interface Props { category: Category; edition: WeeklyEdition }
+const { category, edition } = Astro.props;
+---
+
+<ChartPage variant="weekly" category={category} edition={edition} />

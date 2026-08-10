@@ -1,0 +1,77 @@
+---
+import "@fontsource/fira-sans/400.css";
+import "@fontsource/fira-sans/700.css";
+import "@fontsource/fira-sans/900.css";
+import "../styles/global.css";
+import { basePath } from "../lib/charts";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+}
+
+const {
+  title = "Entre Hits",
+  description = "Lista semanal y anual de éxitos nacionales e internacionales del programa Entre Mezclas de Radio Holguín La Nueva.",
+  canonical,
+  image,
+} = Astro.props;
+const pageTitle = title === "Entre Hits" ? title : `${title} | Entre Hits`;
+const canonicalUrl = canonical ? new URL(canonical, Astro.site) : Astro.url;
+const imageUrl = image ? new URL(image, Astro.site) : undefined;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Entre Hits" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href={`${basePath}/favicon.svg`} type="image/svg+xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <a class="site-wordmark" href={`${basePath}/`} aria-label="Entre Hits, inicio">
+        <span>ENTRE</span><strong>HITS</strong>
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href={`${basePath}/semanal/nacional/`}>Semanal</a>
+        <a href={`${basePath}/anual/nacional/`}>Anual</a>
+        <a href={`${basePath}/archivo/`}>Archivo</a>
+      </nav>
+      <a
+        class="live-link"
+        href="https://icecast.teveo.cu/dn9JTKtH"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span aria-hidden="true"></span> Escuchar CMKE en vivo
+      </a>
+    </header>
+    <main id="contenido">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <img src={`${basePath}/brand/entre-mezclas.png`} alt="Entre Mezclas" width="72" height="72" />
+      <div>
+        <p><strong>Entre Hits</strong> es la lista de éxitos del programa Entre Mezclas de Radio Holguín La Nueva.</p>
+        <p>© 2026 Radio Holguín La Nueva. Contenido editorial y elementos de marca: todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

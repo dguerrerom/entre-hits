@@ -1,0 +1,350 @@
+[
+  {
+    "id": "2024-international",
+    "year": 2024,
+    "category": "international",
+    "entries": [
+      {
+        "rank": 1,
+        "songId": "vocation-a1301068d1"
+      },
+      {
+        "rank": 2,
+        "songId": "punteria-1ef0e937a3"
+      },
+      {
+        "rank": 3,
+        "songId": "siantestehubieraconocido-a684e71094"
+      },
+      {
+        "rank": 4,
+        "songId": "espresso-850bade631"
+      },
+      {
+        "rank": 5,
+        "songId": "contigo-0937d7804b"
+      },
+      {
+        "rank": 6,
+        "songId": "illusion-b2810a35a4"
+      },
+      {
+        "rank": 7,
+        "songId": "fortnightcyrilremix-227943921e"
+      },
+      {
+        "rank": 8,
+        "songId": "puntacana-27ce381bef"
+      },
+      {
+        "rank": 9,
+        "songId": "lifetimes-d3b5643c3f"
+      },
+      {
+        "rank": 10,
+        "songId": "beautifulthings-76867bed2c"
+      },
+      {
+        "rank": 11,
+        "songId": "houdini-41ab2783fc"
+      },
+      {
+        "rank": 12,
+        "songId": "yesand-a3e85abb02"
+      },
+      {
+        "rank": 13,
+        "songId": "ohnana-e092d936f3"
+      },
+      {
+        "rank": 14,
+        "songId": "bonita-7e06d87ca1"
+      },
+      {
+        "rank": 15,
+        "songId": "aleale-0b7563c0ba"
+      },
+      {
+        "rank": 16,
+        "songId": "luna-3eac47e0df"
+      },
+      {
+        "rank": 17,
+        "songId": "desire-b900629306"
+      },
+      {
+        "rank": 18,
+        "songId": "salvame-5fdc541db8"
+      },
+      {
+        "rank": 19,
+        "songId": "touchingthesky-93fc355bcf"
+      },
+      {
+        "rank": 20,
+        "songId": "plis-f1de299425"
+      }
+    ]
+  },
+  {
+    "id": "2024-national",
+    "year": 2024,
+    "category": "national",
+    "entries": [
+      {
+        "rank": 1,
+        "songId": "catalina-3a0e88846e"
+      },
+      {
+        "rank": 2,
+        "songId": "silencioremix-df7b7a94c2"
+      },
+      {
+        "rank": 3,
+        "songId": "lavidaesbuena-e8b327aa2c"
+      },
+      {
+        "rank": 4,
+        "songId": "noteinstales-0c505ecf21"
+      },
+      {
+        "rank": 5,
+        "songId": "elamorqueespere-86e71a5cbb"
+      },
+      {
+        "rank": 6,
+        "songId": "unacopiademi-874f23c606"
+      },
+      {
+        "rank": 7,
+        "songId": "tedigoadioscumbia-7a0cc06fea"
+      },
+      {
+        "rank": 8,
+        "songId": "losbesosquetedi-f1fa430ac3"
+      },
+      {
+        "rank": 9,
+        "songId": "fuerafuera-7146038232"
+      },
+      {
+        "rank": 10,
+        "songId": "modovanvan-c3ec2d04af"
+      },
+      {
+        "rank": 11,
+        "songId": "elwhatsapp-7a05174f95"
+      },
+      {
+        "rank": 12,
+        "songId": "lalampara-19a4848639"
+      },
+      {
+        "rank": 13,
+        "songId": "cupr-151fc14e7f"
+      },
+      {
+        "rank": 14,
+        "songId": "dilealamor-563b60e9a8"
+      },
+      {
+        "rank": 15,
+        "songId": "lavidabailando-82797dc147"
+      },
+      {
+        "rank": 16,
+        "songId": "lapersonacorrecta-8daadc1bc1"
+      },
+      {
+        "rank": 17,
+        "songId": "nuncateolvidare-442ab8b88b"
+      },
+      {
+        "rank": 18,
+        "songId": "quevivaelamor-2a6642efed"
+      },
+      {
+        "rank": 19,
+        "songId": "salsakuduro-c13ddcca85"
+      },
+      {
+        "rank": 20,
+        "songId": "blablabla-b04f4e20be"
+      }
+    ]
+  },
+  {
+    "id": "2025-international",
+    "year": 2025,
+    "category": "international",
+    "entries": [
+      {
+        "rank": 1,
+        "songId": "volver-d3eaababf5"
+      },
+      {
+        "rank": 2,
+        "songId": "cosaspendientes-19b5711dc3"
+      },
+      {
+        "rank": 3,
+        "songId": "apt-aa4359c93f"
+      },
+      {
+        "rank": 4,
+        "songId": "abracadabra-bb79c22368"
+      },
+      {
+        "rank": 5,
+        "songId": "senorbendito-2a53bceed4"
+      },
+      {
+        "rank": 6,
+        "songId": "dondeestabas-fdb3c1f87c"
+      },
+      {
+        "rank": 7,
+        "songId": "papasito-18c5517d39"
+      },
+      {
+        "rank": 8,
+        "songId": "elcielo-6db5846b8d"
+      },
+      {
+        "rank": 9,
+        "songId": "caritatriste-b08e70e7e1"
+      },
+      {
+        "rank": 10,
+        "songId": "soltera-af2453ae86"
+      },
+      {
+        "rank": 11,
+        "songId": "quehaces-d7cb3d98d9"
+      },
+      {
+        "rank": 12,
+        "songId": "memuevo-81b30013f0"
+      },
+      {
+        "rank": 13,
+        "songId": "bzrpmusicsessionsvol61-3f2dc8046c"
+      },
+      {
+        "rank": 14,
+        "songId": "paquevolviste-a615566d6e"
+      },
+      {
+        "rank": 15,
+        "songId": "notienesentido-7ac99e1f15"
+      },
+      {
+        "rank": 16,
+        "songId": "uwaie-85b324d262"
+      },
+      {
+        "rank": 17,
+        "songId": "enprivado-5ab8bfd761"
+      },
+      {
+        "rank": 18,
+        "songId": "lifetimes-d3b5643c3f"
+      },
+      {
+        "rank": 19,
+        "songId": "diewithasmile-48d8a6a8fc"
+      },
+      {
+        "rank": 20,
+        "songId": "luna-3464cc2f4b"
+      }
+    ]
+  },
+  {
+    "id": "2025-national",
+    "year": 2025,
+    "category": "national",
+    "entries": [
+      {
+        "rank": 1,
+        "songId": "unclasico-b17f0c89df"
+      },
+      {
+        "rank": 2,
+        "songId": "quehago-96015e81a0"
+      },
+      {
+        "rank": 3,
+        "songId": "asicomoyo-0146c89ab8"
+      },
+      {
+        "rank": 4,
+        "songId": "orgullo-b3c9292d7e"
+      },
+      {
+        "rank": 5,
+        "songId": "portuculpa-2f7567505f"
+      },
+      {
+        "rank": 6,
+        "songId": "amante-738a8171be"
+      },
+      {
+        "rank": 7,
+        "songId": "todoelmundobailando-c00363a787"
+      },
+      {
+        "rank": 8,
+        "songId": "quetevayabien-64c66e3ede"
+      },
+      {
+        "rank": 9,
+        "songId": "tactoquellegoelreparto-4a3c7212e1"
+      },
+      {
+        "rank": 10,
+        "songId": "yaloves-2c4b523d6d"
+      },
+      {
+        "rank": 11,
+        "songId": "mananateolvido-fd0e38bcef"
+      },
+      {
+        "rank": 12,
+        "songId": "yojala-0d25f869e9"
+      },
+      {
+        "rank": 13,
+        "songId": "bonita-1fa820b1b1"
+      },
+      {
+        "rank": 14,
+        "songId": "nosvamos-ec606a101a"
+      },
+      {
+        "rank": 15,
+        "songId": "losbesosquetedi-f1fa430ac3"
+      },
+      {
+        "rank": 16,
+        "songId": "patodalavida-b83f9a5b3b"
+      },
+      {
+        "rank": 17,
+        "songId": "bailandosuave-3b016b3ed0"
+      },
+      {
+        "rank": 18,
+        "songId": "catalina-3a0e88846e"
+      },
+      {
+        "rank": 19,
+        "songId": "morena-080c0333b6"
+      },
+      {
+        "rank": 20,
+        "songId": "novolvere-e0a0da09f5"
+      }
+    ]
+  }
+]
