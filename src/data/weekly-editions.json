@@ -12406,5 +12406,137 @@
         }
       ]
     }
+  },
+  {
+    "id": "2026-31",
+    "year": 2026,
+    "number": 31,
+    "date": "2026-08-16",
+    "charts": {
+      "national": [
+        {
+          "rank": 1,
+          "songId": "elchiquitico-b9b4ac9465",
+          "movement": 0,
+          "weeks": 8
+        },
+        {
+          "rank": 2,
+          "songId": "sinofueraporti-650a0054d2",
+          "movement": 1,
+          "weeks": 7
+        },
+        {
+          "rank": 3,
+          "songId": "tutienesalgo-f736eae719",
+          "movement": -1,
+          "weeks": 14
+        },
+        {
+          "rank": 4,
+          "songId": "nohepodidoolvidarte-8a65d99de0",
+          "movement": 1,
+          "weeks": 5
+        },
+        {
+          "rank": 5,
+          "songId": "namore-a9143f5cf2",
+          "movement": 2,
+          "weeks": 4
+        },
+        {
+          "rank": 6,
+          "songId": "cogelosuave-2141857326",
+          "movement": 2,
+          "weeks": 3
+        },
+        {
+          "rank": 7,
+          "songId": "farandula-cf2bfc3eb2",
+          "movement": -1,
+          "weeks": 16
+        },
+        {
+          "rank": 8,
+          "songId": "sinti-b5cf6d0f05",
+          "movement": -4,
+          "weeks": 10
+        },
+        {
+          "rank": 9,
+          "songId": "eldoctorado-76d58b8d11",
+          "movement": "N",
+          "weeks": 1
+        },
+        {
+          "rank": 10,
+          "songId": "vuelvoaseryo-7603b2a16b",
+          "movement": "N",
+          "weeks": 1
+        }
+      ],
+      "international": [
+        {
+          "rank": 1,
+          "songId": "tehacenfaltados-39cb9c7329",
+          "movement": 0,
+          "weeks": 7
+        },
+        {
+          "rank": 2,
+          "songId": "antesqueeltiemposevaya-581f5f1a29",
+          "movement": 0,
+          "weeks": 6
+        },
+        {
+          "rank": 3,
+          "songId": "savemetonight-57c69ff712",
+          "movement": 0,
+          "weeks": 6
+        },
+        {
+          "rank": 4,
+          "songId": "chevere-127f7d0fe4",
+          "movement": 1,
+          "weeks": 5
+        },
+        {
+          "rank": 5,
+          "songId": "unanamas-dacddd8a79",
+          "movement": 2,
+          "weeks": 5
+        },
+        {
+          "rank": 6,
+          "songId": "bringyourlove-3e36d7d001",
+          "movement": 2,
+          "weeks": 4
+        },
+        {
+          "rank": 7,
+          "songId": "daidai-bce248570a",
+          "movement": -3,
+          "weeks": 11
+        },
+        {
+          "rank": 8,
+          "songId": "patitoa3-d542f2e175",
+          "movement": 2,
+          "weeks": 2
+        },
+        {
+          "rank": 9,
+          "songId": "dalmation-ec0a1e6f39",
+          "movement": "N",
+          "weeks": 1
+        },
+        {
+          "rank": 10,
+          "songId": "efectossecundarios-be86986c97",
+          "movement": "N",
+          "weeks": 1
+        }
+      ]
+    }
   }
 ]

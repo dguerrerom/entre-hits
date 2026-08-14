@@ -5,7 +5,7 @@ Sitio estático de la lista de éxitos del programa **Entre Mezclas** de Radio H
 ## Funcionalidades
 
 - Réplica web responsive del formato editorial original.
-- Archivo de 94 ediciones semanales desde 2024 hasta el conteo #30 de 2026.
+- Archivo de 95 ediciones semanales desde 2024 hasta el conteo #31 de 2026.
 - Top 20 anuales de 2024 y 2025.
 - Calendario con las semanas realmente disponibles.
 - Selección automática del último domingo publicado según `America/Havana`.

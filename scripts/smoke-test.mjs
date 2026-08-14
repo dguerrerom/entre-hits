@@ -1,8 +1,20 @@
 #!/usr/bin/env node
 
+import { readFileSync } from "node:fs";
 import { chromium } from "playwright-core";
 
 const origin = process.env.PREVIEW_URL ?? "http://127.0.0.1:4321/entre-hits";
+const weeklyEditions = JSON.parse(readFileSync(new URL("../src/data/weekly-editions.json", import.meta.url), "utf8"));
+const cubaParts = new Intl.DateTimeFormat("en-CA", {
+  year: "numeric", month: "2-digit", day: "2-digit", weekday: "short", timeZone: "America/Havana",
+}).formatToParts(new Date());
+const cubaPart = (type) => cubaParts.find((part) => part.type === type)?.value ?? "";
+const currentWeek = new Date(`${cubaPart("year")}-${cubaPart("month")}-${cubaPart("day")}T12:00:00Z`);
+const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(cubaPart("weekday"));
+currentWeek.setUTCDate(currentWeek.getUTCDate() - Math.max(weekday, 0));
+const currentWeekDate = currentWeek.toISOString().slice(0, 10);
+const expectedCurrent = [...weeklyEditions].reverse().find((edition) => edition.date <= currentWeekDate);
+if (!expectedCurrent) throw new Error("No published weekly edition is available for the smoke test.");
 const browser = await chromium.launch({
   executablePath: process.env.CHROME_PATH ?? "/usr/bin/google-chrome",
   headless: true,
@@ -26,8 +38,9 @@ try {
 
   let response = await page.goto(`${origin}/semanal/nacional/`, { waitUntil: "networkidle" });
   assert(response?.ok(), "The current weekly route did not load.");
-  await page.waitForURL(/\/semanal\/nacional\/(?:2026-08-09\/)?$/);
-  assert((await page.locator(".chart-masthead h1").textContent())?.includes("#30"), "Current route must select chart #30 for the current Cuban week.");
+  await page.waitForFunction((number) => document.querySelector(".chart-masthead h1")?.textContent?.includes(`#${number}`), expectedCurrent.number);
+  await page.waitForURL(new RegExp(`/semanal/nacional/(?:${expectedCurrent.date}/)?$`));
+  assert((await page.locator(".chart-masthead h1").textContent())?.includes(`#${expectedCurrent.number}`), "Current route must select the latest chart for the current Cuban week.");
 
   response = await page.goto(`${origin}/semanal/internacional/2026-08-09/`, { waitUntil: "networkidle" });
   assert(response?.ok(), "The current weekly chart did not load.");
@@ -63,8 +76,26 @@ try {
   assert(await page.locator('.calendar-day[aria-current="date"]').evaluate((day) => day === document.activeElement), "Selected-count shortcut must restore focus to the selected date.");
   assert(await page.locator(".calendar-month-next").isDisabled(), "Calendar must stop at the latest available month.");
   await page.keyboard.press("Escape");
+  await page.waitForFunction(() => document.querySelector(".calendar-trigger")?.getAttribute("aria-expanded") === "false");
   assert((await page.locator(".calendar-trigger").getAttribute("aria-expanded")) === "false", "Calendar trigger must expose its collapsed state.");
   assert(await page.locator(".calendar-trigger").evaluate((trigger) => trigger === document.activeElement), "Calendar must restore focus to its trigger when closed.");
+
+  response = await page.goto(`${origin}/semanal/nacional/2026-08-16/`, { waitUntil: "networkidle" });
+  assert(response?.ok(), "Weekly chart #31 national did not load.");
+  assert((await page.locator(".chart-masthead h1").textContent())?.includes("#31"), "Weekly chart #31 must expose its edition number.");
+  assert((await page.locator(".song-authors").count()) === 10, "Every national song in chart #31 must include author credits.");
+  assert((await page.locator(".movement--status").count()) === 2, "National chart #31 must contain two new entries.");
+  assert((await page.locator(".chart-entry").nth(6).locator(".weeks").textContent())?.trim() === "16", "Farándula must have 16 chart weeks.");
+  assert((await page.locator(".chart-entry").nth(6).locator(".movement").getAttribute("aria-label")) === "Baja 1 posición", "Farándula movement is incorrect.");
+  assert((await page.locator(".chart-entry").nth(7).locator(".weeks").textContent())?.trim() === "10", "Sin Ti must have 10 chart weeks.");
+  assert((await page.locator(".chart-entry").nth(7).locator(".movement").getAttribute("aria-label")) === "Baja 4 posiciones", "Sin Ti movement is incorrect.");
+  await assertNoOverflow("390px weekly chart #31 national");
+
+  response = await page.goto(`${origin}/semanal/internacional/2026-08-16/`, { waitUntil: "networkidle" });
+  assert(response?.ok(), "Weekly chart #31 international did not load.");
+  assert((await page.locator(".song-authors").count()) === 10, "Every international song in chart #31 must include author credits.");
+  assert((await page.locator(".movement--status").count()) === 2, "International chart #31 must contain two new entries.");
+  await assertNoOverflow("390px weekly chart #31 international");
 
   for (const width of [320, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
@@ -111,11 +142,12 @@ try {
   assert((await appearanceMetric.locator("dd").textContent()) === "6", "Canonical song history must combine six appearances.");
   await assertNoOverflow("390px canonical song history");
 
-  response = await page.goto(`${origin}/cancion/patitoa3-d542f2e175/`, { waitUntil: "networkidle" });
+  response = await page.goto(`${origin}/cancion/dalmation-ec0a1e6f39/`, { waitUntil: "networkidle" });
   assert(response?.ok(), "Single-appearance song-history route did not load.");
   assert((await page.locator(".performance-date-label").count()) === 1, "Single-appearance history must render one date label.");
+  assert((await page.locator(".song-page-authors").textContent())?.includes("José Álvaro Osorio Balvin"), "New song history must render its author credits.");
 
-  response = await page.goto(`${origin}/imagenes/semanal/nacional/2026-08-09.png`);
+  response = await page.goto(`${origin}/imagenes/semanal/nacional/2026-08-16.png`);
   assert(response?.ok(), "Downloadable chart image did not load.");
   assert(errors.length === 0, `Browser console errors: ${errors.join(" | ")}`);
   console.log("Smoke test passed: charts, calendar, song histories, archive, responsive layouts, and PNG route.");
