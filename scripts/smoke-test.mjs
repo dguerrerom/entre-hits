@@ -3,7 +3,7 @@
 import { readFileSync } from "node:fs";
 import { chromium } from "playwright-core";
 
-const origin = process.env.PREVIEW_URL ?? "http://127.0.0.1:4321/entre-hits";
+const origin = process.env.PREVIEW_URL ?? "http://127.0.0.1:4321";
 const weeklyEditions = JSON.parse(readFileSync(new URL("../src/data/weekly-editions.json", import.meta.url), "utf8"));
 const cubaParts = new Intl.DateTimeFormat("en-CA", {
   year: "numeric", month: "2-digit", day: "2-digit", weekday: "short", timeZone: "America/Havana",

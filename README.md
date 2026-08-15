@@ -34,7 +34,7 @@ npm run build
 La salida se genera en `dist/`. La URL configurada es:
 
 ```text
-https://dguerrerom.github.io/entre-hits/
+https://entrehits.github.io/
 ```
 
 ## Nueva Edición Semanal
