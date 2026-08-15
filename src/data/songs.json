@@ -8,6 +8,17 @@
     "primaryArtists": [
       "Maluma",
       "Kany García"
+    ],
+    "authors": [
+      "Rafa Arcaute",
+      "Juan Luis Londoño Arias",
+      "Encarnita García De Jesús",
+      "Jonathan Rivera",
+      "Giencarlos Rivera",
+      "Jose Daniel Zapata",
+      "Juan Esteban Zapata",
+      "Andrés Uribe Marín",
+      "Richi López"
     ]
   },
   {
@@ -17,6 +28,9 @@
     "title": "Abracadabra",
     "language": "en",
     "primaryArtists": [
+      "Lady Gaga"
+    ],
+    "authors": [
       "Lady Gaga"
     ]
   },
@@ -28,6 +42,20 @@
     "language": "es",
     "primaryArtists": [
       "Marc Anthony"
+    ],
+    "authors": [
+      "Marc Anthony",
+      "Sergio George",
+      "Álvaro Lenier Mesa Basulto",
+      "Nadir Khayat",
+      "Etienne Boue-Bi Kohou",
+      "Adil Khayat",
+      "Bilal Hajji",
+      "John Mamann",
+      "Salif Traore",
+      "Alexander Dimitrios Papaconstantinou",
+      "Adama Fanny",
+      "Narcisse Sodoua"
     ]
   },
   {
@@ -55,6 +83,11 @@
       "Sevdaliza",
       "Pabllo Vittar",
       "Yseult"
+    ],
+    "authors": [
+      "Sevda Alizadeh",
+      "Mathias Janmaat",
+      "Reynard Bargmann"
     ]
   },
   {
@@ -67,6 +100,10 @@
       "Charly & Johayron",
       "Roberto Ferrante",
       "El Bandolero"
+    ],
+    "authors": [
+      "Carlos de Jesús Coronado Chirino",
+      "Roberto Johayron Amores Rodríguez"
     ]
   },
   {
@@ -78,6 +115,9 @@
     "primaryArtists": [
       "Ricky Martin",
       "Carin León"
+    ],
+    "authors": [
+      "Franco De Vita"
     ]
   },
   {
@@ -132,6 +172,20 @@
     "primaryArtists": [
       "ROSÉ",
       "Bruno Mars"
+    ],
+    "authors": [
+      "Rosé",
+      "Amy Allen",
+      "Rogét Chahayed",
+      "Theron Thomas",
+      "Cirkut",
+      "Omer Fedi",
+      "Bruno Mars",
+      "Philip Lawrence",
+      "Brody Brown",
+      "Nicky Chinn",
+      "Mike Chapman",
+      "Șerban Ghenea"
     ]
   },
   {
@@ -143,6 +197,12 @@
     "primaryArtists": [
       "Lenier",
       "Nacho"
+    ],
+    "authors": [
+      "Álvaro Lenier Mesa Basulto",
+      "Miguel Ignacio Mendoza",
+      "Mauro Silvino Bertran",
+      "Jordany González Mora"
     ]
   },
   {
@@ -164,6 +224,12 @@
     "language": "en",
     "primaryArtists": [
       "Ed Sheeran"
+    ],
+    "authors": [
+      "Ed Sheeran",
+      "Ilya Salmanzadeh",
+      "Johnny McDaid",
+      "Savan Kotecha"
     ]
   },
   {
@@ -186,6 +252,11 @@
     "primaryArtists": [
       "Charly & Johayron",
       "Roberto Ferrante"
+    ],
+    "authors": [
+      "Carlos de Jesús Coronado Chirino",
+      "Roberto Johayron Amores Rodríguez",
+      "Roberto Ferrante"
     ]
   },
   {
@@ -196,6 +267,11 @@
     "language": "en",
     "primaryArtists": [
       "Benson Boone"
+    ],
+    "authors": [
+      "Benson Boone",
+      "Jack LaFrantz",
+      "Evan Blair"
     ]
   },
   {
@@ -206,6 +282,10 @@
     "language": "es",
     "primaryArtists": [
       "Rauw Alejandro"
+    ],
+    "authors": [
+      "Raúl Alejandro Ocasio Ruiz",
+      "Dulce Como Candy"
     ]
   },
   {
@@ -216,6 +296,9 @@
     "language": "es",
     "primaryArtists": [
       "Formell y Los Van Van"
+    ],
+    "authors": [
+      "Roberto Hernández"
     ]
   },
   {
@@ -226,6 +309,10 @@
     "language": "es",
     "primaryArtists": [
       "Srta. Dayana"
+    ],
+    "authors": [
+      "Dayana Chavez Victoria",
+      "Carlos J. Lara Garcia"
     ]
   },
   {
@@ -265,6 +352,13 @@
     "primaryArtists": [
       "Bizarrap",
       "Luck Ra"
+    ],
+    "authors": [
+      "Gonzalo Julián Conde",
+      "Juan Facundo Almerena Ordóñez",
+      "Renzo Luca",
+      "Santiago Alvarado",
+      "Paulo Ezequiel Dybala"
     ]
   },
   {
@@ -276,6 +370,11 @@
     "primaryArtists": [
       "Bizarrap",
       "Daddy Yankee"
+    ],
+    "authors": [
+      "Daddy Yankee",
+      "Gonzalo Julián Conde",
+      "Santiago Alvarado"
     ]
   },
   {
@@ -287,6 +386,12 @@
     "primaryArtists": [
       "Luis Fonsi",
       "Feid"
+    ],
+    "authors": [
+      "Andrés Torres",
+      "Mauricio Rengifo",
+      "Luis A. Rodríguez López-Cepero",
+      "Salomón Villada Hoyos"
     ]
   },
   {
@@ -308,6 +413,13 @@
     "primaryArtists": [
       "Ana Mena",
       "Emilia"
+    ],
+    "authors": [
+      "Ana Mena",
+      "Andrés Torres",
+      "Mauricio Rengifo",
+      "Sara Schell Guedez",
+      "María Emilia Mernes Rueda"
     ]
   },
   {
@@ -319,6 +431,12 @@
     "primaryArtists": [
       "Cimafunk",
       "Monsieur Periné"
+    ],
+    "authors": [
+      "Erik Alejandro Iglesias Rodríguez",
+      "Catalina García",
+      "Santiago Prieto",
+      "César Augusto Santiago"
     ]
   },
   {
@@ -330,6 +448,9 @@
     "primaryArtists": [
       "Yuly y Havana C",
       "Fransiskito el King"
+    ],
+    "authors": [
+      "Yuleisis Greenidge"
     ]
   },
   {
@@ -387,6 +508,13 @@
     "primaryArtists": [
       "Marc Anthony",
       "Nathy Peluso"
+    ],
+    "authors": [
+      "Marco Antonio Muñiz",
+      "Natalia Beatriz Dora Peluso",
+      "Servando Primera",
+      "Manuel Lara",
+      "Benjamín Alerhand"
     ]
   },
   {
@@ -399,6 +527,18 @@
       "Play-N-Skillz",
       "Natti Natasha",
       "Deorro"
+    ],
+    "authors": [
+      "Juan Salinas",
+      "Oscar Salinas",
+      "David Macias",
+      "Gary Walker Jr.",
+      "Emmanuel Anene",
+      "Christopher Richard Deriso",
+      "Erick Orrosquieta",
+      "Natalia Alexandra Gutiérrez Batista",
+      "A.B. Quintanilla III",
+      "Peter Astudillo"
     ]
   },
   {
@@ -409,6 +549,9 @@
     "language": "es",
     "primaryArtists": [
       "Wil Campa"
+    ],
+    "authors": [
+      "Wilfredo Campa Corvea"
     ]
   },
   {
@@ -420,6 +563,15 @@
     "primaryArtists": [
       "KAROL G",
       "Tiësto"
+    ],
+    "authors": [
+      "Ryan Tedder",
+      "Björn Djupström",
+      "Tyler Spry",
+      "Tijs Verwest",
+      "Carolina Giraldo Navarro",
+      "Yasmani Luis Bandera Clark",
+      "Jesse McCartney"
     ]
   },
   {
@@ -430,6 +582,13 @@
     "language": "es",
     "primaryArtists": [
       "Maluma"
+    ],
+    "authors": [
+      "Maluma",
+      "Edgar Barrera",
+      "Kevyn Mauricio Cruz Moreno",
+      "Luis Miguel Gómez Castaño",
+      "Manuel Lorente Freire"
     ]
   },
   {
@@ -441,6 +600,12 @@
     "primaryArtists": [
       "Elena Rose",
       "Justin Quiles"
+    ],
+    "authors": [
+      "Abraham Olaleye",
+      "Andrea Elena Mangiamarchi",
+      "Iván Rodríguez",
+      "Justin Rafael Quiles Rivera"
     ]
   },
   {
@@ -455,7 +620,7 @@
     "versionType": "version",
     "versionName": "salsa",
     "authors": [
-      "Carlos J Lara Garcia",
+      "Carlos J. Lara Garcia",
       "Dayana Chavez Victoria"
     ]
   },
@@ -467,6 +632,9 @@
     "language": "es",
     "primaryArtists": [
       "Bryan Sanchez"
+    ],
+    "authors": [
+      "Bryan Sánchez"
     ]
   },
   {
@@ -523,7 +691,7 @@
       "Ryan Castro"
     ],
     "authors": [
-      "José Álvaro Osorio Balvin",
+      "José Álvaro Osorio Balvín",
       "Bryan David Castro Sosa",
       "Kevyn Mauricio Cruz Moreno",
       "Sergio Robledo Arango",
@@ -541,7 +709,7 @@
       "Rauw Alejandro"
     ],
     "authors": [
-      "Rauw Alejandro",
+      "Raúl Alejandro Ocasio Ruiz",
       "Nino K. Segura",
       "Edgar Barrera",
       "Andrés Jael Correa Ríos",
@@ -558,6 +726,13 @@
     "primaryArtists": [
       "Romeo Santos",
       "Prince Royce"
+    ],
+    "authors": [
+      "Anthony Santos",
+      "Jeffrey Nortey",
+      "Isaiah Ennio Parker",
+      "Alexander Caba",
+      "Carlos B. Mercader"
     ]
   },
   {
@@ -569,6 +744,17 @@
     "primaryArtists": [
       "Natti Natasha",
       "Nando Boom"
+    ],
+    "authors": [
+      "Natalia Alexandra Gutiérrez Batista",
+      "Rafael A. Pina",
+      "Fernando O. Brown",
+      "Ramon Bustamante",
+      "Jorge Valdés Vasquez",
+      "Jonathan J. Reyes",
+      "Johnny O. López Pimentel",
+      "Ramses I. Herrera",
+      "Carlos H. Dominguez"
     ]
   },
   {
@@ -591,6 +777,14 @@
     "primaryArtists": [
       "Timø",
       "Cardellino"
+    ],
+    "authors": [
+      "Felipe Galat Gómez",
+      "Alejandro Ochoa",
+      "Andrés Vásquez",
+      "Mauricio Rengifo",
+      "Andrés Torres",
+      "Javier Cardellino"
     ]
   },
   {
@@ -602,6 +796,13 @@
     "primaryArtists": [
       "Lady Gaga",
       "Bruno Mars"
+    ],
+    "authors": [
+      "Bruno Mars",
+      "Dernst Emile II",
+      "Lady Gaga",
+      "Andrew Watt",
+      "James Fauntleroy"
     ]
   },
   {
@@ -613,6 +814,9 @@
     "primaryArtists": [
       "Charanga Latina",
       "Joseito CG"
+    ],
+    "authors": [
+      "José Alberto Cordero González"
     ]
   },
   {
@@ -642,6 +846,11 @@
     "primaryArtists": [
       "Pharrell Williams",
       "Miley Cyrus"
+    ],
+    "authors": [
+      "Pharrell Williams",
+      "Miley Cyrus",
+      "Michael Pollack"
     ]
   },
   {
@@ -652,6 +861,11 @@
     "language": "es",
     "primaryArtists": [
       "Tito El Bambino",
+      "Silvestre Dangond"
+    ],
+    "authors": [
+      "Álvaro Lenier Mesa Basulto",
+      "Efraín David Fines Nevares",
       "Silvestre Dangond"
     ]
   },
@@ -682,6 +896,12 @@
     "language": "es",
     "primaryArtists": [
       "Greeicy"
+    ],
+    "authors": [
+      "Greeicy",
+      "Casta",
+      "Spreadlof",
+      "Keityn"
     ]
   },
   {
@@ -694,6 +914,10 @@
       "Leoni Torres",
       "Eddy K",
       "Mauro El Codigo Secreto"
+    ],
+    "authors": [
+      "Mauro Silvino Bertran",
+      "Eduardo Mora Hernández"
     ]
   },
   {
@@ -717,6 +941,11 @@
     "language": "es",
     "primaryArtists": [
       "Tini"
+    ],
+    "authors": [
+      "Martina Stoessel",
+      "Andrés Torres",
+      "Mauricio Rengifo"
     ]
   },
   {
@@ -742,6 +971,12 @@
     "primaryArtists": [
       "Elito Revé y su Charangón",
       "El Dray"
+    ],
+    "authors": [
+      "Arian Chacón Hernández",
+      "Sujer Salim Zaldívar",
+      "Elio Revé Duverger",
+      "Drayoan Linares Cervantes"
     ]
   },
   {
@@ -767,6 +1002,15 @@
     "language": "es",
     "primaryArtists": [
       "Manuel Turizo"
+    ],
+    "authors": [
+      "Manuel Turizo",
+      "Andy Clay",
+      "Juan Diego Medina Vélez",
+      "Julián Turizo Zapata",
+      "Giovel Simon",
+      "Manuel Lorente Freire",
+      "Slow Mike"
     ]
   },
   {
@@ -794,6 +1038,15 @@
     "primaryArtists": [
       "Xavi",
       "Manuel Turizo"
+    ],
+    "authors": [
+      "Joshua Xavier Gutierrez",
+      "Fabio Ivan Gutierrez Ramirez",
+      "Manuel Turizo",
+      "Andy Clay",
+      "Carlos Humberto Dominguez",
+      "Roberto Carlos Sierra",
+      "Giovel Simon"
     ]
   },
   {
@@ -805,6 +1058,9 @@
     "primaryArtists": [
       "Melanie Santiler",
       "Cimafunk"
+    ],
+    "authors": [
+      "Melanie Santiler"
     ]
   },
   {
@@ -814,6 +1070,12 @@
     "title": "Espresso",
     "language": "en",
     "primaryArtists": [
+      "Sabrina Carpenter"
+    ],
+    "authors": [
+      "Julian Bunetta",
+      "Steph Jones",
+      "Amy Allen",
       "Sabrina Carpenter"
     ]
   },
@@ -826,6 +1088,9 @@
     "primaryArtists": [
       "Aitana",
       "Kenia Os"
+    ],
+    "authors": [
+      "Nicolás Cotton"
     ]
   },
   {
@@ -849,6 +1114,9 @@
     "language": "es",
     "primaryArtists": [
       "Gitanos"
+    ],
+    "authors": [
+      "Michel Hernández San Juan"
     ]
   },
   {
@@ -886,6 +1154,10 @@
     "primaryArtists": [
       "Moa Rivera",
       "Lenier"
+    ],
+    "authors": [
+      "Álvaro Lenier Mesa Basulto",
+      "Gerardo Rivera Donis"
     ]
   },
   {
@@ -897,6 +1169,12 @@
     "primaryArtists": [
       "La India",
       "Jacob Forever"
+    ],
+    "authors": [
+      "La India",
+      "Sergio George",
+      "Yosdany Jacob Carmenates",
+      "Pedro Jesús"
     ]
   },
   {
@@ -907,6 +1185,13 @@
     "language": "multilingual",
     "primaryArtists": [
       "Katseye"
+    ],
+    "authors": [
+      "Andrew Watt",
+      "John Ryan",
+      "Ali Tamposi",
+      "Charlotte Aitchison",
+      "Sara Schell"
     ]
   },
   {
@@ -928,6 +1213,10 @@
     "primaryArtists": [
       "Huntr/x",
       "KPop Demon Hunters Cast"
+    ],
+    "authors": [
+      "Ejae",
+      "Mark Sonnenblick"
     ]
   },
   {
@@ -962,6 +1251,13 @@
     "primaryArtists": [
       "Maria Becerra",
       "Tini"
+    ],
+    "authors": [
+      "Andrés Torres",
+      "Maria De Los Ángeles Becerra",
+      "Tini",
+      "Mauricio Rengifo",
+      "Xavier Rosero"
     ]
   },
   {
@@ -986,7 +1282,11 @@
       "Maluma",
       "KHEA"
     ],
-    "versionType": "remix"
+    "versionType": "remix",
+    "authors": [
+      "Javier Sanglerman",
+      "Renzo Luca Chiumiento"
+    ]
   },
   {
     "id": "houdini-41ab2783fc",
@@ -1011,6 +1311,16 @@
       "Topic",
       "Arash",
       "Daecolm"
+    ],
+    "authors": [
+      "Alexander Tidebrink",
+      "Florent Hugel",
+      "Tobias Topic",
+      "Maximilian Riehl",
+      "Loris Cimino",
+      "Daecolm Holland",
+      "Arash Labaf",
+      "José Álvaro Osorio Balvín"
     ]
   },
   {
@@ -1021,6 +1331,12 @@
     "language": "en",
     "primaryArtists": [
       "Bruno Mars"
+    ],
+    "authors": [
+      "Bruno Mars",
+      "Dernst Emile II",
+      "Philip Lawrence",
+      "Brody Brown"
     ]
   },
   {
@@ -1031,6 +1347,13 @@
     "language": "en",
     "primaryArtists": [
       "Dua Lipa"
+    ],
+    "authors": [
+      "Kevin Parker",
+      "Danny L Harle",
+      "Caroline Ailin",
+      "Dua Lipa",
+      "Tobias Jesso Jr."
     ]
   },
   {
@@ -1042,6 +1365,9 @@
     "primaryArtists": [
       "Manolin El Medico de la Salsa",
       "Formula B"
+    ],
+    "authors": [
+      "Manuel González Hernández"
     ]
   },
   {
@@ -1073,6 +1399,9 @@
     "language": "es",
     "primaryArtists": [
       "Alain Pérez"
+    ],
+    "authors": [
+      "Alain Pérez"
     ]
   },
   {
@@ -1095,6 +1424,12 @@
       "Charly & Johayron",
       "Baby Cortés",
       "Ernesto Losa"
+    ],
+    "authors": [
+      "Carlos de Jesús Coronado Chirino",
+      "Roberto Johayron Amores Rodríguez",
+      "Bárbara de la Caridad Cortés Llacer",
+      "Ernesto Losa Aguilar"
     ]
   },
   {
@@ -1105,6 +1440,9 @@
     "language": "es",
     "primaryArtists": [
       "Wil Campa"
+    ],
+    "authors": [
+      "Wilfredo Campa Corvea"
     ]
   },
   {
@@ -1118,6 +1456,14 @@
       "Lil Yoe",
       "Karly",
       "DJ Conds"
+    ],
+    "authors": [
+      "Marlon Oropesa Mirabal",
+      "Carlos Chacón Roca",
+      "Yoenni José Echevarria Barrero",
+      "Alain De Armas",
+      "Javier Conde Alonso",
+      "Yunier Terrero Luis"
     ]
   },
   {
@@ -1128,6 +1474,9 @@
     "language": "es",
     "primaryArtists": [
       "Wil Campa"
+    ],
+    "authors": [
+      "Wilfredo Campa Corvea"
     ]
   },
   {
@@ -1138,6 +1487,11 @@
     "language": "es",
     "primaryArtists": [
       "Diana Fuentes"
+    ],
+    "authors": [
+      "Diana Fuentes",
+      "Jorge Luis Chacín",
+      "Felixandro Reyes Pozo"
     ]
   },
   {
@@ -1148,6 +1502,16 @@
     "language": "en",
     "primaryArtists": [
       "Katy Perry"
+    ],
+    "authors": [
+      "Katheryn Elizabeth Hudson",
+      "Lukasz Gottwald",
+      "Vaughn Oliver",
+      "Rocco Valdes",
+      "Ryan Ogren",
+      "Theron Thomas",
+      "Gamal Lewis",
+      "Sarah Hudson"
     ]
   },
   {
@@ -1158,6 +1522,11 @@
     "language": "es",
     "primaryArtists": [
       "David Calzado y su Charanga Habanera"
+    ],
+    "authors": [
+      "Christian Nodal",
+      "José Esparza",
+      "Gussy Lau"
     ]
   },
   {
@@ -1187,6 +1556,15 @@
     "primaryArtists": [
       "Wisin",
       "Kapo"
+    ],
+    "authors": [
+      "Juan Luis Morena Luna",
+      "Juan David Loaiza Sepulveda",
+      "Marcos A. Ramírez",
+      "Víctor R. Torres Betancourt",
+      "Abraham Olaleye",
+      "Juan David Muñoz Aviles",
+      "Claudio Alejandro Cabral Rivas"
     ]
   },
   {
@@ -1198,6 +1576,9 @@
     "primaryArtists": [
       "Feid",
       "ATL Jacob"
+    ],
+    "authors": [
+      "Salomón Villada Hoyos"
     ]
   },
   {
@@ -1212,6 +1593,12 @@
       "Roberto Ferrante",
       "El Bandolero",
       "DJ Honda"
+    ],
+    "authors": [
+      "Ramón Lavado Martínez",
+      "Gerardo Enrique Rodríguez Francisco",
+      "Marlon Fernández Fernández",
+      "Yaliesky Bárbaro Zaldívar Corrales"
     ]
   },
   {
@@ -1223,6 +1610,13 @@
     "primaryArtists": [
       "Jacob Forever",
       "LI-C"
+    ],
+    "authors": [
+      "Idaniel Vazquez",
+      "Yosdany Jacob Carmenates",
+      "Lisandra Rondon Lara",
+      "Fernando Lázaro Otero Van-Caneghem",
+      "Bladimir Alexander Companioni"
     ]
   },
   {
@@ -1244,6 +1638,10 @@
     "language": "es",
     "primaryArtists": [
       "Jacob Forever"
+    ],
+    "authors": [
+      "Yosdany Jacob Carmenates",
+      "Dayron Curbelo Diaz"
     ]
   },
   {
@@ -1255,6 +1653,12 @@
     "primaryArtists": [
       "Fariana",
       "Kiko El Crazy"
+    ],
+    "authors": [
+      "Farina Pao Paucar Franco",
+      "Jose Alberto Rojas Peralta",
+      "Vicente Pinto Ruiz",
+      "Andy Bauza"
     ]
   },
   {
@@ -1296,6 +1700,9 @@
     "language": "es",
     "primaryArtists": [
       "Jacob Forever"
+    ],
+    "authors": [
+      "Yosdany Jacob Carmenates"
     ]
   },
   {
@@ -1306,6 +1713,11 @@
     "language": "es",
     "primaryArtists": [
       "Manuel Turizo"
+    ],
+    "authors": [
+      "Manuel Turizo",
+      "Julián Maya Yépez",
+      "Juan Luis Cardona"
     ]
   },
   {
@@ -1327,6 +1739,9 @@
     "primaryArtists": [
       "Yulien Oviedo",
       "Insurrecto"
+    ],
+    "authors": [
+      "Yulien Oviedo Sánchez"
     ]
   },
   {
@@ -1348,6 +1763,9 @@
     "language": "es",
     "primaryArtists": [
       "Baby Cortés"
+    ],
+    "authors": [
+      "Bárbara de la Caridad Cortés Llacer"
     ]
   },
   {
@@ -1400,6 +1818,13 @@
     "language": "pt",
     "primaryArtists": [
       "Lexa"
+    ],
+    "authors": [
+      "Lexa",
+      "Lary",
+      "Juan Morelli",
+      "Navi",
+      "Nave"
     ]
   },
   {
@@ -1426,6 +1851,12 @@
     "primaryArtists": [
       "Len Mikay",
       "Divan"
+    ],
+    "authors": [
+      "Osvaldo Orlando Naranjo",
+      "Iván Sotelo Soto",
+      "Raimel Abraham Pérez Valdés",
+      "Mauro Silvino Bertran"
     ]
   },
   {
@@ -1437,6 +1868,10 @@
     "primaryArtists": [
       "Divan",
       "Ernesto Losa"
+    ],
+    "authors": [
+      "Osmany Ernesto Espinosa Morales",
+      "José Javier Marcheco Fernández"
     ]
   },
   {
@@ -1447,6 +1882,15 @@
     "language": "es",
     "primaryArtists": [
       "Beéle"
+    ],
+    "authors": [
+      "Diego L. Vélez Márquez",
+      "Brandon De Jesús López Orozco",
+      "Kevyn Mauricio Cruz Moreno",
+      "Lenin Yorney Palacios Machado",
+      "Alejandro Robledo",
+      "Filly Andrés Lima Maya",
+      "Cristian Camilo Álvarez Ospina"
     ]
   },
   {
@@ -1458,6 +1902,12 @@
     "primaryArtists": [
       "Jacob Forever",
       "Mayco D' Alma"
+    ],
+    "authors": [
+      "Yosdany Jacob Carmenates",
+      "Raydel Pimienta Morell",
+      "Mayco Marrero Arencibia",
+      "Yuniesky Calvo Jeréz"
     ]
   },
   {
@@ -1478,6 +1928,12 @@
     "language": "es",
     "primaryArtists": [
       "Kapo"
+    ],
+    "authors": [
+      "Juan David Loaiza",
+      "Pedro Juan de la Ossa Medrano",
+      "Sandy Tabacinic",
+      "Juan Diego Medina Vélez"
     ]
   },
   {
@@ -1489,6 +1945,10 @@
     "primaryArtists": [
       "Nesty",
       "Guaynaa"
+    ],
+    "authors": [
+      "Ernesto Galguera",
+      "Eliosbel Galarraga"
     ]
   },
   {
@@ -1509,6 +1969,13 @@
     "language": "en",
     "primaryArtists": [
       "Becky Hill"
+    ],
+    "authors": [
+      "Marco Parisi",
+      "Giampaolo Parisi",
+      "Rebecca Claire Hill",
+      "Charlotte Haining",
+      "Mike Kintish"
     ]
   },
   {
@@ -1519,6 +1986,11 @@
     "language": "es",
     "primaryArtists": [
       "KAROL G"
+    ],
+    "authors": [
+      "Carolina Giraldo Navarro",
+      "Dani Raw",
+      "Daniel Echavarría Oviedo"
     ]
   },
   {
@@ -1530,6 +2002,17 @@
     "primaryArtists": [
       "Elena Rose",
       "Maria Becerra"
+    ],
+    "authors": [
+      "Abraham Olaleye",
+      "Andrea Elena Mangiamarchi",
+      "Andrés José Gavillán Batista",
+      "Daniel Rondon",
+      "Hector Mazzari",
+      "Julian Reininger",
+      "Maria Becerra",
+      "Tini",
+      "Xavier Rosero"
     ]
   },
   {
@@ -1560,6 +2043,12 @@
       "Chacal",
       "Marlon",
       "Gerardo Rodríguez"
+    ],
+    "authors": [
+      "Ramón Lavado Martínez",
+      "Gerardo Enrique Rodríguez Francisco",
+      "Marlon Fernández Fernández",
+      "Yaliesky Bárbaro Zaldívar Corrales"
     ]
   },
   {
@@ -1581,6 +2070,13 @@
     "language": "es",
     "primaryArtists": [
       "Leoni Torres"
+    ],
+    "authors": [
+      "José Carlos García",
+      "Roberto Carlos Sierra",
+      "Mauro Silvino Bertran",
+      "Carlos Humberto Dominguez",
+      "José García"
     ]
   },
   {
@@ -1602,6 +2098,17 @@
     "primaryArtists": [
       "Shakira",
       "Cardi B"
+    ],
+    "authors": [
+      "Shakira Isabel Mebarak Ripoll",
+      "Carolina Isabel Colón Juarbe \"GALE\"",
+      "David Stewart",
+      "Daniela Blau",
+      "Belcalis Marlenis Almánzar Cephus \"Cardi B\"",
+      "Carlos Alberto Butter Aguila",
+      "Siggy Vazquez Rodriguez",
+      "Jean C. Hernandez Espinell",
+      "Mateo Dorado"
     ]
   },
   {
@@ -1613,6 +2120,9 @@
     "primaryArtists": [
       "Wampi",
       "Cimafunk"
+    ],
+    "authors": [
+      "Dasiel Mustelier"
     ]
   },
   {
@@ -1624,6 +2134,14 @@
     "primaryArtists": [
       "Becky G",
       "Manuel Turizo"
+    ],
+    "authors": [
+      "Manuel Turizo",
+      "Rebbeca Marie Gomez",
+      "Manuel Lorente Freire",
+      "Alejandro Robledo Valencia",
+      "Daniel Rondon",
+      "Cristian Camilo Álvarez Ospina"
     ]
   },
   {
@@ -1636,6 +2154,9 @@
       "Karmen Muradas",
       "Alexander Abreu",
       "Havana D’Primera"
+    ],
+    "authors": [
+      "Carmen Migdalia Muradas González"
     ]
   },
   {
@@ -1647,6 +2168,9 @@
     "primaryArtists": [
       "David Calzado y su Charanga Habanera",
       "Joseito CG"
+    ],
+    "authors": [
+      "David Calzado"
     ]
   },
   {
@@ -1670,6 +2194,12 @@
     "language": "es",
     "primaryArtists": [
       "Greeicy"
+    ],
+    "authors": [
+      "Greeicy Yeliana Rendón Ceballos",
+      "Kevyn Mauricio Cruz Moreno",
+      "Daniel Echavarría Oviedo",
+      "Luis Miguel Gómez Castaño"
     ]
   },
   {
@@ -1681,6 +2211,16 @@
     "primaryArtists": [
       "Piso 21",
       "Juan Duque"
+    ],
+    "authors": [
+      "Carlos Alejandro Patiño",
+      "David Escobar Gallego",
+      "Federico Duque Posada",
+      "Guillermo Alejandro Ortiz",
+      "Juan David Huertas Clavijo",
+      "Juan José Duque",
+      "Mateo Uran Diez",
+      "Pablo Mejía Bermúdez"
     ]
   },
   {
@@ -1692,6 +2232,9 @@
     "primaryArtists": [
       "Alain Pérez",
       "Luis Enrique"
+    ],
+    "authors": [
+      "Rainer Pérez"
     ]
   },
   {
@@ -1703,6 +2246,11 @@
     "primaryArtists": [
       "Luis Fonsi",
       "Laura Pausini"
+    ],
+    "authors": [
+      "Luis Fonsi",
+      "Andrés Torres",
+      "Mauricio Rengifo"
     ]
   },
   {
@@ -1725,6 +2273,11 @@
       "Camilo",
       "Alexander Abreu",
       "Havana D’Primera"
+    ],
+    "authors": [
+      "Carlos Lara Galván",
+      "Pedro Muñoz Romero \"Pedro Damián\"",
+      "Massimiliano Di Carlo \"Max Di Carlo\""
     ]
   },
   {
@@ -1737,6 +2290,9 @@
       "Jacob Forever",
       "Dany Ome",
       "Kevincito El 13"
+    ],
+    "authors": [
+      "Yosdany Jacob Carmenates"
     ]
   },
   {
@@ -1749,6 +2305,15 @@
       "Rvssian",
       "Rauw Alejandro",
       "Ayra Starr"
+    ],
+    "authors": [
+      "Kilian Johnston",
+      "Raúl Alejandro Ocasio Ruiz",
+      "Oyinkansola Sarah Aderibigbe",
+      "Oswaldo Rangel",
+      "Kevin Thomas",
+      "Richard McClashie",
+      "Nathalia Marshall"
     ]
   },
   {
@@ -1780,6 +2345,11 @@
     "primaryArtists": [
       "Fanny Lu",
       "Olga Tañón"
+    ],
+    "authors": [
+      "Fanny Lu",
+      "Jose Gaviria",
+      "Juan Fernando Fonseca Ochoa"
     ]
   },
   {
@@ -1790,6 +2360,12 @@
     "language": "es",
     "primaryArtists": [
       "KAROL G"
+    ],
+    "authors": [
+      "Edgar Barrera",
+      "Carolina Giraldo Navarro",
+      "Andrés Jael Correa Ríos",
+      "Alejandro Ramírez Suarez"
     ]
   },
   {
@@ -1802,7 +2378,10 @@
       "Alexander Abreu",
       "Velito el bufón"
     ],
-    "versionType": "remix"
+    "versionType": "remix",
+    "authors": [
+      "Alexander Abreu Manresa"
+    ]
   },
   {
     "id": "sinmiedo-68d241f95a",
@@ -1813,6 +2392,9 @@
     "primaryArtists": [
       "Kasanova",
       "Alexander Abreu"
+    ],
+    "authors": [
+      "Alejandro González Casanova"
     ]
   },
   {
@@ -1842,8 +2424,8 @@
       "Lenier"
     ],
     "authors": [
-      "Mauro Bertrán",
-      "Álbaro Lennier Mesa Basulto"
+      "Mauro Silvino Bertran",
+      "Álvaro Lenier Mesa Basulto"
     ]
   },
   {
@@ -1865,6 +2447,12 @@
     "language": "es",
     "primaryArtists": [
       "Shakira"
+    ],
+    "authors": [
+      "Shakira Isabel Mebarak Ripoll",
+      "Kevyn Mauricio Cruz Moreno",
+      "Edgar Barrera",
+      "Bizarrap"
     ]
   },
   {
@@ -1875,6 +2463,9 @@
     "language": "es",
     "primaryArtists": [
       "Daddy Yankee"
+    ],
+    "authors": [
+      "Macrilet Rodríguez"
     ]
   },
   {
@@ -1885,6 +2476,9 @@
     "language": "es",
     "primaryArtists": [
       "Chacal"
+    ],
+    "authors": [
+      "Ramón Lavado Martínez"
     ]
   },
   {
@@ -1895,6 +2489,9 @@
     "language": "es",
     "primaryArtists": [
       "Bebeshito"
+    ],
+    "authors": [
+      "Oniel Ernesto Columbie Campos"
     ]
   },
   {
@@ -1920,7 +2517,7 @@
     ],
     "authors": [
       "Manuel Turizo",
-      "Juan Diego Medina Pérez",
+      "Juan Diego Medina Vélez",
       "Julián Turizo Zapata",
       "Manuel Lorente Freire",
       "Daniel José Márquez Díaz",
@@ -1938,6 +2535,11 @@
     "primaryArtists": [
       "Tito El Bambino",
       "Farruko"
+    ],
+    "authors": [
+      "Efraín David Fines Nevares",
+      "Álvaro Lenier Mesa Basulto",
+      "Carlos Efrén Reyes Rosado"
     ]
   },
   {
@@ -1968,6 +2570,11 @@
     "language": "en",
     "primaryArtists": [
       "Taylor Swift"
+    ],
+    "authors": [
+      "Max Martin",
+      "Shellback",
+      "Taylor Swift"
     ]
   },
   {
@@ -1979,6 +2586,13 @@
     "primaryArtists": [
       "Leoni Torres",
       "Guaynaa"
+    ],
+    "authors": [
+      "Álvaro Lenier Mesa Basulto",
+      "Leonardo Torres",
+      "Jean Carlos Santiago Pérez",
+      "Ernesto Galguera",
+      "Luis Enrique Ochoa"
     ]
   },
   {
@@ -1989,6 +2603,9 @@
     "language": "en",
     "primaryArtists": [
       "Rauw Alejandro"
+    ],
+    "authors": [
+      "Raúl Alejandro Ocasio Ruiz"
     ]
   },
   {
@@ -2037,6 +2654,10 @@
       "Charly & Johayron",
       "Roberto Ferrante",
       "El Bandolero"
+    ],
+    "authors": [
+      "Carlos de Jesús Coronado Chirino",
+      "Roberto Johayron Amores Rodríguez"
     ]
   },
   {
@@ -2083,6 +2704,11 @@
     "primaryArtists": [
       "Len Mikay",
       "Leoni Torres"
+    ],
+    "authors": [
+      "Leoni Torres",
+      "Mauro Silvino Bertran",
+      "Bobby Sierra"
     ]
   },
   {
@@ -2108,6 +2734,12 @@
     "language": "es",
     "primaryArtists": [
       "Kapo"
+    ],
+    "authors": [
+      "Juan David Loaiza",
+      "Juan Diego Medina Vélez",
+      "Pedro Juan de la Ossa Medrano",
+      "Juan Manuel Felizzola"
     ]
   },
   {
@@ -2131,6 +2763,12 @@
     "primaryArtists": [
       "Lenier",
       "El Chulo"
+    ],
+    "authors": [
+      "Álvaro Lenier Mesa Basulto",
+      "Abel Osvaldo Diaz",
+      "Mauro Silvino Bertran",
+      "Jordany González Mora"
     ]
   },
   {
@@ -2154,6 +2792,14 @@
       "Piso 21",
       "Marc Anthony",
       "Beéle"
+    ],
+    "authors": [
+      "Andy Clay",
+      "Daniel McCausland",
+      "David Escobar Gallego",
+      "Giovel Simon",
+      "Juan David Huertas Clavijo",
+      "Pablo Mejía Bermúdez"
     ]
   },
   {
@@ -2193,6 +2839,17 @@
     "primaryArtists": [
       "Kygo",
       "Ava Max"
+    ],
+    "authors": [
+      "Kyrre Gørvell-Dahll",
+      "Amanda Ava Koci",
+      "Shakira",
+      "Gloria Estefan",
+      "Tim Mitchell",
+      "Patrick Martin",
+      "Cleo Tighe",
+      "Jonah Shy",
+      "Roland Spreckley"
     ]
   },
   {
@@ -2203,6 +2860,14 @@
     "language": "en",
     "primaryArtists": [
       "Katy Perry"
+    ],
+    "authors": [
+      "Aaron Joseph",
+      "Vaughn Oliver",
+      "Katy Perry",
+      "Chloe Angelides",
+      "Lukasz Gottwald",
+      "Rocco Valdes"
     ]
   },
   {
@@ -2213,6 +2878,10 @@
     "language": "es",
     "primaryArtists": [
       "Nesty",
+      "Ronald Borjas"
+    ],
+    "authors": [
+      "Ernesto Galguera",
       "Ronald Borjas"
     ]
   },
@@ -2236,6 +2905,20 @@
       "Farruko",
       "Greeicy",
       "Steve Aoki"
+    ],
+    "authors": [
+      "Steve Aoki",
+      "Carlos Efrén Reyes Rosado",
+      "Axel Quezada",
+      "Keriel Quiroz Rivas",
+      "Jeronimo Hernández",
+      "Marcos G Pérez",
+      "Kevyn Mauricio Cruz Moreno",
+      "Sergio Robledo",
+      "Federico Sánchez Ararat",
+      "Gabriel Ignacio de León",
+      "Arturo Kahan",
+      "Gabriel Haber Ellstein"
     ]
   },
   {
@@ -2256,6 +2939,13 @@
     "language": "es",
     "primaryArtists": [
       "Lenier",
+      "Diana Fuentes"
+    ],
+    "authors": [
+      "Álvaro Lenier Mesa Basulto",
+      "Alondra Nairotte Suárez Meléndez",
+      "Mauro Silvino Bertran",
+      "Jordany González Mora",
       "Diana Fuentes"
     ]
   },

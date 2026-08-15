@@ -368,6 +368,18 @@ function validate({ weeklyEditions, annualCharts, songs }) {
   assert(fortnight?.versionType === "remix" && fortnight.versionStatus === "independent", "Fortnight must remain an independent remix");
   assert(fortnight?.sourceName === "SoundCloud" && fortnight.sourceUrl === "https://soundcloud.com/cyrilriley/taylor-swift-fortnight-feat-post-malone-cyril-remix", "Fortnight source is incorrect");
 
+  const unaCosita = songs.find((song) => song.id === "unacosita-458b24d76d");
+  assert(JSON.stringify(unaCosita?.authors) === JSON.stringify(["Carlos de Jesús Coronado Chirino", "Roberto Johayron Amores Rodríguez"]), "Una cosita authors are incorrect");
+
+  const importedAuthorCredits = new Map([
+    ["elwhatsapp-7a05174f95", ["Arian Chacón Hernández", "Sujer Salim Zaldívar", "Elio Revé Duverger", "Drayoan Linares Cervantes"]],
+    ["temporal-566773360c", ["Efraín David Fines Nevares", "Álvaro Lenier Mesa Basulto", "Carlos Efrén Reyes Rosado"]],
+    ["unclasico-b17f0c89df", ["Leoni Torres", "Mauro Silvino Bertran", "Bobby Sierra"]],
+  ]);
+  for (const [songId, authors] of importedAuthorCredits) {
+    assert(JSON.stringify(songs.find((song) => song.id === songId)?.authors) === JSON.stringify(authors), `${songId}: imported authors are incorrect`);
+  }
+
   const versionTitles = new Map([
     ["cualquierasalsaversion-35bbdc0b45", "Cualquiera (versión salsa)"],
     ["holaperdidaremix-955c118019", "Hola perdida (remezcla)"],
@@ -393,7 +405,7 @@ function main() {
   const songsWithAuthors = songs.filter((song) => song.authors).length;
 
   validate({ weeklyEditions, annualCharts, songs });
-  assert(songsWithAuthors >= 20, `Expected at least 20 author credits, found ${songsWithAuthors}`);
+  assert(songsWithAuthors >= 152, `Expected at least 152 author credits, found ${songsWithAuthors}`);
 
   mkdirSync(outputDir, { recursive: true });
   writeJson("weekly-editions.json", weeklyEditions);
