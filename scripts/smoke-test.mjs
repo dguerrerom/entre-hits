@@ -158,7 +158,7 @@ try {
   response = await page.goto(`${origin}/cancion/dalmation-ec0a1e6f39/`, { waitUntil: "networkidle" });
   assert(response?.ok(), "Single-appearance song-history route did not load.");
   assert((await page.locator(".performance-date-label").count()) === 1, "Single-appearance history must render one date label.");
-  assert((await page.locator(".song-page-authors").textContent())?.includes("José Álvaro Osorio Balvin"), "New song history must render its author credits.");
+  assert((await page.locator(".song-page-authors").textContent())?.includes("José Álvaro Osorio Balvín"), "New song history must render its author credits.");
 
   response = await page.goto(`${origin}/cancion/fortnightcyrilremix-227943921e/`, { waitUntil: "networkidle" });
   assert(response?.ok(), "Structured remix song-history route did not load.");
