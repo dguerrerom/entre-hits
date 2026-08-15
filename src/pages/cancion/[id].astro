@@ -1,5 +1,6 @@
 ---
 import SongPerformance from "../../components/SongPerformance.astro";
+import PlatformLinks from "../../components/PlatformLinks.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { basePath, formatArtistCredit, formatNames, getSongHistories, songPath, songs, type Song, type SongChartHistory } from "../../lib/charts";
 
@@ -50,12 +51,7 @@ const versionDescription = song.versionType === "remix"
           </p>
         )}
         {(song.sourceName || song.versionType) && song.sourceTitle !== song.title && <p class="song-page-meta"><strong>Título en la fuente:</strong> <cite>{song.sourceTitle}</cite></p>}
-        {(song.youtube || song.spotify) && (
-          <div class="song-page-links">
-            {song.youtube && <a href={song.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>}
-            {song.spotify && <a href={song.spotify} target="_blank" rel="noopener noreferrer">Spotify</a>}
-          </div>
-        )}
+        <PlatformLinks title={song.title} youtube={song.youtube} spotify={song.spotify} variant="detail" />
       </header>
 
       {histories.map((history) => <SongPerformance song={song} history={history} />)}

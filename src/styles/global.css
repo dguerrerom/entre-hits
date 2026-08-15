@@ -853,8 +853,7 @@ a.calendar-day:hover,
 }
 
 .song-line,
-.song-authors,
-.song-links {
+.song-authors {
   margin: 0;
 }
 
@@ -888,13 +887,60 @@ a.calendar-day:hover,
   line-height: 1.2;
 }
 
-.song-links {
+.platform-links {
   display: flex;
-  gap: 10px;
-  margin-top: 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.platform-links--compact {
+  --platform-accent: var(--accent);
+  --platform-soft: var(--soft);
+  margin-top: 7px;
+}
+
+.platform-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  gap: 5px;
+  padding: 4px 8px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
   font-size: 10px;
   font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-decoration: none;
   text-transform: uppercase;
+  transition: border-color 140ms ease, background-color 140ms ease;
+}
+
+.platform-link-icon {
+  flex: 0 0 auto;
+  width: 21px;
+  height: 21px;
+  fill: currentColor;
+}
+
+.platform-link-external {
+  flex: 0 0 auto;
+  width: 11px;
+  height: 11px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.7;
+}
+
+@media (hover: hover) {
+  .platform-link:hover {
+    border-color: var(--platform-accent);
+    background: color-mix(in srgb, var(--platform-soft) 68%, white);
+  }
 }
 
 .chart-board--annual .chart-columns,
@@ -1003,8 +1049,7 @@ a.calendar-day:hover,
   line-height: 1.05;
 }
 
-.song-page-meta,
-.song-page-links {
+.song-page-meta {
   grid-column: 1 / -1;
   max-width: 760px;
   color: var(--muted);
@@ -1016,15 +1061,23 @@ a.calendar-day:hover,
   color: var(--ink);
 }
 
-.song-page-links {
-  display: flex;
-  gap: 14px;
+.platform-links--detail {
+  --platform-accent: var(--song-accent);
+  --platform-soft: var(--song-soft);
+  grid-column: 1 / -1;
+  gap: 8px;
+  margin-top: 5px;
 }
 
-.song-page-links a {
-  color: var(--ink);
-  font-weight: 700;
-  text-transform: uppercase;
+.platform-links--detail .platform-link {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.platform-links--detail .platform-link-icon {
+  width: 22px;
+  height: 22px;
 }
 
 .song-performance {

@@ -96,6 +96,13 @@ try {
   assert((await page.locator(".chart-masthead h1").textContent())?.includes("#31"), "Weekly chart #31 must expose its edition number.");
   assert((await page.locator(".song-authors").count()) === 10, "Every national song in chart #31 must include author credits.");
   assert((await page.locator(".movement--status").count()) === 2, "National chart #31 must contain two new entries.");
+  assert((await page.locator(".platform-links--compact .platform-link").count()) === 10, "Every national song in chart #31 must expose its verified platform link.");
+  const compactPlatformLink = page.locator(".platform-links--compact .platform-link").first();
+  assert((await compactPlatformLink.getAttribute("aria-label"))?.includes("en YouTube (abre en una pestaña nueva)"), "Compact platform links must describe their destination and new-tab behavior.");
+  assert((await compactPlatformLink.getAttribute("target")) === "_blank", "Compact platform links must preserve the external-media browsing context.");
+  assert((await compactPlatformLink.getAttribute("rel")) === "noopener noreferrer", "Compact platform links must isolate the external browsing context.");
+  const compactPlatformBox = await compactPlatformLink.boundingBox();
+  assert(compactPlatformBox && compactPlatformBox.height >= 32, "Compact platform links must provide a target at least 32px high.");
   assert((await page.locator(".chart-entry").nth(6).locator(".weeks").textContent())?.trim() === "16", "Farándula must have 16 chart weeks.");
   assert((await page.locator(".chart-entry").nth(6).locator(".movement").getAttribute("aria-label")) === "Baja 1 posición", "Farándula movement is incorrect.");
   assert((await page.locator(".chart-entry").nth(7).locator(".weeks").textContent())?.trim() === "10", "Sin Ti must have 10 chart weeks.");
@@ -159,6 +166,13 @@ try {
   assert(response?.ok(), "Single-appearance song-history route did not load.");
   assert((await page.locator(".performance-date-label").count()) === 1, "Single-appearance history must render one date label.");
   assert((await page.locator(".song-page-authors").textContent())?.includes("José Álvaro Osorio Balvín"), "New song history must render its author credits.");
+  const detailPlatformLink = page.locator(".platform-links--detail .platform-link");
+  assert((await detailPlatformLink.count()) === 1, "The song history must expose its verified platform link.");
+  assert((await detailPlatformLink.textContent())?.trim() === "Ver en YouTube", "Detailed platform links must state their action and destination.");
+  assert((await detailPlatformLink.getAttribute("aria-label")) === "Ver Dalmation en YouTube (abre en una pestaña nueva)", "Detailed platform links must identify the song, destination, and new-tab behavior.");
+  const detailPlatformBox = await detailPlatformLink.boundingBox();
+  assert(detailPlatformBox && detailPlatformBox.height >= 44, "Detailed platform links must provide a target at least 44px high.");
+  await assertNoOverflow("390px song history with platform link");
 
   response = await page.goto(`${origin}/cancion/fortnightcyrilremix-227943921e/`, { waitUntil: "networkidle" });
   assert(response?.ok(), "Structured remix song-history route did not load.");

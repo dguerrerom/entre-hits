@@ -1,6 +1,7 @@
 ---
 import type { Category, Movement, Song } from "../lib/charts";
 import { categoryLabels, formatArtistCredit, formatDate, formatNames, movementText, songPath, weeklySongIds } from "../lib/charts";
+import PlatformLinks from "./PlatformLinks.astro";
 
 interface Entry {
   rank: number;
@@ -67,12 +68,7 @@ const heading = variant === "weekly" ? `LISTA #${number} ${label.toUpperCase()}`
         <div class="song-details">
           <p class="song-line"><strong>{weeklySongIds.has(entry.song.id) ? <a class="song-history-link" href={songPath(entry.song.id)}>{entry.song.title}</a> : entry.song.title}</strong><span aria-hidden="true"> / </span><span>{formatArtistCredit(entry.song)}</span></p>
           {entry.song.authors && <p class="song-authors"><span>Autoría: </span>{formatNames(entry.song.authors)}</p>}
-          {(entry.song.youtube || entry.song.spotify) && (
-            <p class="song-links">
-              {entry.song.youtube && <a href={entry.song.youtube} target="_blank" rel="noopener noreferrer" aria-label={`Escuchar ${entry.song.title} en YouTube (abre en una pestaña nueva)`}>YouTube</a>}
-              {entry.song.spotify && <a href={entry.song.spotify} target="_blank" rel="noopener noreferrer" aria-label={`Escuchar ${entry.song.title} en Spotify (abre en una pestaña nueva)`}>Spotify</a>}
-            </p>
-          )}
+          <PlatformLinks title={entry.song.title} youtube={entry.song.youtube} spotify={entry.song.spotify} />
         </div>
       </li>
     ))}
