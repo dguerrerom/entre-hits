@@ -6,7 +6,7 @@ import type { Category } from "./charts";
 interface ImageEntry {
   rank: number;
   title: string;
-  artists: string;
+  artistCredit: string;
 }
 
 interface ImageOptions {
@@ -73,7 +73,7 @@ export function renderChartImage(options: ImageOptions) {
         <text x="101" y="${rowHeight / 2 + 10}" text-anchor="middle" font-size="27" font-weight="700">${entry.rank}</text>
         <rect x="148" y="${annual ? 17 : 20}" width="5" height="${annual ? 43 : 54}" fill="${theme.accent}"/>
         <text x="176" y="${annual ? 36 : 43}" fill="${theme.accent}" font-size="${annual ? 25 : 29}" font-weight="700">${escapeXml(shorten(entry.title, titleLimit))}</text>
-        <text x="176" y="${annual ? 62 : 76}" fill="#171717" font-size="${annual ? 19 : 22}">${escapeXml(shorten(entry.artists, artistLimit))}</text>
+        <text x="176" y="${annual ? 62 : 76}" fill="#171717" font-size="${annual ? 19 : 22}">${escapeXml(shorten(entry.artistCredit, artistLimit))}</text>
       </g>`;
   }).join("");
 

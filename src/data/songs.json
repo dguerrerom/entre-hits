@@ -1,1000 +1,2284 @@
 [
   {
     "id": "11-b1ab50f6bd",
+    "sourceTitle": "1+1",
+    "baseTitle": "1+1",
     "title": "1+1",
-    "artists": "Maluma & Kany García"
+    "language": "es",
+    "primaryArtists": [
+      "Maluma",
+      "Kany García"
+    ]
   },
   {
     "id": "abracadabra-bb79c22368",
+    "sourceTitle": "Abracadabra",
+    "baseTitle": "Abracadabra",
     "title": "Abracadabra",
-    "artists": "Lady Gaga"
+    "language": "en",
+    "primaryArtists": [
+      "Lady Gaga"
+    ]
   },
   {
     "id": "aleale-0b7563c0ba",
-    "title": "Ale Ale",
-    "artists": "Marc Anthony"
+    "sourceTitle": "Ale Ale",
+    "baseTitle": "Ale ale",
+    "title": "Ale ale",
+    "language": "es",
+    "primaryArtists": [
+      "Marc Anthony"
+    ]
   },
   {
     "id": "algotu-79819abf32",
-    "title": "Algo Tú",
-    "artists": "Shakira & Beéle",
-    "authors": "Ejae & Mark Sonnenblick"
+    "sourceTitle": "Algo Tú",
+    "baseTitle": "Algo tú",
+    "title": "Algo tú",
+    "language": "es",
+    "primaryArtists": [
+      "Shakira",
+      "Beéle"
+    ],
+    "authors": [
+      "Ejae",
+      "Mark Sonnenblick"
+    ]
   },
   {
     "id": "alibi-5144249763",
+    "sourceTitle": "Alibi",
+    "baseTitle": "Alibi",
     "title": "Alibi",
-    "artists": "Sevdaliza & Pabllo Vittar & Yseult"
+    "language": "multilingual",
+    "primaryArtists": [
+      "Sevdaliza",
+      "Pabllo Vittar",
+      "Yseult"
+    ]
   },
   {
     "id": "amante-738a8171be",
+    "sourceTitle": "Amante",
+    "baseTitle": "Amante",
     "title": "Amante",
-    "artists": "Charly & Johayron & Roberto Ferrante & El Bandolero"
+    "language": "es",
+    "primaryArtists": [
+      "Charly & Johayron",
+      "Roberto Ferrante",
+      "El Bandolero"
+    ]
   },
   {
     "id": "amediovivir-cfcb991751",
-    "title": "A Medio Vivir",
-    "artists": "Ricky Martin & Carin León"
+    "sourceTitle": "A Medio Vivir",
+    "baseTitle": "A medio vivir",
+    "title": "A medio vivir",
+    "language": "es",
+    "primaryArtists": [
+      "Ricky Martin",
+      "Carin León"
+    ]
   },
   {
     "id": "amorbonito-6a6df413a4",
-    "title": "Amor Bonito",
-    "artists": "Kany García & Juan Luis Guerra",
-    "authors": "Kany García & Richi López & Rafa Arcaute & Manuel Lorente Freire"
+    "sourceTitle": "Amor Bonito",
+    "baseTitle": "Amor bonito",
+    "title": "Amor bonito",
+    "language": "es",
+    "primaryArtists": [
+      "Kany García",
+      "Juan Luis Guerra"
+    ],
+    "authors": [
+      "Kany García",
+      "Richi López",
+      "Rafa Arcaute",
+      "Manuel Lorente Freire"
+    ]
   },
   {
     "id": "angelodemonio-1ba583ac9c",
-    "title": "Angel o Demonio",
-    "artists": "Yuly y Havana C"
+    "sourceTitle": "Angel o Demonio",
+    "baseTitle": "Angel o demonio",
+    "title": "Angel o demonio",
+    "language": "es",
+    "primaryArtists": [
+      "Yuly y Havana C"
+    ]
   },
   {
     "id": "antesqueeltiemposevaya-581f5f1a29",
-    "title": "Antes Que El Tiempo Se Vaya",
-    "artists": "Fonseca & Juanes",
-    "authors": "Juan Fernando Fonseca Carrera & Juan Esteban Aristizábal Vásquez & Felipe Andy Clay Cruz"
+    "sourceTitle": "Antes Que El Tiempo Se Vaya",
+    "baseTitle": "Antes que el tiempo se vaya",
+    "title": "Antes que el tiempo se vaya",
+    "language": "es",
+    "primaryArtists": [
+      "Fonseca",
+      "Juanes"
+    ],
+    "authors": [
+      "Juan Fernando Fonseca Carrera",
+      "Juan Esteban Aristizábal Vásquez",
+      "Felipe Andy Clay Cruz"
+    ]
   },
   {
     "id": "apt-aa4359c93f",
+    "sourceTitle": "APT.",
+    "baseTitle": "APT.",
     "title": "APT.",
-    "artists": "ROSÉ & Bruno Mars"
+    "language": "multilingual",
+    "primaryArtists": [
+      "ROSÉ",
+      "Bruno Mars"
+    ]
   },
   {
     "id": "asicomoyo-0146c89ab8",
-    "title": "Asi Como Yo",
-    "artists": "Lenier & Nacho"
+    "sourceTitle": "Asi Como Yo",
+    "baseTitle": "Asi como yo",
+    "title": "Asi como yo",
+    "language": "es",
+    "primaryArtists": [
+      "Lenier",
+      "Nacho"
+    ]
   },
   {
     "id": "asieslavida-512b6e244f",
-    "title": "ASI ES LA VIDA",
-    "artists": "Enrique Iglesias & Maria Becerra"
+    "sourceTitle": "ASI ES LA VIDA",
+    "baseTitle": "Asi es la vida",
+    "title": "Asi es la vida",
+    "language": "es",
+    "primaryArtists": [
+      "Enrique Iglesias",
+      "Maria Becerra"
+    ]
   },
   {
     "id": "azizam-2ccfa1c603",
+    "sourceTitle": "Azizam",
+    "baseTitle": "Azizam",
     "title": "Azizam",
-    "artists": "Ed Sheeran"
+    "language": "en",
+    "primaryArtists": [
+      "Ed Sheeran"
+    ]
   },
   {
     "id": "bailandoconlosvanvan-5976ae4159",
+    "sourceTitle": "Bailando con los Van Van",
+    "baseTitle": "Bailando con los Van Van",
     "title": "Bailando con los Van Van",
-    "artists": "Son Dos y Formell y los Van Van"
+    "language": "es",
+    "primaryArtists": [
+      "Son Dos",
+      "Formell y Los Van Van"
+    ]
   },
   {
     "id": "bailandosuave-3b016b3ed0",
-    "title": "Bailando Suave",
-    "artists": "Charly & Johayron & Roberto Ferrante"
+    "sourceTitle": "Bailando Suave",
+    "baseTitle": "Bailando suave",
+    "title": "Bailando suave",
+    "language": "es",
+    "primaryArtists": [
+      "Charly & Johayron",
+      "Roberto Ferrante"
+    ]
   },
   {
     "id": "beautifulthings-76867bed2c",
+    "sourceTitle": "Beautiful Things",
+    "baseTitle": "Beautiful Things",
     "title": "Beautiful Things",
-    "artists": "Benson Boone"
+    "language": "en",
+    "primaryArtists": [
+      "Benson Boone"
+    ]
   },
   {
     "id": "besitoenlafrente-6e3478d6f1",
-    "title": "Besito en la Frente",
-    "artists": "Rauw Alejandro"
+    "sourceTitle": "Besito en la Frente",
+    "baseTitle": "Besito en la frente",
+    "title": "Besito en la frente",
+    "language": "es",
+    "primaryArtists": [
+      "Rauw Alejandro"
+    ]
   },
   {
     "id": "blablabla-b04f4e20be",
-    "title": "Bla, Bla, Bla",
-    "artists": "Formell y Los Van Van"
+    "sourceTitle": "Bla, Bla, Bla",
+    "baseTitle": "Bla, bla, bla",
+    "title": "Bla, bla, bla",
+    "language": "es",
+    "primaryArtists": [
+      "Formell y Los Van Van"
+    ]
   },
   {
     "id": "bonita-1fa820b1b1",
+    "sourceTitle": "Bonita",
+    "baseTitle": "Bonita",
     "title": "Bonita",
-    "artists": "Srta. Dayana"
+    "language": "es",
+    "primaryArtists": [
+      "Srta. Dayana"
+    ]
   },
   {
     "id": "bonita-7e06d87ca1",
+    "sourceTitle": "Bonita",
+    "baseTitle": "Bonita",
     "title": "Bonita",
-    "artists": "Daddy Yankee"
+    "language": "es",
+    "primaryArtists": [
+      "Daddy Yankee"
+    ]
   },
   {
     "id": "bringyourlove-3e36d7d001",
+    "sourceTitle": "Bring your love",
+    "baseTitle": "Bring your love",
     "title": "Bring your love",
-    "artists": "Madonna & Sabrina Carpenter",
-    "authors": "Madonna & Stuart Price & Roy Holman & Shanna Jackson & Kevin Saunderson"
+    "language": "en",
+    "primaryArtists": [
+      "Madonna",
+      "Sabrina Carpenter"
+    ],
+    "authors": [
+      "Madonna",
+      "Stuart Price",
+      "Roy Holman",
+      "Shanna Jackson",
+      "Kevin Saunderson"
+    ]
   },
   {
     "id": "bzrpmusicsessionsvol61-3f2dc8046c",
+    "sourceTitle": "Bzrp Music Sessions, Vol. 61",
+    "baseTitle": "Bzrp Music Sessions, Vol. 61",
     "title": "Bzrp Music Sessions, Vol. 61",
-    "artists": "Bizarrap & Luck Ra"
+    "language": "es",
+    "primaryArtists": [
+      "Bizarrap",
+      "Luck Ra"
+    ]
   },
   {
     "id": "bzrpmusicsessionsvol66-8732f5859a",
+    "sourceTitle": "Bzrp Music Sessions, Vol. 66",
+    "baseTitle": "Bzrp Music Sessions, Vol. 66",
     "title": "Bzrp Music Sessions, Vol. 66",
-    "artists": "Bizarrap & Daddy Yankee"
+    "language": "es",
+    "primaryArtists": [
+      "Bizarrap",
+      "Daddy Yankee"
+    ]
   },
   {
     "id": "cambiare-d875320356",
+    "sourceTitle": "Cambiaré",
+    "baseTitle": "Cambiaré",
     "title": "Cambiaré",
-    "artists": "Luis Fonsi & Feid"
+    "language": "es",
+    "primaryArtists": [
+      "Luis Fonsi",
+      "Feid"
+    ]
   },
   {
     "id": "cantgetenough-871400f78e",
+    "sourceTitle": "Can't Get Enough",
+    "baseTitle": "Can't Get Enough",
     "title": "Can't Get Enough",
-    "artists": "Jennifer Lopez"
+    "language": "en",
+    "primaryArtists": [
+      "Jennifer Lopez"
+    ]
   },
   {
     "id": "caritatriste-b08e70e7e1",
+    "sourceTitle": "CARITA TRISTE",
+    "baseTitle": "CARITA TRISTE",
     "title": "CARITA TRISTE",
-    "artists": "Ana Mena & Emilia"
+    "language": "es",
+    "primaryArtists": [
+      "Ana Mena",
+      "Emilia"
+    ]
   },
   {
     "id": "catalina-3a0e88846e",
+    "sourceTitle": "Catalina",
+    "baseTitle": "Catalina",
     "title": "Catalina",
-    "artists": "Cimafunk & Monsieur Periné"
+    "language": "es",
+    "primaryArtists": [
+      "Cimafunk",
+      "Monsieur Periné"
+    ]
   },
   {
     "id": "chaochaito-d8bf7e7644",
-    "title": "Chao Chaíto",
-    "artists": "Yuly y Havana C & Fransiskito el King"
+    "sourceTitle": "Chao Chaíto",
+    "baseTitle": "Chao chaíto",
+    "title": "Chao chaíto",
+    "language": "es",
+    "primaryArtists": [
+      "Yuly y Havana C",
+      "Fransiskito el King"
+    ]
   },
   {
     "id": "chevere-127f7d0fe4",
+    "sourceTitle": "CHÉVERE",
+    "baseTitle": "CHÉVERE",
     "title": "CHÉVERE",
-    "artists": "ARIA VEGA & Ryan Castro",
-    "authors": "Bryan David Castro Sosa & Germán Andrés García Acuña & Jordy Camilo Valdivieso & Mariana Padilla Pérez & Santiago Orrego"
+    "language": "es",
+    "primaryArtists": [
+      "ARIA VEGA",
+      "Ryan Castro"
+    ],
+    "authors": [
+      "Bryan David Castro Sosa",
+      "Germán Andrés García Acuña",
+      "Jordy Camilo Valdivieso",
+      "Mariana Padilla Pérez",
+      "Santiago Orrego"
+    ]
   },
   {
     "id": "cogelosuave-2141857326",
-    "title": "Cógelo Suave",
-    "artists": "Leoni Torres & Javier Columbié",
-    "authors": "Leonardo Torres Álvarez & Javier Columbié Ortiz"
+    "sourceTitle": "Cógelo Suave",
+    "baseTitle": "Cógelo suave",
+    "title": "Cógelo suave",
+    "language": "es",
+    "primaryArtists": [
+      "Leoni Torres",
+      "Javier Columbié"
+    ],
+    "authors": [
+      "Leonardo Torres Álvarez",
+      "Javier Columbié Ortiz"
+    ]
   },
   {
     "id": "comenzardenuevo-112540cc75",
-    "title": "Comenzar De Nuevo",
-    "artists": "Nicky Jam",
-    "authors": "Kike Santander"
+    "sourceTitle": "Comenzar De Nuevo",
+    "baseTitle": "Comenzar de nuevo",
+    "title": "Comenzar de nuevo",
+    "language": "es",
+    "primaryArtists": [
+      "Nicky Jam"
+    ],
+    "authors": [
+      "Kike Santander"
+    ]
   },
   {
     "id": "comoenelidilio-de1af4f95a",
-    "title": "Como En El Idilio",
-    "artists": "Marc Anthony & Nathy Peluso"
+    "sourceTitle": "Como En El Idilio",
+    "baseTitle": "Como en el idilio",
+    "title": "Como en el idilio",
+    "language": "es",
+    "primaryArtists": [
+      "Marc Anthony",
+      "Nathy Peluso"
+    ]
   },
   {
     "id": "comolaflor-01eb8b9e16",
+    "sourceTitle": "Como la flor",
+    "baseTitle": "Como la flor",
     "title": "Como la flor",
-    "artists": "Play-N-Skillz & Natti Natasha & Deorro"
+    "language": "es",
+    "primaryArtists": [
+      "Play-N-Skillz",
+      "Natti Natasha",
+      "Deorro"
+    ]
   },
   {
     "id": "comonadie-cc168e1b76",
-    "title": "Como Nadie",
-    "artists": "Wil Campa"
+    "sourceTitle": "Como Nadie",
+    "baseTitle": "Como nadie",
+    "title": "Como nadie",
+    "language": "es",
+    "primaryArtists": [
+      "Wil Campa"
+    ]
   },
   {
     "id": "contigo-0937d7804b",
+    "sourceTitle": "CONTIGO",
+    "baseTitle": "CONTIGO",
     "title": "CONTIGO",
-    "artists": "KAROL G & Tiësto"
+    "language": "es",
+    "primaryArtists": [
+      "KAROL G",
+      "Tiësto"
+    ]
   },
   {
     "id": "cosaspendientes-19b5711dc3",
-    "title": "Cosas Pendientes",
-    "artists": "Maluma"
+    "sourceTitle": "Cosas Pendientes",
+    "baseTitle": "Cosas pendientes",
+    "title": "Cosas pendientes",
+    "language": "es",
+    "primaryArtists": [
+      "Maluma"
+    ]
   },
   {
     "id": "cositalinda-c97d0ed8fa",
-    "title": "Cosita Linda",
-    "artists": "Elena Rose & Justin Quiles"
+    "sourceTitle": "Cosita Linda",
+    "baseTitle": "Cosita linda",
+    "title": "Cosita linda",
+    "language": "es",
+    "primaryArtists": [
+      "Elena Rose",
+      "Justin Quiles"
+    ]
   },
   {
     "id": "cualquierasalsaversion-35bbdc0b45",
-    "title": "Cualquiera (Salsa Version)",
-    "artists": "Srta. Dayana",
-    "authors": "Carlos J Lara Garcia & Dayana Chavez Victoria"
+    "sourceTitle": "Cualquiera (Salsa Version)",
+    "baseTitle": "Cualquiera",
+    "title": "Cualquiera (versión salsa)",
+    "language": "es",
+    "primaryArtists": [
+      "Srta. Dayana"
+    ],
+    "versionType": "version",
+    "versionName": "salsa",
+    "authors": [
+      "Carlos J Lara Garcia",
+      "Dayana Chavez Victoria"
+    ]
   },
   {
     "id": "cuentale-8216aa7188",
+    "sourceTitle": "Cuéntale",
+    "baseTitle": "Cuéntale",
     "title": "Cuéntale",
-    "artists": "Bryan Sanchez"
+    "language": "es",
+    "primaryArtists": [
+      "Bryan Sanchez"
+    ]
   },
   {
     "id": "cumbiadelosamigos-bdfca40685",
-    "title": "Cumbia De Los Amigos",
-    "artists": "Orquesta Failde & La Sonora Dinamita",
-    "authors": "Pedro Pablo Cruz"
+    "sourceTitle": "Cumbia De Los Amigos",
+    "baseTitle": "Cumbia de los amigos",
+    "title": "Cumbia de los amigos",
+    "language": "es",
+    "primaryArtists": [
+      "Orquesta Failde",
+      "La Sonora Dinamita"
+    ],
+    "authors": [
+      "Pedro Pablo Cruz"
+    ]
   },
   {
     "id": "cupr-151fc14e7f",
+    "sourceTitle": "Cu-Pr",
+    "baseTitle": "Cu-Pr",
     "title": "Cu-Pr",
-    "artists": "Havana D' Primera & Gilberto Santa Rosa"
+    "language": "es",
+    "primaryArtists": [
+      "Havana D’Primera",
+      "Gilberto Santa Rosa"
+    ]
   },
   {
     "id": "daidai-bce248570a",
-    "title": "Dai Dai",
-    "artists": "Shakira & Burna Boy",
-    "authors": "Shakira Isabel Mebarak Ripoll, Alexander Castillo Vasquez, Ahmed Saghir, Ed Sheeran, Jon Bellion"
+    "sourceTitle": "Dai Dai",
+    "baseTitle": "Dai dai",
+    "title": "Dai dai",
+    "language": "multilingual",
+    "primaryArtists": [
+      "Shakira",
+      "Burna Boy"
+    ],
+    "authors": [
+      "Shakira Isabel Mebarak Ripoll",
+      "Alexander Castillo Vasquez",
+      "Ahmed Saghir",
+      "Ed Sheeran",
+      "Jon Bellion"
+    ]
   },
   {
     "id": "dalmation-ec0a1e6f39",
+    "sourceTitle": "Dalmation",
+    "baseTitle": "Dalmation",
     "title": "Dalmation",
-    "artists": "J Balvin & Ryan Castro",
-    "authors": "José Álvaro Osorio Balvin & Bryan David Castro Sosa & Kevyn Mauricio Cruz Moreno & Sergio Robledo Arango & Filly Andrés Lima Maya & Cristian Camilo Álvarez Ospina"
+    "language": "es",
+    "primaryArtists": [
+      "J Balvin",
+      "Ryan Castro"
+    ],
+    "authors": [
+      "José Álvaro Osorio Balvin",
+      "Bryan David Castro Sosa",
+      "Kevyn Mauricio Cruz Moreno",
+      "Sergio Robledo Arango",
+      "Filly Andrés Lima Maya",
+      "Cristian Camilo Álvarez Ospina"
+    ]
   },
   {
     "id": "dandovueltas-61ea5b6f1f",
-    "title": "Dando Vueltas",
-    "artists": "Rauw Alejandro",
-    "authors": "Rauw Alejandro & Nino K. Segura & Edgar Barrera & Andrés Jael Correa Ríos & Eduardo Cabra & Sebastián Otero"
+    "sourceTitle": "Dando Vueltas",
+    "baseTitle": "Dando vueltas",
+    "title": "Dando vueltas",
+    "language": "es",
+    "primaryArtists": [
+      "Rauw Alejandro"
+    ],
+    "authors": [
+      "Rauw Alejandro",
+      "Nino K. Segura",
+      "Edgar Barrera",
+      "Andrés Jael Correa Ríos",
+      "Eduardo Cabra",
+      "Sebastián Otero"
+    ]
   },
   {
     "id": "dardos-1a820a379a",
+    "sourceTitle": "Dardos",
+    "baseTitle": "Dardos",
     "title": "Dardos",
-    "artists": "Romeo Santos & Prince Royce"
+    "language": "es",
+    "primaryArtists": [
+      "Romeo Santos",
+      "Prince Royce"
+    ]
   },
   {
     "id": "dembow-e7c0653837",
-    "title": "Dem Bow",
-    "artists": "Natti Natasha & Nando Boom"
+    "sourceTitle": "Dem Bow",
+    "baseTitle": "Dem bow",
+    "title": "Dem bow",
+    "language": "es",
+    "primaryArtists": [
+      "Natti Natasha",
+      "Nando Boom"
+    ]
   },
   {
     "id": "desire-b900629306",
+    "sourceTitle": "Desire",
+    "baseTitle": "Desire",
     "title": "Desire",
-    "artists": "Calvin Harris & Sam Smith"
+    "language": "en",
+    "primaryArtists": [
+      "Calvin Harris",
+      "Sam Smith"
+    ]
   },
   {
     "id": "diamante-0ccb388dbf",
+    "sourceTitle": "Diamante",
+    "baseTitle": "Diamante",
     "title": "Diamante",
-    "artists": "Timø & Cardellino"
+    "language": "es",
+    "primaryArtists": [
+      "Timø",
+      "Cardellino"
+    ]
   },
   {
     "id": "diewithasmile-48d8a6a8fc",
+    "sourceTitle": "Die With A Smile",
+    "baseTitle": "Die With A Smile",
     "title": "Die With A Smile",
-    "artists": "Lady Gaga & Bruno Mars"
+    "language": "en",
+    "primaryArtists": [
+      "Lady Gaga",
+      "Bruno Mars"
+    ]
   },
   {
     "id": "dilealamor-563b60e9a8",
-    "title": "Dile Al Amor",
-    "artists": "Charanga Latina & Joseito CG"
+    "sourceTitle": "Dile Al Amor",
+    "baseTitle": "Dile al amor",
+    "title": "Dile al amor",
+    "language": "es",
+    "primaryArtists": [
+      "Charanga Latina",
+      "Joseito CG"
+    ]
   },
   {
     "id": "disculpemesenor-a3dec0c6bf",
-    "title": "Discúlpeme Señor",
-    "artists": "Greeicy",
-    "authors": "Greeicy Yeliana Rendón Ceballos & Luis Miguel Gómez Castaño & Sergio Robledo & Alejandro Robledo Valencia & Filly Andrés Lima Maya & Cristian Camilo Álvarez Ospina"
+    "sourceTitle": "Discúlpeme Señor",
+    "baseTitle": "Discúlpeme señor",
+    "title": "Discúlpeme señor",
+    "language": "es",
+    "primaryArtists": [
+      "Greeicy"
+    ],
+    "authors": [
+      "Greeicy Yeliana Rendón Ceballos",
+      "Luis Miguel Gómez Castaño",
+      "Sergio Robledo",
+      "Alejandro Robledo Valencia",
+      "Filly Andrés Lima Maya",
+      "Cristian Camilo Álvarez Ospina"
+    ]
   },
   {
     "id": "doctorworkitout-428bd0cf68",
+    "sourceTitle": "Doctor (Work It Out)",
+    "baseTitle": "Doctor (Work It Out)",
     "title": "Doctor (Work It Out)",
-    "artists": "Pharrell Williams & Miley Cyrus"
+    "language": "en",
+    "primaryArtists": [
+      "Pharrell Williams",
+      "Miley Cyrus"
+    ]
   },
   {
     "id": "dondeestabas-fdb3c1f87c",
-    "title": "¿Dónde Estabas?",
-    "artists": "Tito El Bambino & Silvestre Dangond"
+    "sourceTitle": "¿Dónde Estabas?",
+    "baseTitle": "¿Dónde estabas?",
+    "title": "¿Dónde estabas?",
+    "language": "es",
+    "primaryArtists": [
+      "Tito El Bambino",
+      "Silvestre Dangond"
+    ]
   },
   {
     "id": "efectossecundarios-be86986c97",
-    "title": "Efectos Secundarios",
-    "artists": "Silvestre Dangond & Elena Rose",
-    "authors": "Silvestre Francisco Dangond Corrales & Andrea Elena Mangiamarchi & Andrés Castro & Daniel Ignacio Rondón & Frank Santofimio & Miguel Ángel Díaz Vélez"
+    "sourceTitle": "Efectos Secundarios",
+    "baseTitle": "Efectos secundarios",
+    "title": "Efectos secundarios",
+    "language": "es",
+    "primaryArtists": [
+      "Silvestre Dangond",
+      "Elena Rose"
+    ],
+    "authors": [
+      "Silvestre Francisco Dangond Corrales",
+      "Andrea Elena Mangiamarchi",
+      "Andrés Castro",
+      "Daniel Ignacio Rondón",
+      "Frank Santofimio",
+      "Miguel Ángel Díaz Vélez"
+    ]
   },
   {
     "id": "efimero-228d78e0fc",
+    "sourceTitle": "Efímero",
+    "baseTitle": "Efímero",
     "title": "Efímero",
-    "artists": "Greeicy"
+    "language": "es",
+    "primaryArtists": [
+      "Greeicy"
+    ]
   },
   {
     "id": "elamorqueespere-86e71a5cbb",
-    "title": "El Amor Que Espere",
-    "artists": "Leoni Torres & Eddy K & Mauro El Codigo Secreto"
+    "sourceTitle": "El Amor Que Espere",
+    "baseTitle": "El amor que espere",
+    "title": "El amor que espere",
+    "language": "es",
+    "primaryArtists": [
+      "Leoni Torres",
+      "Eddy K",
+      "Mauro El Codigo Secreto"
+    ]
   },
   {
     "id": "elchiquitico-b9b4ac9465",
-    "title": "El Chiquitico",
-    "artists": "Orquesta Failde",
-    "authors": "Pedro Pablo Cruz"
+    "sourceTitle": "El Chiquitico",
+    "baseTitle": "El chiquitico",
+    "title": "El chiquitico",
+    "language": "es",
+    "primaryArtists": [
+      "Orquesta Failde"
+    ],
+    "authors": [
+      "Pedro Pablo Cruz"
+    ]
   },
   {
     "id": "elcielo-6db5846b8d",
-    "title": "El Cielo",
-    "artists": "Tini"
+    "sourceTitle": "El Cielo",
+    "baseTitle": "El cielo",
+    "title": "El cielo",
+    "language": "es",
+    "primaryArtists": [
+      "Tini"
+    ]
   },
   {
     "id": "eldoctorado-76d58b8d11",
-    "title": "El Doctorado",
-    "artists": "Massimo Ferrara & Los 4",
-    "authors": "Massimo Ferrara"
+    "sourceTitle": "El Doctorado",
+    "baseTitle": "El doctorado",
+    "title": "El doctorado",
+    "language": "es",
+    "primaryArtists": [
+      "Massimo Ferrara",
+      "Los 4"
+    ],
+    "authors": [
+      "Massimo Ferrara"
+    ]
   },
   {
     "id": "elwhatsapp-7a05174f95",
+    "sourceTitle": "El WhatsApp",
+    "baseTitle": "El WhatsApp",
     "title": "El WhatsApp",
-    "artists": "Elito Revé Y Su Charangón & El Dray"
+    "language": "es",
+    "primaryArtists": [
+      "Elito Revé y su Charangón",
+      "El Dray"
+    ]
   },
   {
     "id": "enemigos-2ec35ea6eb",
+    "sourceTitle": "Enemigos",
+    "baseTitle": "Enemigos",
     "title": "Enemigos",
-    "artists": "Ozuna & Beéle & Ovy On The Drums",
-    "authors": "Jan Carlos Ozuna Rosado"
+    "language": "es",
+    "primaryArtists": [
+      "Ozuna",
+      "Beéle",
+      "Ovy On The Drums"
+    ],
+    "authors": [
+      "Jan Carlos Ozuna Rosado"
+    ]
   },
   {
     "id": "enhorabuena-9681e08a8b",
+    "sourceTitle": "Enhorabuena",
+    "baseTitle": "Enhorabuena",
     "title": "Enhorabuena",
-    "artists": "Manuel Turizo"
+    "language": "es",
+    "primaryArtists": [
+      "Manuel Turizo"
+    ]
   },
   {
     "id": "enotravidacomoesta-e106965a3a",
-    "title": "En Otra Vida Como Esta",
-    "artists": "Diana Fuentes",
-    "authors": "Diana Fuentes & Marcos Sánchez & Jorge Rivera & Nam San Fong"
+    "sourceTitle": "En Otra Vida Como Esta",
+    "baseTitle": "En otra vida como esta",
+    "title": "En otra vida como esta",
+    "language": "es",
+    "primaryArtists": [
+      "Diana Fuentes"
+    ],
+    "authors": [
+      "Diana Fuentes",
+      "Marcos Sánchez",
+      "Jorge Rivera",
+      "Nam San Fong"
+    ]
   },
   {
     "id": "enprivado-5ab8bfd761",
-    "title": "En Privado",
-    "artists": "Xavi & Manuel Turizo"
+    "sourceTitle": "En Privado",
+    "baseTitle": "En privado",
+    "title": "En privado",
+    "language": "es",
+    "primaryArtists": [
+      "Xavi",
+      "Manuel Turizo"
+    ]
   },
   {
     "id": "esebesito-43c3ba862c",
-    "title": "Ese Besito",
-    "artists": "Melanie Santiler & Cimafunk"
+    "sourceTitle": "Ese Besito",
+    "baseTitle": "Ese besito",
+    "title": "Ese besito",
+    "language": "es",
+    "primaryArtists": [
+      "Melanie Santiler",
+      "Cimafunk"
+    ]
   },
   {
     "id": "espresso-850bade631",
+    "sourceTitle": "Espresso",
+    "baseTitle": "Espresso",
     "title": "Espresso",
-    "artists": "Sabrina Carpenter"
+    "language": "en",
+    "primaryArtists": [
+      "Sabrina Carpenter"
+    ]
   },
   {
     "id": "exexex-4a717da72c",
-    "title": "Ex Ex Ex",
-    "artists": "Aitana & Kenia Os"
+    "sourceTitle": "Ex Ex Ex",
+    "baseTitle": "Ex ex ex",
+    "title": "Ex ex ex",
+    "language": "es",
+    "primaryArtists": [
+      "Aitana",
+      "Kenia Os"
+    ]
   },
   {
     "id": "farandula-cf2bfc3eb2",
+    "sourceTitle": "Farándula",
+    "baseTitle": "Farándula",
     "title": "Farándula",
-    "artists": "Yuly y Havana C",
-    "authors": "Yuleisis Greenidge"
+    "language": "es",
+    "primaryArtists": [
+      "Yuly y Havana C"
+    ],
+    "authors": [
+      "Yuleisis Greenidge"
+    ]
   },
   {
     "id": "fiestando-faff8dfb4b",
+    "sourceTitle": "Fiestando",
+    "baseTitle": "Fiestando",
     "title": "Fiestando",
-    "artists": "Gitanos"
+    "language": "es",
+    "primaryArtists": [
+      "Gitanos"
+    ]
   },
   {
     "id": "fortnightcyrilremix-227943921e",
-    "title": "Fortnight (CYRIL REMIX)",
-    "artists": "Taylor Swift & Post Malone"
+    "sourceTitle": "Taylor Swift - Fortnight (Feat. Post Malone) (CYRIL REMIX)",
+    "baseTitle": "Fortnight",
+    "title": "Fortnight (remezcla de CYRIL)",
+    "language": "en",
+    "primaryArtists": [
+      "Taylor Swift"
+    ],
+    "featuredArtists": [
+      "Post Malone"
+    ],
+    "remixers": [
+      "CYRIL"
+    ],
+    "versionType": "remix",
+    "versionName": "CYRIL",
+    "versionStatus": "independent",
+    "sourceName": "SoundCloud",
+    "sourceUrl": "https://soundcloud.com/cyrilriley/taylor-swift-fortnight-feat-post-malone-cyril-remix",
+    "authors": [
+      "Taylor Swift",
+      "Jack Antonoff",
+      "Austin Post"
+    ]
   },
   {
     "id": "fueculpadeusted-94bf8fc961",
-    "title": "Fue Culpa De Usted",
-    "artists": "Moa Rivera & Lenier"
+    "sourceTitle": "Fue Culpa De Usted",
+    "baseTitle": "Fue culpa de usted",
+    "title": "Fue culpa de usted",
+    "language": "es",
+    "primaryArtists": [
+      "Moa Rivera",
+      "Lenier"
+    ]
   },
   {
     "id": "fuerafuera-7146038232",
-    "title": "Fuera Fuera",
-    "artists": "La India & Jacob Forever"
+    "sourceTitle": "Fuera Fuera",
+    "baseTitle": "Fuera fuera",
+    "title": "Fuera fuera",
+    "language": "es",
+    "primaryArtists": [
+      "La India",
+      "Jacob Forever"
+    ]
   },
   {
     "id": "gabriela-cb45e3ba49",
+    "sourceTitle": "Gabriela",
+    "baseTitle": "Gabriela",
     "title": "Gabriela",
-    "artists": "Katseye"
+    "language": "multilingual",
+    "primaryArtists": [
+      "Katseye"
+    ]
   },
   {
     "id": "gimmelove-5ece9463b7",
+    "sourceTitle": "Gimme Love",
+    "baseTitle": "Gimme Love",
     "title": "Gimme Love",
-    "artists": "Sia"
+    "language": "en",
+    "primaryArtists": [
+      "Sia"
+    ]
   },
   {
     "id": "golden-53fc8a5c44",
+    "sourceTitle": "Golden",
+    "baseTitle": "Golden",
     "title": "Golden",
-    "artists": "Huntr/x & KPop Demon Hunters Cast"
+    "language": "en",
+    "primaryArtists": [
+      "Huntr/x",
+      "KPop Demon Hunters Cast"
+    ]
   },
   {
     "id": "gonegonegone-7498869b0d",
+    "sourceTitle": "Gone Gone Gone",
+    "baseTitle": "Gone Gone Gone",
     "title": "Gone Gone Gone",
-    "artists": "David Guetta & Teddy Swims & Tones And I"
+    "language": "en",
+    "primaryArtists": [
+      "David Guetta",
+      "Teddy Swims",
+      "Tones And I"
+    ]
   },
   {
     "id": "handsonme-f8e1028364",
+    "sourceTitle": "Hands On Me",
+    "baseTitle": "Hands On Me",
     "title": "Hands On Me",
-    "artists": "Jason Derulo & Meghan Trainor"
+    "language": "en",
+    "primaryArtists": [
+      "Jason Derulo",
+      "Meghan Trainor"
+    ]
   },
   {
     "id": "hastaquemeenamoro-a9b7755e5c",
-    "title": "Hasta Que Me Enamoro",
-    "artists": "Maria Becerra & Tini"
+    "sourceTitle": "Hasta Que Me Enamoro",
+    "baseTitle": "Hasta que me enamoro",
+    "title": "Hasta que me enamoro",
+    "language": "es",
+    "primaryArtists": [
+      "Maria Becerra",
+      "Tini"
+    ]
   },
   {
     "id": "himalaya-b76fb5502f",
+    "sourceTitle": "Himalaya",
+    "baseTitle": "Himalaya",
     "title": "Himalaya",
-    "artists": "Wisin & Pedro Capó"
+    "language": "es",
+    "primaryArtists": [
+      "Wisin",
+      "Pedro Capó"
+    ]
   },
   {
     "id": "holaperdidaremix-955c118019",
-    "title": "HOLA PERDIDA REMIX",
-    "artists": "Luck Ra & Maluma & KHEA"
+    "sourceTitle": "HOLA PERDIDA REMIX",
+    "baseTitle": "Hola perdida",
+    "title": "Hola perdida (remezcla)",
+    "language": "es",
+    "primaryArtists": [
+      "Luck Ra",
+      "Maluma",
+      "KHEA"
+    ],
+    "versionType": "remix"
   },
   {
     "id": "houdini-41ab2783fc",
+    "sourceTitle": "Houdini",
+    "baseTitle": "Houdini",
     "title": "Houdini",
-    "artists": "Dua Lipa"
+    "language": "en",
+    "primaryArtists": [
+      "Dua Lipa"
+    ]
   },
   {
     "id": "iadoreyou-98ae7ea0e6",
+    "sourceTitle": "I Adore You",
+    "baseTitle": "I Adore You",
     "title": "I Adore You",
-    "artists": "Hugel & J Balvin & Ellie Goulding & Topic & Arash & Daecolm"
+    "language": "en",
+    "primaryArtists": [
+      "Hugel",
+      "J Balvin",
+      "Ellie Goulding",
+      "Topic",
+      "Arash",
+      "Daecolm"
+    ]
   },
   {
     "id": "ijustmight-3b4db880da",
+    "sourceTitle": "I Just Might",
+    "baseTitle": "I Just Might",
     "title": "I Just Might",
-    "artists": "Bruno Mars"
+    "language": "en",
+    "primaryArtists": [
+      "Bruno Mars"
+    ]
   },
   {
     "id": "illusion-b2810a35a4",
+    "sourceTitle": "Illusion",
+    "baseTitle": "Illusion",
     "title": "Illusion",
-    "artists": "Dua Lipa"
+    "language": "en",
+    "primaryArtists": [
+      "Dua Lipa"
+    ]
   },
   {
     "id": "lacalentura-e7cb98c0ca",
-    "title": "La Calentura",
-    "artists": "Manolin El Medico de la Salsa & Formula B"
+    "sourceTitle": "La Calentura",
+    "baseTitle": "La calentura",
+    "title": "La calentura",
+    "language": "es",
+    "primaryArtists": [
+      "Manolin El Medico de la Salsa",
+      "Formula B"
+    ]
   },
   {
     "id": "lachicadelescenario-2180b97d75",
+    "sourceTitle": "La chica del escenario",
+    "baseTitle": "La chica del escenario",
     "title": "La chica del escenario",
-    "artists": "Alexander Abreu y Habana D Primera"
+    "language": "es",
+    "primaryArtists": [
+      "Alexander Abreu y Havana D’Primera"
+    ]
   },
   {
     "id": "lafuerte-97999605bd",
-    "title": "La Fuerte",
-    "artists": "Shakira & Bizarrap"
+    "sourceTitle": "La Fuerte",
+    "baseTitle": "La fuerte",
+    "title": "La fuerte",
+    "language": "es",
+    "primaryArtists": [
+      "Shakira",
+      "Bizarrap"
+    ]
   },
   {
     "id": "lalampara-19a4848639",
-    "title": "La Lámpara",
-    "artists": "Alain Pérez"
+    "sourceTitle": "La Lámpara",
+    "baseTitle": "La lámpara",
+    "title": "La lámpara",
+    "language": "es",
+    "primaryArtists": [
+      "Alain Pérez"
+    ]
   },
   {
     "id": "lamanodeorula-d113d28c2e",
+    "sourceTitle": "La mano de Orula",
+    "baseTitle": "La mano de Orula",
     "title": "La mano de Orula",
-    "artists": "Paulo FG"
+    "language": "es",
+    "primaryArtists": [
+      "Paulo FG"
+    ]
   },
   {
     "id": "lapersonacorrecta-8daadc1bc1",
-    "title": "La Persona Correcta",
-    "artists": "Charly & Johayron & Baby Cortés & Ernesto Losa"
+    "sourceTitle": "La Persona Correcta",
+    "baseTitle": "La persona correcta",
+    "title": "La persona correcta",
+    "language": "es",
+    "primaryArtists": [
+      "Charly & Johayron",
+      "Baby Cortés",
+      "Ernesto Losa"
+    ]
   },
   {
     "id": "lasredes-b5eadcc555",
-    "title": "Las Redes",
-    "artists": "Wil Campa"
+    "sourceTitle": "Las Redes",
+    "baseTitle": "Las redes",
+    "title": "Las redes",
+    "language": "es",
+    "primaryArtists": [
+      "Wil Campa"
+    ]
   },
   {
     "id": "lastory-2b8e4dc5a3",
+    "sourceTitle": "La Story",
+    "baseTitle": "La Story",
     "title": "La Story",
-    "artists": "El Taiger & Lil Yoe & Karly & DJ Conds"
+    "language": "es",
+    "primaryArtists": [
+      "El Taiger",
+      "Lil Yoe",
+      "Karly",
+      "DJ Conds"
+    ]
   },
   {
     "id": "lavidabailando-82797dc147",
-    "title": "La Vida Bailando",
-    "artists": "Wil Campa"
+    "sourceTitle": "La Vida Bailando",
+    "baseTitle": "La vida bailando",
+    "title": "La vida bailando",
+    "language": "es",
+    "primaryArtists": [
+      "Wil Campa"
+    ]
   },
   {
     "id": "lavidaesbuena-e8b327aa2c",
-    "title": "La Vida Es Buena",
-    "artists": "Diana Fuentes"
+    "sourceTitle": "La Vida Es Buena",
+    "baseTitle": "La vida es buena",
+    "title": "La vida es buena",
+    "language": "es",
+    "primaryArtists": [
+      "Diana Fuentes"
+    ]
   },
   {
     "id": "lifetimes-d3b5643c3f",
+    "sourceTitle": "LIFETIMES",
+    "baseTitle": "LIFETIMES",
     "title": "LIFETIMES",
-    "artists": "Katy Perry"
+    "language": "en",
+    "primaryArtists": [
+      "Katy Perry"
+    ]
   },
   {
     "id": "losbesosquetedi-f1fa430ac3",
-    "title": "Los Besos Que Te Di",
-    "artists": "David Calzado Y Su Charanga Habanera"
+    "sourceTitle": "Los Besos Que Te Di",
+    "baseTitle": "Los besos que te di",
+    "title": "Los besos que te di",
+    "language": "es",
+    "primaryArtists": [
+      "David Calzado y su Charanga Habanera"
+    ]
   },
   {
     "id": "lovepatinohay-1c6dfaf245",
-    "title": "Love Pa Ti No Hay",
-    "artists": "Fer Ariza & Nacho",
-    "authors": "Daniel Alejandro Ospina & Johan Fernando Ariza Pretel & Jhon Paul Villasana & Ronny Rodriguez & Miguel Mendoza Donatti"
+    "sourceTitle": "Love Pa Ti No Hay",
+    "baseTitle": "Love pa ti no hay",
+    "title": "Love pa ti no hay",
+    "language": "es",
+    "primaryArtists": [
+      "Fer Ariza",
+      "Nacho"
+    ],
+    "authors": [
+      "Daniel Alejandro Ospina",
+      "Johan Fernando Ariza Pretel",
+      "Jhon Paul Villasana",
+      "Ronny Rodriguez",
+      "Miguel Mendoza Donatti"
+    ]
   },
   {
     "id": "luna-3464cc2f4b",
+    "sourceTitle": "Luna",
+    "baseTitle": "Luna",
     "title": "Luna",
-    "artists": "Wisin & Kapo"
+    "language": "es",
+    "primaryArtists": [
+      "Wisin",
+      "Kapo"
+    ]
   },
   {
     "id": "luna-3eac47e0df",
+    "sourceTitle": "LUNA",
+    "baseTitle": "LUNA",
     "title": "LUNA",
-    "artists": "Feid & ATL Jacob"
+    "language": "es",
+    "primaryArtists": [
+      "Feid",
+      "ATL Jacob"
+    ]
   },
   {
     "id": "magia-0cfd9bf9b7",
+    "sourceTitle": "Magia",
+    "baseTitle": "Magia",
     "title": "Magia",
-    "artists": "Charly & Johayron & Nicky Jam & Roberto Ferrante & El Bandolero & DJ Honda"
+    "language": "es",
+    "primaryArtists": [
+      "Charly & Johayron",
+      "Nicky Jam",
+      "Roberto Ferrante",
+      "El Bandolero",
+      "DJ Honda"
+    ]
   },
   {
     "id": "mananateolvido-fd0e38bcef",
-    "title": "Mañana Te Olvido",
-    "artists": "Jacob Forever & LI-C"
+    "sourceTitle": "Mañana Te Olvido",
+    "baseTitle": "Mañana te olvido",
+    "title": "Mañana te olvido",
+    "language": "es",
+    "primaryArtists": [
+      "Jacob Forever",
+      "LI-C"
+    ]
   },
   {
     "id": "masqueamigos-fcd34715fd",
-    "title": "Mas Que Amigos",
-    "artists": "Nesty & Diana Fuentes"
+    "sourceTitle": "Mas Que Amigos",
+    "baseTitle": "Mas que amigos",
+    "title": "Mas que amigos",
+    "language": "es",
+    "primaryArtists": [
+      "Nesty",
+      "Diana Fuentes"
+    ]
   },
   {
     "id": "meequivoquecontigo-c185e06ee0",
-    "title": "Me Equivoqué Contigo",
-    "artists": "Jacob Forever"
+    "sourceTitle": "Me Equivoqué Contigo",
+    "baseTitle": "Me equivoqué contigo",
+    "title": "Me equivoqué contigo",
+    "language": "es",
+    "primaryArtists": [
+      "Jacob Forever"
+    ]
   },
   {
     "id": "memuevo-81b30013f0",
-    "title": "Me Muevo",
-    "artists": "Fariana & Kiko El Crazy"
+    "sourceTitle": "Me Muevo",
+    "baseTitle": "Me muevo",
+    "title": "Me muevo",
+    "language": "es",
+    "primaryArtists": [
+      "Fariana",
+      "Kiko El Crazy"
+    ]
   },
   {
     "id": "miamor-75e80a9d85",
+    "sourceTitle": "miamor",
+    "baseTitle": "miamor",
     "title": "miamor",
-    "artists": "Aitana & Rels B"
+    "language": "es",
+    "primaryArtists": [
+      "Aitana",
+      "Rels B"
+    ]
   },
   {
     "id": "miexteniarazon-e14de01b6e",
+    "sourceTitle": "MI EX TENÍA RAZÓN",
+    "baseTitle": "MI EX TENÍA RAZÓN",
     "title": "MI EX TENÍA RAZÓN",
-    "artists": "KAROL G"
+    "language": "es",
+    "primaryArtists": [
+      "KAROL G"
+    ]
   },
   {
     "id": "mimeneo-96115b3c28",
+    "sourceTitle": "Mi meneo",
+    "baseTitle": "Mi meneo",
     "title": "Mi meneo",
-    "artists": "Rosaliz"
+    "language": "es",
+    "primaryArtists": [
+      "Rosaliz"
+    ]
   },
   {
     "id": "miprioridad-7e3f504ac5",
-    "title": "Mi Prioridad",
-    "artists": "Jacob Forever"
+    "sourceTitle": "Mi Prioridad",
+    "baseTitle": "Mi prioridad",
+    "title": "Mi prioridad",
+    "language": "es",
+    "primaryArtists": [
+      "Jacob Forever"
+    ]
   },
   {
     "id": "mirameahora-3075c509d1",
-    "title": "Mírame Ahora",
-    "artists": "Manuel Turizo"
+    "sourceTitle": "Mírame Ahora",
+    "baseTitle": "Mírame ahora",
+    "title": "Mírame ahora",
+    "language": "es",
+    "primaryArtists": [
+      "Manuel Turizo"
+    ]
   },
   {
     "id": "modovanvan-c3ec2d04af",
+    "sourceTitle": "Modo Van Van",
+    "baseTitle": "Modo Van Van",
     "title": "Modo Van Van",
-    "artists": "Formell y Los Van Van"
+    "language": "es",
+    "primaryArtists": [
+      "Formell y Los Van Van"
+    ]
   },
   {
     "id": "morena-080c0333b6",
+    "sourceTitle": "Morena",
+    "baseTitle": "Morena",
     "title": "Morena",
-    "artists": "Yulien Oviedo & Insurrecto"
+    "language": "es",
+    "primaryArtists": [
+      "Yulien Oviedo",
+      "Insurrecto"
+    ]
   },
   {
     "id": "muertofritoyderretido-2b8c5876c2",
+    "sourceTitle": "Muerto, frito y derretido",
+    "baseTitle": "Muerto, frito y derretido",
     "title": "Muerto, frito y derretido",
-    "artists": "LiesterM & Charanga Habanera"
+    "language": "es",
+    "primaryArtists": [
+      "LiesterM",
+      "Charanga Habanera"
+    ]
   },
   {
     "id": "mundoloco-9f46f12184",
-    "title": "Mundo Loco",
-    "artists": "Baby Cortés"
+    "sourceTitle": "Mundo Loco",
+    "baseTitle": "Mundo loco",
+    "title": "Mundo loco",
+    "language": "es",
+    "primaryArtists": [
+      "Baby Cortés"
+    ]
   },
   {
     "id": "nadasinti-e749860ed3",
-    "title": "Nada Sin Ti",
-    "artists": "Los 4"
+    "sourceTitle": "Nada Sin Ti",
+    "baseTitle": "Nada sin ti",
+    "title": "Nada sin ti",
+    "language": "es",
+    "primaryArtists": [
+      "Los 4"
+    ]
   },
   {
     "id": "nadiecomotu-5461ce5be2",
-    "title": "Nadie Como Tú",
-    "artists": "Leoni Torres & Bryan Sánchez",
-    "authors": "Leonardo Torres Álvarez & Danilo Corrales Guerra & Brayan Pujol Sánchez"
+    "sourceTitle": "Nadie Como Tú",
+    "baseTitle": "Nadie como tú",
+    "title": "Nadie como tú",
+    "language": "es",
+    "primaryArtists": [
+      "Leoni Torres",
+      "Bryan Sánchez"
+    ],
+    "authors": [
+      "Leonardo Torres Álvarez",
+      "Danilo Corrales Guerra",
+      "Brayan Pujol Sánchez"
+    ]
   },
   {
     "id": "namore-a9143f5cf2",
+    "sourceTitle": "Namore",
+    "baseTitle": "Namore",
     "title": "Namore",
-    "artists": "Saudy & Lenier",
-    "authors": "Álvaro Lenier Mesa Basulto & Lisdan González & Saudy Nail González Machín"
+    "language": "es",
+    "primaryArtists": [
+      "Saudy",
+      "Lenier"
+    ],
+    "authors": [
+      "Álvaro Lenier Mesa Basulto",
+      "Lisdan González",
+      "Saudy Nail González Machín"
+    ]
   },
   {
     "id": "necessito-0aa1136034",
+    "sourceTitle": "Necessito",
+    "baseTitle": "Necessito",
     "title": "Necessito",
-    "artists": "Lexa"
+    "language": "pt",
+    "primaryArtists": [
+      "Lexa"
+    ]
   },
   {
     "id": "nohepodidoolvidarte-8a65d99de0",
-    "title": "No He Podido Olvidarte",
-    "artists": "Chacal & Yakarta",
-    "authors": "Ramón Lavado Martínez & Luis Javier Prieto Cedeño"
+    "sourceTitle": "No He Podido Olvidarte",
+    "baseTitle": "No he podido olvidarte",
+    "title": "No he podido olvidarte",
+    "language": "es",
+    "primaryArtists": [
+      "Chacal",
+      "Yakarta"
+    ],
+    "authors": [
+      "Ramón Lavado Martínez",
+      "Luis Javier Prieto Cedeño"
+    ]
   },
   {
     "id": "nosvamos-ec606a101a",
-    "title": "Nos Vamos",
-    "artists": "Len Mikay & Divan"
+    "sourceTitle": "Nos Vamos",
+    "baseTitle": "Nos vamos",
+    "title": "Nos vamos",
+    "language": "es",
+    "primaryArtists": [
+      "Len Mikay",
+      "Divan"
+    ]
   },
   {
     "id": "noteinstales-0c505ecf21",
-    "title": "No Te Instales",
-    "artists": "Divan & Ernesto Losa"
+    "sourceTitle": "No Te Instales",
+    "baseTitle": "No te instales",
+    "title": "No te instales",
+    "language": "es",
+    "primaryArtists": [
+      "Divan",
+      "Ernesto Losa"
+    ]
   },
   {
     "id": "notienesentido-7ac99e1f15",
-    "title": "No Tiene Sentido",
-    "artists": "Beéle"
+    "sourceTitle": "No Tiene Sentido",
+    "baseTitle": "No tiene sentido",
+    "title": "No tiene sentido",
+    "language": "es",
+    "primaryArtists": [
+      "Beéle"
+    ]
   },
   {
     "id": "novolvere-e0a0da09f5",
-    "title": "No Volveré",
-    "artists": "Jacob Forever & Mayco D' Alma"
+    "sourceTitle": "No Volveré",
+    "baseTitle": "No volveré",
+    "title": "No volveré",
+    "language": "es",
+    "primaryArtists": [
+      "Jacob Forever",
+      "Mayco D' Alma"
+    ]
   },
   {
     "id": "nuncateolvidare-442ab8b88b",
-    "title": "Nunca Te Olvidaré",
-    "artists": "Wil Campa"
+    "sourceTitle": "Nunca Te Olvidaré",
+    "baseTitle": "Nunca te olvidaré",
+    "title": "Nunca te olvidaré",
+    "language": "es",
+    "primaryArtists": [
+      "Wil Campa"
+    ]
   },
   {
     "id": "ohnana-e092d936f3",
+    "sourceTitle": "Ohnana",
+    "baseTitle": "Ohnana",
     "title": "Ohnana",
-    "artists": "Kapo"
+    "language": "es",
+    "primaryArtists": [
+      "Kapo"
+    ]
   },
   {
     "id": "orgullo-b3c9292d7e",
+    "sourceTitle": "Orgullo",
+    "baseTitle": "Orgullo",
     "title": "Orgullo",
-    "artists": "Nesty & Guaynaa"
+    "language": "es",
+    "primaryArtists": [
+      "Nesty",
+      "Guaynaa"
+    ]
   },
   {
     "id": "otranochemas-c3b92c54c5",
-    "title": "Otra Noche Más",
-    "artists": "Víctor Manuelle"
+    "sourceTitle": "Otra Noche Más",
+    "baseTitle": "Otra noche más",
+    "title": "Otra noche más",
+    "language": "es",
+    "primaryArtists": [
+      "Víctor Manuelle"
+    ]
   },
   {
     "id": "outsideoflove-7f7d6b8292",
+    "sourceTitle": "Outside Of Love",
+    "baseTitle": "Outside Of Love",
     "title": "Outside Of Love",
-    "artists": "Becky Hill"
+    "language": "en",
+    "primaryArtists": [
+      "Becky Hill"
+    ]
   },
   {
     "id": "papasito-18c5517d39",
+    "sourceTitle": "Papasito",
+    "baseTitle": "Papasito",
     "title": "Papasito",
-    "artists": "Karol G"
+    "language": "es",
+    "primaryArtists": [
+      "KAROL G"
+    ]
   },
   {
     "id": "paquevolviste-a615566d6e",
-    "title": "Pa’ Qué Volviste?",
-    "artists": "Elena Rose & Maria Becerra"
+    "sourceTitle": "Pa’ Qué Volviste?",
+    "baseTitle": "Pa’ qué volviste?",
+    "title": "Pa’ qué volviste?",
+    "language": "es",
+    "primaryArtists": [
+      "Elena Rose",
+      "Maria Becerra"
+    ]
   },
   {
     "id": "patitoa3-d542f2e175",
+    "sourceTitle": "Pa ti toa <3",
+    "baseTitle": "Pa ti toa <3",
     "title": "Pa ti toa <3",
-    "artists": "Ana Mena & Lola Índigo",
-    "authors": "Ana Mena Rojas & Miriam Doblas Muñoz & Estéfano Berciano Garduño & José Montado Cruz & Carlos Almazán"
+    "language": "es",
+    "primaryArtists": [
+      "Ana Mena",
+      "Lola Índigo"
+    ],
+    "authors": [
+      "Ana Mena Rojas",
+      "Miriam Doblas Muñoz",
+      "Estéfano Berciano Garduño",
+      "José Montado Cruz",
+      "Carlos Almazán"
+    ]
   },
   {
     "id": "patodalavida-b83f9a5b3b",
-    "title": "Pa' Toda La Vida",
-    "artists": "Chacal & Marlon & Gerardo Rodríguez"
+    "sourceTitle": "Pa' Toda La Vida",
+    "baseTitle": "Pa' toda la vida",
+    "title": "Pa' toda la vida",
+    "language": "es",
+    "primaryArtists": [
+      "Chacal",
+      "Marlon",
+      "Gerardo Rodríguez"
+    ]
   },
   {
     "id": "plis-f1de299425",
+    "sourceTitle": "PLIS",
+    "baseTitle": "PLIS",
     "title": "PLIS",
-    "artists": "Camilo & Evaluna Montaner"
+    "language": "es",
+    "primaryArtists": [
+      "Camilo",
+      "Evaluna Montaner"
+    ]
   },
   {
     "id": "portuculpa-2f7567505f",
-    "title": "Por Tu Culpa",
-    "artists": "Leoni Torres"
+    "sourceTitle": "Por Tu Culpa",
+    "baseTitle": "Por tu culpa",
+    "title": "Por tu culpa",
+    "language": "es",
+    "primaryArtists": [
+      "Leoni Torres"
+    ]
   },
   {
     "id": "puntacana-27ce381bef",
+    "sourceTitle": "Punta Cana",
+    "baseTitle": "Punta Cana",
     "title": "Punta Cana",
-    "artists": "Marc Anthony"
+    "language": "es",
+    "primaryArtists": [
+      "Marc Anthony"
+    ]
   },
   {
     "id": "punteria-1ef0e937a3",
+    "sourceTitle": "Puntería",
+    "baseTitle": "Puntería",
     "title": "Puntería",
-    "artists": "Shakira & Cardi B"
+    "language": "es",
+    "primaryArtists": [
+      "Shakira",
+      "Cardi B"
+    ]
   },
   {
     "id": "quebola-af45a41f47",
-    "title": "Qué Bolá",
-    "artists": "Wampi & Cimafunk"
+    "sourceTitle": "Qué Bolá",
+    "baseTitle": "Qué bolá",
+    "title": "Qué bolá",
+    "language": "es",
+    "primaryArtists": [
+      "Wampi",
+      "Cimafunk"
+    ]
   },
   {
     "id": "quehaces-d7cb3d98d9",
-    "title": "Qué Haces",
-    "artists": "Becky G & Manuel Turizo"
+    "sourceTitle": "Qué Haces",
+    "baseTitle": "Qué haces",
+    "title": "Qué haces",
+    "language": "es",
+    "primaryArtists": [
+      "Becky G",
+      "Manuel Turizo"
+    ]
   },
   {
     "id": "quehago-96015e81a0",
-    "title": "Qué Hago",
-    "artists": "Karmen Muradas & Alexander Abreu & Havana D'Primera"
+    "sourceTitle": "Qué Hago",
+    "baseTitle": "Qué hago",
+    "title": "Qué hago",
+    "language": "es",
+    "primaryArtists": [
+      "Karmen Muradas",
+      "Alexander Abreu",
+      "Havana D’Primera"
+    ]
   },
   {
     "id": "quetevayabien-64c66e3ede",
-    "title": "Que Te Vaya Bien",
-    "artists": "David Calzado y su Charanga Habanera & Joseito CG"
+    "sourceTitle": "Que Te Vaya Bien",
+    "baseTitle": "Que te vaya bien",
+    "title": "Que te vaya bien",
+    "language": "es",
+    "primaryArtists": [
+      "David Calzado y su Charanga Habanera",
+      "Joseito CG"
+    ]
   },
   {
     "id": "quevivaelamor-2a6642efed",
+    "sourceTitle": "Que viva el amor",
+    "baseTitle": "Que viva el amor",
     "title": "Que viva el amor",
-    "artists": "Jacob Forever & @danyome & Kevincitoel13 & Gatillo"
+    "language": "es",
+    "primaryArtists": [
+      "Jacob Forever",
+      "Dany Ome",
+      "Kevincitoel13",
+      "Gatillo"
+    ]
   },
   {
     "id": "quiero-accfe27478",
+    "sourceTitle": "Quiero +",
+    "baseTitle": "Quiero +",
     "title": "Quiero +",
-    "artists": "Greeicy"
+    "language": "es",
+    "primaryArtists": [
+      "Greeicy"
+    ]
   },
   {
     "id": "regalito-e2fa90eb90",
+    "sourceTitle": "Regalito",
+    "baseTitle": "Regalito",
     "title": "Regalito",
-    "artists": "Piso 21 & Juan Duque"
+    "language": "es",
+    "primaryArtists": [
+      "Piso 21",
+      "Juan Duque"
+    ]
   },
   {
     "id": "reinadecorazones-719bab0ec6",
-    "title": "Reina De Corazones",
-    "artists": "Alain Pérez & Luis Enrique"
+    "sourceTitle": "Reina De Corazones",
+    "baseTitle": "Reina de corazones",
+    "title": "Reina de corazones",
+    "language": "es",
+    "primaryArtists": [
+      "Alain Pérez",
+      "Luis Enrique"
+    ]
   },
   {
     "id": "roma-96d5a4f6be",
+    "sourceTitle": "Roma",
+    "baseTitle": "Roma",
     "title": "Roma",
-    "artists": "Luis Fonsi & Laura Pausini"
+    "language": "es",
+    "primaryArtists": [
+      "Luis Fonsi",
+      "Laura Pausini"
+    ]
   },
   {
     "id": "salsakuduro-c13ddcca85",
-    "title": "Salsa Kuduro",
-    "artists": "Karmen Muradas"
+    "sourceTitle": "Salsa Kuduro",
+    "baseTitle": "Salsa kuduro",
+    "title": "Salsa kuduro",
+    "language": "es",
+    "primaryArtists": [
+      "Karmen Muradas"
+    ]
   },
   {
     "id": "salvame-5fdc541db8",
+    "sourceTitle": "Sálvame",
+    "baseTitle": "Sálvame",
     "title": "Sálvame",
-    "artists": "Camilo & Alexander Abreu & Havana D'Primera"
+    "language": "es",
+    "primaryArtists": [
+      "Camilo",
+      "Alexander Abreu",
+      "Havana D’Primera"
+    ]
   },
   {
     "id": "salvavidas-df979696ed",
+    "sourceTitle": "Salvavidas",
+    "baseTitle": "Salvavidas",
     "title": "Salvavidas",
-    "artists": "Jacob Forever & Dany Ome & Kevincito El 13"
+    "language": "es",
+    "primaryArtists": [
+      "Jacob Forever",
+      "Dany Ome",
+      "Kevincito El 13"
+    ]
   },
   {
     "id": "santa-9ad744ba52",
+    "sourceTitle": "Santa",
+    "baseTitle": "Santa",
     "title": "Santa",
-    "artists": "Rvssian & Rauw Alejandro & Ayra Starr"
+    "language": "es",
+    "primaryArtists": [
+      "Rvssian",
+      "Rauw Alejandro",
+      "Ayra Starr"
+    ]
   },
   {
     "id": "savemetonight-57c69ff712",
+    "sourceTitle": "Save Me Tonight",
+    "baseTitle": "Save Me Tonight",
     "title": "Save Me Tonight",
-    "artists": "Jennifer Lopez & David Guetta",
-    "authors": "Amanda \"Kiddo A.I.\" Ibanez & David Guetta & Giorgio Tuinfort & James Essien & Ryan Tedder & Timofey Reznikov & Tyler Spry"
+    "language": "en",
+    "primaryArtists": [
+      "Jennifer Lopez",
+      "David Guetta"
+    ],
+    "authors": [
+      "Amanda \"Kiddo A.I.\" Ibanez",
+      "David Guetta",
+      "Giorgio Tuinfort",
+      "James Essien",
+      "Ryan Tedder",
+      "Timofey Reznikov",
+      "Tyler Spry"
+    ]
   },
   {
     "id": "senorbendito-2a53bceed4",
-    "title": "Señor Bendito",
-    "artists": "Fanny Lu & Olga Tañón"
+    "sourceTitle": "Señor Bendito",
+    "baseTitle": "Señor bendito",
+    "title": "Señor bendito",
+    "language": "es",
+    "primaryArtists": [
+      "Fanny Lu",
+      "Olga Tañón"
+    ]
   },
   {
     "id": "siantestehubieraconocido-a684e71094",
-    "title": "Si Antes Te Hubiera Conocido",
-    "artists": "KAROL G"
+    "sourceTitle": "Si Antes Te Hubiera Conocido",
+    "baseTitle": "Si antes te hubiera conocido",
+    "title": "Si antes te hubiera conocido",
+    "language": "es",
+    "primaryArtists": [
+      "KAROL G"
+    ]
   },
   {
     "id": "silencioremix-df7b7a94c2",
-    "title": "Silencio (Remix)",
-    "artists": "Alexander Abreu & Velito el bufón"
+    "sourceTitle": "Silencio (Remix)",
+    "baseTitle": "Silencio",
+    "title": "Silencio (remezcla)",
+    "language": "es",
+    "primaryArtists": [
+      "Alexander Abreu",
+      "Velito el bufón"
+    ],
+    "versionType": "remix"
   },
   {
     "id": "sinmiedo-68d241f95a",
-    "title": "Sin Miedo",
-    "artists": "Kasanova & Alexander Abreu"
+    "sourceTitle": "Sin Miedo",
+    "baseTitle": "Sin miedo",
+    "title": "Sin miedo",
+    "language": "es",
+    "primaryArtists": [
+      "Kasanova",
+      "Alexander Abreu"
+    ]
   },
   {
     "id": "sinofueraporti-650a0054d2",
-    "title": "Si No Fuera Por Ti",
-    "artists": "Leoni Torres",
-    "authors": "Ángel Arce & Leonardo Torres Álvarez & Beatriz César & Alain De Armas"
+    "sourceTitle": "Si No Fuera Por Ti",
+    "baseTitle": "Si no fuera por ti",
+    "title": "Si no fuera por ti",
+    "language": "es",
+    "primaryArtists": [
+      "Leoni Torres"
+    ],
+    "authors": [
+      "Ángel Arce",
+      "Leonardo Torres Álvarez",
+      "Beatriz César",
+      "Alain De Armas"
+    ]
   },
   {
     "id": "sinti-b5cf6d0f05",
-    "title": "Sin Ti",
-    "artists": "Saudy & Lenier",
-    "authors": "Mauro Bertrán & Álbaro Lennier Mesa Basulto"
+    "sourceTitle": "Sin Ti",
+    "baseTitle": "Sin ti",
+    "title": "Sin ti",
+    "language": "es",
+    "primaryArtists": [
+      "Saudy",
+      "Lenier"
+    ],
+    "authors": [
+      "Mauro Bertrán",
+      "Álbaro Lennier Mesa Basulto"
+    ]
   },
   {
     "id": "situlaves-c2af8f00f3",
-    "title": "Si Tu La Ves",
-    "artists": "Lenier & Jowell & Randy"
+    "sourceTitle": "Si Tu La Ves",
+    "baseTitle": "Si tu la ves",
+    "title": "Si tu la ves",
+    "language": "es",
+    "primaryArtists": [
+      "Lenier",
+      "Jowell & Randy"
+    ]
   },
   {
     "id": "soltera-af2453ae86",
+    "sourceTitle": "Soltera",
+    "baseTitle": "Soltera",
     "title": "Soltera",
-    "artists": "Shakira"
+    "language": "es",
+    "primaryArtists": [
+      "Shakira"
+    ]
   },
   {
     "id": "sonriele-dc3a5895ca",
+    "sourceTitle": "Sonríele",
+    "baseTitle": "Sonríele",
     "title": "Sonríele",
-    "artists": "Daddy Yankee"
+    "language": "es",
+    "primaryArtists": [
+      "Daddy Yankee"
+    ]
   },
   {
     "id": "sonriemujer-9ba2a53ad4",
-    "title": "Sonríe Mujer",
-    "artists": "Chacal"
+    "sourceTitle": "Sonríe Mujer",
+    "baseTitle": "Sonríe mujer",
+    "title": "Sonríe mujer",
+    "language": "es",
+    "primaryArtists": [
+      "Chacal"
+    ]
   },
   {
     "id": "tactoquellegoelreparto-4a3c7212e1",
-    "title": "Tacto Que Llegó El Reparto",
-    "artists": "Bebeshito"
+    "sourceTitle": "Tacto Que Llegó El Reparto",
+    "baseTitle": "Tacto que llegó el reparto",
+    "title": "Tacto que llegó el reparto",
+    "language": "es",
+    "primaryArtists": [
+      "Bebeshito"
+    ]
   },
   {
     "id": "tedigoadioscumbia-7a0cc06fea",
-    "title": "Te Digo Adiós (Cumbia)",
-    "artists": "Papushi"
+    "sourceTitle": "Te Digo Adiós (Cumbia)",
+    "baseTitle": "Te digo adiós",
+    "title": "Te digo adiós (versión cumbia)",
+    "language": "es",
+    "primaryArtists": [
+      "Papushi"
+    ],
+    "versionType": "version",
+    "versionName": "cumbia"
   },
   {
     "id": "tehacenfaltados-39cb9c7329",
-    "title": "Te Hacen Falta Dos",
-    "artists": "Manuel Turizo",
-    "authors": "Manuel Turizo & Juan Diego Medina Pérez & Julián Turizo Zapata & Manuel Lorente Freire & Daniel José Márquez Díaz & César Augusto Santiago & Daniel Ignacio Rondón & Miguel Ángel Díaz"
+    "sourceTitle": "Te Hacen Falta Dos",
+    "baseTitle": "Te hacen falta dos",
+    "title": "Te hacen falta dos",
+    "language": "es",
+    "primaryArtists": [
+      "Manuel Turizo"
+    ],
+    "authors": [
+      "Manuel Turizo",
+      "Juan Diego Medina Pérez",
+      "Julián Turizo Zapata",
+      "Manuel Lorente Freire",
+      "Daniel José Márquez Díaz",
+      "César Augusto Santiago",
+      "Daniel Ignacio Rondón",
+      "Miguel Ángel Díaz"
+    ]
   },
   {
     "id": "temporal-566773360c",
+    "sourceTitle": "Temporal",
+    "baseTitle": "Temporal",
     "title": "Temporal",
-    "artists": "Tito El Bambino & Farruko"
+    "language": "es",
+    "primaryArtists": [
+      "Tito El Bambino",
+      "Farruko"
+    ]
   },
   {
     "id": "tetengoensalsa-8f35b2cfb9",
+    "sourceTitle": "Te tengo en salsa",
+    "baseTitle": "Te tengo en salsa",
     "title": "Te tengo en salsa",
-    "artists": "Cimafunk"
+    "language": "es",
+    "primaryArtists": [
+      "Cimafunk"
+    ]
   },
   {
     "id": "texasholdem-714295b0ce",
+    "sourceTitle": "TEXAS HOLD 'EM",
+    "baseTitle": "TEXAS HOLD 'EM",
     "title": "TEXAS HOLD 'EM",
-    "artists": "Beyoncé"
+    "language": "en",
+    "primaryArtists": [
+      "Beyoncé"
+    ]
   },
   {
     "id": "thefateofophelia-5a1b58dd4e",
+    "sourceTitle": "The Fate of Ophelia",
+    "baseTitle": "The Fate of Ophelia",
     "title": "The Fate of Ophelia",
-    "artists": "Taylor Swift"
+    "language": "en",
+    "primaryArtists": [
+      "Taylor Swift"
+    ]
   },
   {
     "id": "todoelmundobailando-c00363a787",
-    "title": "Todo El Mundo Bailando",
-    "artists": "Leoni Torres & Guaynaa"
+    "sourceTitle": "Todo El Mundo Bailando",
+    "baseTitle": "Todo el mundo bailando",
+    "title": "Todo el mundo bailando",
+    "language": "es",
+    "primaryArtists": [
+      "Leoni Torres",
+      "Guaynaa"
+    ]
   },
   {
     "id": "touchingthesky-93fc355bcf",
+    "sourceTitle": "Touching The Sky",
+    "baseTitle": "Touching The Sky",
     "title": "Touching The Sky",
-    "artists": "Rauw Alejandro"
+    "language": "en",
+    "primaryArtists": [
+      "Rauw Alejandro"
+    ]
   },
   {
     "id": "trainingseason-80ba3e9377",
+    "sourceTitle": "Training Season",
+    "baseTitle": "Training Season",
     "title": "Training Season",
-    "artists": "Dua Lipa"
+    "language": "en",
+    "primaryArtists": [
+      "Dua Lipa"
+    ]
   },
   {
     "id": "tutienesalgo-f736eae719",
-    "title": "Tú Tienes Algo",
-    "artists": "Indy Fontaine & Charlie Cruz",
-    "authors": "Guianko Gómez & Andrés Castro"
+    "sourceTitle": "Tú Tienes Algo",
+    "baseTitle": "Tú tienes algo",
+    "title": "Tú tienes algo",
+    "language": "es",
+    "primaryArtists": [
+      "Indy Fontaine",
+      "Charlie Cruz"
+    ],
+    "authors": [
+      "Guianko Gómez",
+      "Andrés Castro"
+    ]
   },
   {
     "id": "unacopiademi-874f23c606",
+    "sourceTitle": "Una copia de mí",
+    "baseTitle": "Una copia de mí",
     "title": "Una copia de mí",
-    "artists": "Charly & Johayron y Ernesto Losa"
+    "language": "es",
+    "primaryArtists": [
+      "Charly & Johayron",
+      "Ernesto Losa"
+    ]
   },
   {
     "id": "unacosita-458b24d76d",
-    "title": "Una Cosita",
-    "artists": "Charly & Johayron & Roberto Ferrante & El Bandolero"
+    "sourceTitle": "Una Cosita",
+    "baseTitle": "Una cosita",
+    "title": "Una cosita",
+    "language": "es",
+    "primaryArtists": [
+      "Charly & Johayron",
+      "Roberto Ferrante",
+      "El Bandolero"
+    ]
   },
   {
     "id": "unanamas-dacddd8a79",
-    "title": "Una Na Más",
-    "artists": "Myke Towers",
-    "authors": "Michael A. Torres Monge & Alejandro Robledo Valencia & Andrés Jael Correa Ríos & Cristian Camilo Álvarez Ospina & Filly Andrés Lima Maya & Jeremy Ayala & Juan J. Santana Lugo & Julio Emmanuel Batista Santos & Kevyn Mauricio Cruz Moreno & Lexus & Maxiolly Torres Meneses & Orlando J. Cepeda Matos"
+    "sourceTitle": "Una Na Más",
+    "baseTitle": "Una na más",
+    "title": "Una na más",
+    "language": "es",
+    "primaryArtists": [
+      "Myke Towers"
+    ],
+    "authors": [
+      "Michael A. Torres Monge",
+      "Alejandro Robledo Valencia",
+      "Andrés Jael Correa Ríos",
+      "Cristian Camilo Álvarez Ospina",
+      "Filly Andrés Lima Maya",
+      "Jeremy Ayala",
+      "Juan J. Santana Lugo",
+      "Julio Emmanuel Batista Santos",
+      "Kevyn Mauricio Cruz Moreno",
+      "Lexus",
+      "Maxiolly Torres Meneses",
+      "Orlando J. Cepeda Matos"
+    ]
   },
   {
     "id": "unavidapasada-d64d9360bc",
-    "title": "Una Vida Pasada",
-    "artists": "Camilo & Carin Leon"
+    "sourceTitle": "Una Vida Pasada",
+    "baseTitle": "Una vida pasada",
+    "title": "Una vida pasada",
+    "language": "es",
+    "primaryArtists": [
+      "Camilo",
+      "Carin Leon"
+    ]
   },
   {
     "id": "unclasico-b17f0c89df",
-    "title": "Un Clásico",
-    "artists": "Len Mikay & Leoni Torres"
+    "sourceTitle": "Un Clásico",
+    "baseTitle": "Un clásico",
+    "title": "Un clásico",
+    "language": "es",
+    "primaryArtists": [
+      "Len Mikay",
+      "Leoni Torres"
+    ]
   },
   {
     "id": "unica-2c69f9590f",
+    "sourceTitle": "Única",
+    "baseTitle": "Única",
     "title": "Única",
-    "artists": "Tainy & Karol G",
-    "authors": "Marco Masis & Ricardo López"
+    "language": "es",
+    "primaryArtists": [
+      "Tainy",
+      "KAROL G"
+    ],
+    "authors": [
+      "Marco Masis",
+      "Ricardo López"
+    ]
   },
   {
     "id": "uwaie-85b324d262",
+    "sourceTitle": "UWAIE",
+    "baseTitle": "UWAIE",
     "title": "UWAIE",
-    "artists": "Kapo"
+    "language": "es",
+    "primaryArtists": [
+      "Kapo"
+    ]
   },
   {
     "id": "vagabundo-48bd0579e2",
+    "sourceTitle": "VAGABUNDO",
+    "baseTitle": "VAGABUNDO",
     "title": "VAGABUNDO",
-    "artists": "Sebastián Yatra & Manuel Turizo & Beéle"
+    "language": "es",
+    "primaryArtists": [
+      "Sebastián Yatra",
+      "Manuel Turizo",
+      "Beéle"
+    ]
   },
   {
     "id": "vibras-f5616bb528",
+    "sourceTitle": "Vibras",
+    "baseTitle": "Vibras",
     "title": "Vibras",
-    "artists": "Lenier & El Chulo"
+    "language": "es",
+    "primaryArtists": [
+      "Lenier",
+      "El Chulo"
+    ]
   },
   {
     "id": "vocation-a1301068d1",
+    "sourceTitle": "Vocation",
+    "baseTitle": "Vocation",
     "title": "Vocation",
-    "artists": "Ozuna & David Guetta"
+    "language": "es",
+    "primaryArtists": [
+      "Ozuna",
+      "David Guetta"
+    ]
   },
   {
     "id": "volver-d3eaababf5",
+    "sourceTitle": "Volver",
+    "baseTitle": "Volver",
     "title": "Volver",
-    "artists": "Piso 21 & Marc Anthony & Beéle"
+    "language": "es",
+    "primaryArtists": [
+      "Piso 21",
+      "Marc Anthony",
+      "Beéle"
+    ]
   },
   {
     "id": "voyami-b10b5a2806",
-    "title": "Voy A Mí",
-    "artists": "Yomil",
-    "authors": "Roberto Hidalgo Puentes"
+    "sourceTitle": "Voy A Mí",
+    "baseTitle": "Voy a mí",
+    "title": "Voy a mí",
+    "language": "es",
+    "primaryArtists": [
+      "Yomil"
+    ],
+    "authors": [
+      "Roberto Hidalgo Puentes"
+    ]
   },
   {
     "id": "vuelvoaseryo-7603b2a16b",
-    "title": "Vuelvo a Ser Yo",
-    "artists": "Luis Enrique & Alain Pérez",
-    "authors": "Luis Enrique Mejía López & Julio Fowler"
+    "sourceTitle": "Vuelvo a Ser Yo",
+    "baseTitle": "Vuelvo a ser yo",
+    "title": "Vuelvo a ser yo",
+    "language": "es",
+    "primaryArtists": [
+      "Luis Enrique",
+      "Alain Pérez"
+    ],
+    "authors": [
+      "Luis Enrique Mejía López",
+      "Julio Fowler"
+    ]
   },
   {
     "id": "whatever-32f8c484a3",
+    "sourceTitle": "Whatever",
+    "baseTitle": "Whatever",
     "title": "Whatever",
-    "artists": "Kygo & Ava Max"
+    "language": "en",
+    "primaryArtists": [
+      "Kygo",
+      "Ava Max"
+    ]
   },
   {
     "id": "womansworld-d97203be69",
+    "sourceTitle": "Woman's World",
+    "baseTitle": "Woman's World",
     "title": "Woman's World",
-    "artists": "Katy Perry"
+    "language": "en",
+    "primaryArtists": [
+      "Katy Perry"
+    ]
   },
   {
     "id": "yaloves-2c4b523d6d",
-    "title": "Ya Lo Ves",
-    "artists": "Nesty & Ronald Borjas"
+    "sourceTitle": "Ya Lo Ves",
+    "baseTitle": "Ya lo ves",
+    "title": "Ya lo ves",
+    "language": "es",
+    "primaryArtists": [
+      "Nesty",
+      "Ronald Borjas"
+    ]
   },
   {
     "id": "yanoteextrano-d54e16679f",
-    "title": "Ya No Te Extraño",
-    "artists": "Natti Natasha"
+    "sourceTitle": "Ya No Te Extraño",
+    "baseTitle": "Ya no te extraño",
+    "title": "Ya no te extraño",
+    "language": "es",
+    "primaryArtists": [
+      "Natti Natasha"
+    ]
   },
   {
     "id": "yapaque-95f29db7eb",
+    "sourceTitle": "Yapaqué",
+    "baseTitle": "Yapaqué",
     "title": "Yapaqué",
-    "artists": "Farruko & Greeicy & Steve Aoki"
+    "language": "es",
+    "primaryArtists": [
+      "Farruko",
+      "Greeicy",
+      "Steve Aoki"
+    ]
   },
   {
     "id": "yesand-a3e85abb02",
+    "sourceTitle": "yes, and?",
+    "baseTitle": "yes, and?",
     "title": "yes, and?",
-    "artists": "Ariana Grande"
+    "language": "en",
+    "primaryArtists": [
+      "Ariana Grande"
+    ]
   },
   {
     "id": "yojala-0d25f869e9",
-    "title": "Y Ojalá",
-    "artists": "Lenier & Diana Fuentes"
+    "sourceTitle": "Y Ojalá",
+    "baseTitle": "Y ojalá",
+    "title": "Y ojalá",
+    "language": "es",
+    "primaryArtists": [
+      "Lenier",
+      "Diana Fuentes"
+    ]
   },
   {
     "id": "yotevoyaamar-2b0af500fa",
-    "title": "Yo Te Voy a Amar",
-    "artists": "One Life & Charanga Latina & Metaliko"
+    "sourceTitle": "Yo Te Voy a Amar",
+    "baseTitle": "Yo te voy a amar",
+    "title": "Yo te voy a amar",
+    "language": "es",
+    "primaryArtists": [
+      "One Life",
+      "Charanga Latina",
+      "Metaliko"
+    ]
   },
   {
     "id": "youngmikobzrpmusicsessionsvol58-8f3d7a3efd",
+    "sourceTitle": "Young Miko: Bzrp Music Sessions, Vol. 58",
+    "baseTitle": "Young Miko: Bzrp Music Sessions, Vol. 58",
     "title": "Young Miko: Bzrp Music Sessions, Vol. 58",
-    "artists": "Bizarrap"
+    "language": "es",
+    "primaryArtists": [
+      "Bizarrap"
+    ]
   }
 ]

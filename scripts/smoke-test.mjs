@@ -24,11 +24,22 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+async function assertPng(response, label, width, height) {
+  assert(response?.ok(), `${label} did not load.`);
+  assert(response.headers()["content-type"] === "image/png", `${label} must use the image/png content type.`);
+  const image = await response.body();
+  assert(image.subarray(1, 4).toString("ascii") === "PNG", `${label} is not a valid PNG.`);
+  assert(image.readUInt32BE(16) === width && image.readUInt32BE(20) === height, `${label} must measure ${width}x${height}.`);
+}
+
 try {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   const errors = [];
   page.on("console", (message) => {
-    if (message.type() === "error") errors.push(message.text());
+    if (message.type() === "error") {
+      const location = message.location();
+      errors.push(`${message.text()}${location.url ? ` (${location.url}:${location.lineNumber})` : ""}`);
+    }
   });
   page.on("pageerror", (error) => errors.push(error.message));
   const assertNoOverflow = async (label) => {
@@ -95,6 +106,8 @@ try {
   assert(response?.ok(), "Weekly chart #31 international did not load.");
   assert((await page.locator(".song-authors").count()) === 10, "Every international song in chart #31 must include author credits.");
   assert((await page.locator(".movement--status").count()) === 2, "International chart #31 must contain two new entries.");
+  assert((await page.locator(".chart-entry").nth(1).locator(".song-line > span:last-child").textContent()) === "Fonseca y Juanes", "Multiple primary artists must use a Spanish conjunction.");
+  assert((await page.locator(".chart-entry").nth(1).locator(".song-authors").textContent()) === "Autoría: Juan Fernando Fonseca Carrera, Juan Esteban Aristizábal Vásquez y Felipe Andy Clay Cruz", "Author credits must use Spanish list punctuation.");
   await assertNoOverflow("390px weekly chart #31 international");
 
   for (const width of [320, 768, 1440]) {
@@ -135,9 +148,9 @@ try {
 
   await page.setViewportSize({ width: 390, height: 844 });
   response = await page.goto(`${origin}/cancion/sonriele-dc3a5895ca/`, { waitUntil: "networkidle" });
-  assert(response?.ok(), "Canonical alias song-history route did not load.");
+  assert(response?.ok(), "Canonical song-history route did not load.");
   assert((await page.locator(".song-header h1").textContent()) === "Sonríele", "Canonical song title is incorrect.");
-  assert((await page.locator(".song-page-artists").textContent()) === "Daddy Yankee", "Canonical artist alias was not applied.");
+  assert((await page.locator(".song-page-artists").textContent()) === "Daddy Yankee", "Canonical primary artist credit is incorrect.");
   const appearanceMetric = page.locator(".performance-metrics > div").filter({ hasText: "Apariciones" });
   assert((await appearanceMetric.locator("dd").textContent()) === "6", "Canonical song history must combine six appearances.");
   await assertNoOverflow("390px canonical song history");
@@ -147,8 +160,22 @@ try {
   assert((await page.locator(".performance-date-label").count()) === 1, "Single-appearance history must render one date label.");
   assert((await page.locator(".song-page-authors").textContent())?.includes("José Álvaro Osorio Balvin"), "New song history must render its author credits.");
 
-  response = await page.goto(`${origin}/imagenes/semanal/nacional/2026-08-16.png`);
-  assert(response?.ok(), "Downloadable chart image did not load.");
+  response = await page.goto(`${origin}/cancion/fortnightcyrilremix-227943921e/`, { waitUntil: "networkidle" });
+  assert(response?.ok(), "Structured remix song-history route did not load.");
+  assert((await page.locator(".song-header h1").textContent()) === "Fortnight (remezcla de CYRIL)", "Remix display title is incorrect.");
+  assert((await page.locator(".song-page-artists").textContent()) === "Taylor Swift con Post Malone", "Featured artist credit must use con.");
+  assert((await page.locator(".song-page-meta").filter({ hasText: "Remezcla:" }).textContent()) === "Remezcla: CYRIL", "Remixer role is missing.");
+  assert((await page.locator(".song-page-meta").filter({ hasText: "Estado:" }).textContent()) === "Estado: Remezcla independiente", "Independent remix status is missing.");
+  const sourceLink = page.locator(".song-page-meta").filter({ hasText: "Fuente:" }).locator("a");
+  assert((await sourceLink.textContent()) === "SoundCloud", "Remix source name is missing.");
+  assert((await sourceLink.getAttribute("href")) === "https://soundcloud.com/cyrilriley/taylor-swift-fortnight-feat-post-malone-cyril-remix", "Remix source URL is incorrect.");
+  assert((await page.locator(".song-page-meta").filter({ hasText: "Título en la fuente:" }).locator("cite").textContent()) === "Taylor Swift - Fortnight (Feat. Post Malone) (CYRIL REMIX)", "Source title was not preserved.");
+  await assertNoOverflow("390px structured remix song history");
+
+  const weeklyImageResponse = await page.request.get(`${origin}/imagenes/semanal/nacional/2026-08-16.png`);
+  await assertPng(weeklyImageResponse, "Downloadable weekly chart image", 1080, 1350);
+  const annualImageResponse = await page.request.get(`${origin}/imagenes/anual/internacional/2024.png`);
+  await assertPng(annualImageResponse, "Downloadable annual chart image", 1080, 1920);
   assert(errors.length === 0, `Browser console errors: ${errors.join(" | ")}`);
   console.log("Smoke test passed: charts, calendar, song histories, archive, responsive layouts, and PNG route.");
 } finally {

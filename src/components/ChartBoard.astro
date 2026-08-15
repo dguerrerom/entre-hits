@@ -1,6 +1,6 @@
 ---
 import type { Category, Movement, Song } from "../lib/charts";
-import { categoryLabels, formatDate, movementText, songPath, weeklySongIds } from "../lib/charts";
+import { categoryLabels, formatArtistCredit, formatDate, formatNames, movementText, songPath, weeklySongIds } from "../lib/charts";
 
 interface Entry {
   rank: number;
@@ -65,8 +65,8 @@ const heading = variant === "weekly" ? `LISTA #${number} ${label.toUpperCase()}`
           </span>
         )}
         <div class="song-details">
-          <p class="song-line"><strong>{weeklySongIds.has(entry.song.id) ? <a class="song-history-link" href={songPath(entry.song.id)}>{entry.song.title}</a> : entry.song.title}</strong><span aria-hidden="true"> / </span><span>{entry.song.artists}</span></p>
-          {entry.song.authors && <p class="song-authors">{entry.song.authors}</p>}
+          <p class="song-line"><strong>{weeklySongIds.has(entry.song.id) ? <a class="song-history-link" href={songPath(entry.song.id)}>{entry.song.title}</a> : entry.song.title}</strong><span aria-hidden="true"> / </span><span>{formatArtistCredit(entry.song)}</span></p>
+          {entry.song.authors && <p class="song-authors"><span>Autoría: </span>{formatNames(entry.song.authors)}</p>}
           {(entry.song.youtube || entry.song.spotify) && (
             <p class="song-links">
               {entry.song.youtube && <a href={entry.song.youtube} target="_blank" rel="noopener noreferrer" aria-label={`Escuchar ${entry.song.title} en YouTube (abre en una pestaña nueva)`}>YouTube</a>}

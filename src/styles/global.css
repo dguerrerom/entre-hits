@@ -1003,13 +1003,17 @@ a.calendar-day:hover,
   line-height: 1.05;
 }
 
-.song-page-authors,
+.song-page-meta,
 .song-page-links {
   grid-column: 1 / -1;
   max-width: 760px;
   color: var(--muted);
   font-size: 12px;
   line-height: 1.5;
+}
+
+.song-page-meta a {
+  color: var(--ink);
 }
 
 .song-page-links {

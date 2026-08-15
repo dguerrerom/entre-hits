@@ -1,5 +1,5 @@
 import type { APIRoute, GetStaticPaths } from "astro";
-import { categories, categorySlugs, songsById, weeklyEditions, type Category, type WeeklyEdition } from "../../../../lib/charts";
+import { categories, categorySlugs, formatArtistCredit, songsById, weeklyEditions, type Category, type WeeklyEdition } from "../../../../lib/charts";
 import { renderChartImage } from "../../../../lib/chart-image";
 
 export const prerender = true;
@@ -17,7 +17,7 @@ export const GET: APIRoute = ({ props }) => {
   const edition = props.edition as WeeklyEdition;
   const entries = edition.charts[category].map((entry) => {
     const song = songsById.get(entry.songId)!;
-    return { rank: entry.rank, title: song.title, artists: song.artists };
+    return { rank: entry.rank, title: song.title, artistCredit: formatArtistCredit(song) };
   });
   const image = renderChartImage({
     variant: "weekly",

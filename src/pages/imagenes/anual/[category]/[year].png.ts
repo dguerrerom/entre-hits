@@ -1,5 +1,5 @@
 import type { APIRoute, GetStaticPaths } from "astro";
-import { annualCharts, categorySlugs, songsById, type AnnualChart, type Category } from "../../../../lib/charts";
+import { annualCharts, categorySlugs, formatArtistCredit, songsById, type AnnualChart, type Category } from "../../../../lib/charts";
 import { renderChartImage } from "../../../../lib/chart-image";
 
 export const prerender = true;
@@ -15,7 +15,7 @@ export const GET: APIRoute = ({ props }) => {
   const category = annual.category as Category;
   const entries = annual.entries.map((entry) => {
     const song = songsById.get(entry.songId)!;
-    return { rank: entry.rank, title: song.title, artists: song.artists };
+    return { rank: entry.rank, title: song.title, artistCredit: formatArtistCredit(song) };
   });
   const image = renderChartImage({
     variant: "annual",

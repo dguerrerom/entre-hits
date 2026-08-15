@@ -1,3 +1,3 @@
-date,number,category,rank,artists,title
-2026-08-16,31,national,1,"Artista nacional","Canción nacional"
-2026-08-16,31,international,1,"Artista internacional","Canción internacional"
+date,number,category,rank,songId
+2026-08-16,31,national,1,id-cancion-nacional
+2026-08-16,31,international,1,id-cancion-internacional
