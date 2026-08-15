@@ -8,9 +8,19 @@ export type Movement = number | "N" | "R";
 
 export interface Song {
   id: string;
+  sourceTitle: string;
+  baseTitle: string;
   title: string;
-  artists: string;
-  authors?: string;
+  language: "es" | "en" | "pt" | "multilingual";
+  primaryArtists: string[];
+  featuredArtists?: string[];
+  remixers?: string[];
+  versionType?: "remix" | "version";
+  versionName?: string;
+  versionStatus?: "independent";
+  sourceName?: string;
+  sourceUrl?: string;
+  authors?: string[];
   youtube?: string;
   spotify?: string;
 }
@@ -76,6 +86,18 @@ export const slugCategories: Record<string, Category> = {
 };
 
 export const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const nameListFormatter = new Intl.ListFormat("es-CU", { style: "long", type: "conjunction" });
+
+export function formatNames(names: string[]) {
+  return nameListFormatter.format(names);
+}
+
+export function formatArtistCredit(song: Pick<Song, "primaryArtists" | "featuredArtists">) {
+  const primary = formatNames(song.primaryArtists);
+  return song.featuredArtists?.length
+    ? `${primary} con ${formatNames(song.featuredArtists)}`
+    : primary;
+}
 
 export function formatDate(date: string, options: Intl.DateTimeFormatOptions = {}) {
   const value = new Date(`${date}T12:00:00Z`);

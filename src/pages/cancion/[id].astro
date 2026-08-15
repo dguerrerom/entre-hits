@@ -1,7 +1,7 @@
 ---
 import SongPerformance from "../../components/SongPerformance.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { basePath, getSongHistories, songPath, songs, type Song, type SongChartHistory } from "../../lib/charts";
+import { basePath, formatArtistCredit, formatNames, getSongHistories, songPath, songs, type Song, type SongChartHistory } from "../../lib/charts";
 
 export function getStaticPaths() {
   return songs.flatMap((song) => {
@@ -18,7 +18,12 @@ interface Props {
 const { song, histories } = Astro.props;
 const primaryCategory = histories[0]?.category ?? "international";
 const appearances = histories.reduce((total, history) => total + history.appearances.length, 0);
-const description = `Historial de ${song.title} por ${song.artists}: posiciones y desempeño en ${appearances} conteos de Entre Hits.`;
+const artistCredit = formatArtistCredit(song);
+const description = `Historial de ${song.title} por ${artistCredit}: posiciones y desempeño en ${appearances} conteos de Entre Hits.`;
+const versionLabel = song.versionType === "remix" ? "Remezcla" : "Versión";
+const versionDescription = song.versionType === "remix"
+  ? song.versionName && !song.remixers?.includes(song.versionName) ? `Remezcla ${song.versionName}` : "Remezcla"
+  : song.versionName ? `Versión ${song.versionName}` : "Versión";
 ---
 
 <BaseLayout title={`${song.title} · Historial`} description={description} canonical={songPath(song.id)}>
@@ -31,8 +36,20 @@ const description = `Historial de ${song.title} por ${song.artists}: posiciones 
       <header class="song-header">
         <p>Desempeño en Entre Hits</p>
         <h1>{song.title}</h1>
-        <p class="song-page-artists">{song.artists}</p>
-        {song.authors && <p class="song-page-authors"><strong>Autoría:</strong> {song.authors}</p>}
+        <p class="song-page-artists">{artistCredit}</p>
+        {song.authors && <p class="song-page-meta song-page-authors"><strong>Autoría:</strong> {formatNames(song.authors)}</p>}
+        {song.versionType && <p class="song-page-meta"><strong>Tipo:</strong> {versionDescription}</p>}
+        {song.remixers && <p class="song-page-meta"><strong>Remezcla:</strong> {formatNames(song.remixers)}</p>}
+        {song.versionStatus && <p class="song-page-meta"><strong>Estado:</strong> {versionLabel} {song.versionStatus === "independent" ? "independiente" : song.versionStatus}</p>}
+        {song.sourceName && (
+          <p class="song-page-meta">
+            <strong>Fuente:</strong>{" "}
+            {song.sourceUrl
+              ? <a href={song.sourceUrl} target="_blank" rel="noopener noreferrer">{song.sourceName}</a>
+              : song.sourceName}
+          </p>
+        )}
+        {(song.sourceName || song.versionType) && song.sourceTitle !== song.title && <p class="song-page-meta"><strong>Título en la fuente:</strong> <cite>{song.sourceTitle}</cite></p>}
         {(song.youtube || song.spotify) && (
           <div class="song-page-links">
             {song.youtube && <a href={song.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>}

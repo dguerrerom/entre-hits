@@ -42,9 +42,9 @@ https://entrehits.github.io/
 Cada domingo se añade un solo CSV de 20 filas en `content/weekly/`. Se puede partir de `content/weekly/_template.csv`.
 
 ```csv
-date,number,category,rank,artists,title
-2026-08-16,31,national,1,"Artista","Canción"
-2026-08-16,31,international,1,"Artista","Canción"
+date,number,category,rank,songId
+2026-08-23,32,national,1,cancion-nacional-id
+2026-08-23,32,international,1,cancion-internacional-id
 ```
 
 Reglas:
@@ -52,6 +52,7 @@ Reglas:
 - Deben existir 10 filas `national` y 10 `international`.
 - Las posiciones deben cubrir del 1 al 10 sin duplicados.
 - La fecha debe ser domingo y usar `YYYY-MM-DD`.
+- Cada `songId` debe existir en `content/songs/catalog.csv`.
 - El nombre del archivo no determina los datos, pero se recomienda `YYYY-MM-DD-NN.csv`.
 - Semanas, movimiento, `N` y `R` se calculan automáticamente.
 
@@ -66,32 +67,46 @@ npm run data
 Los cierres se cargan manualmente en `content/annual/`, con 20 posiciones por categoría. El archivo de ejemplo es `content/annual/_template.csv`.
 
 ```csv
-year,category,rank,artists,title
-2026,national,1,"Artista","Canción"
-2026,international,1,"Artista","Canción"
+year,category,rank,songId
+2026,national,1,cancion-nacional-id
+2026,international,1,cancion-internacional-id
 ```
+
+## Catálogo De Canciones
+
+`content/songs/catalog.csv` es la fuente canónica de títulos y créditos. Los rankings solo referencian su columna `id`; un ID publicado no debe cambiar aunque se corrija la presentación editorial.
+
+Las columnas principales son:
+
+- `sourceTitle`: título tal como aparece en la fuente consultada.
+- `baseTitle`: título sin descriptor de versión.
+- `displayTitle`: título que presenta el sitio, con sentence case en español y descriptores como `remezcla` o `versión`.
+- `language`: `es`, `en`, `pt` o `multilingual`.
+- `primaryArtists`, `featuredArtists` y `remixers`: roles separados; cada lista usa `;` entre nombres.
+- `versionType`: `remix` o `version` cuando corresponda.
+- `versionName`: nombre específico, por ejemplo `salsa`, `cumbia` o el remezclador.
+- `versionStatus`: `independent` para una remezcla independiente verificada.
+- `sourceName` y `sourceUrl`: procedencia verificable de una versión.
+
+Ejemplo:
+
+```csv
+id,sourceTitle,baseTitle,displayTitle,language,primaryArtists,featuredArtists,remixers,versionType,versionName,versionStatus,sourceName,sourceUrl
+fortnightcyrilremix-227943921e,"Taylor Swift - Fortnight (Feat. Post Malone) (CYRIL REMIX)",Fortnight,"Fortnight (remezcla de CYRIL)",en,"Taylor Swift","Post Malone",CYRIL,remix,CYRIL,independent,SoundCloud,https://soundcloud.com/...
+```
+
+La interfaz une listas con la puntuación y las conjunciones de `es-CU`. Los artistas invitados se introducen con `con`. `&` solo forma parte de un nombre cuando pertenece a su grafía oficial.
 
 ## Autores Y Enlaces
 
 Los datos opcionales se incorporan en `content/songs/metadata.csv`:
 
 ```csv
-title,artists,authors,youtube,spotify
-"Canción","Artista","Autor 1 & Autor 2","https://youtube.com/...","https://open.spotify.com/..."
+songId,authors,youtube,spotify
+cancion-id,"Autor 1;Autor 2",https://youtube.com/...,https://open.spotify.com/...
 ```
 
-Si no existen autores o enlaces verificados, la interfaz oculta esos campos.
-
-## Alias De Canciones
-
-Las variantes editoriales que representan la misma grabación se normalizan en `content/songs/aliases.csv`:
-
-```csv
-aliasTitle,aliasArtists,title,artists
-"Sonríele","DY","Sonríele","Daddy Yankee"
-```
-
-El generador aplica estos alias antes de calcular IDs, movimiento e historial. Canciones distintas que comparten título se mantienen como registros independientes.
+Los autores también se separan con `;`. Cada fila debe aportar al menos autores o un enlace verificado, pero no necesita contener los tres. La interfaz oculta los campos vacíos. Canciones distintas que comparten título se mantienen como registros independientes mediante sus IDs.
 
 ## Datos Históricos
 
@@ -101,7 +116,7 @@ El generador aplica estos alias antes de calcular IDs, movimiento e historial. C
 - `src/data/annual-charts.json`
 - `src/data/songs.json`
 
-El histórico consolidado se conserva en `content/weekly/history.csv` y `content/annual/history.csv`. Los créditos y enlaces verificados se mantienen en `content/songs/metadata.csv`.
+El histórico consolidado se conserva en `content/weekly/history.csv` y `content/annual/history.csv`. El catálogo editorial se mantiene en `content/songs/catalog.csv`; los créditos de autoría y enlaces verificados, en `content/songs/metadata.csv`.
 
 ## Publicación
 

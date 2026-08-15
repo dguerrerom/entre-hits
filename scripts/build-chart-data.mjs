@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -55,6 +54,8 @@ function parseCsv(source, filename) {
   if (!rows.length) return [];
 
   const headers = rows[0].map(cleanWhitespace);
+  assert(headers.every(Boolean), `${filename}: CSV headers cannot be empty`);
+  assert(new Set(headers).size === headers.length, `${filename}: duplicate CSV headers`);
   return rows.slice(1).map((values, rowIndex) => {
     assert(values.length === headers.length, `${filename}:${rowIndex + 2}: expected ${headers.length} fields, found ${values.length}`);
     return Object.fromEntries(headers.map((header, index) => [header, cleanWhitespace(values[index])]));
@@ -73,122 +74,115 @@ function readCsvFile(filename) {
   return existsSync(filename) ? parseCsv(readFileSync(filename, "utf8"), filename) : [];
 }
 
-function identityPart(value) {
-  return cleanWhitespace(value)
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[‘’]/g, "'")
-    .toLocaleLowerCase("es")
-    .replace(/[^a-z0-9]+/g, "");
-}
-
 function csvCategory(value) {
-  const category = identityPart(value);
-  if (category === "national" || category === "nacional") return "national";
-  if (category === "international" || category === "internacional") return "international";
-  throw new Error(`Unknown CSV category: ${JSON.stringify(value)}`);
+  assert(["national", "international"].includes(value), `Unknown CSV category: ${JSON.stringify(value)}`);
+  return value;
 }
 
-function normalizeTitle(title) {
-  const cleaned = cleanWhitespace(title);
-  return /^Amante\s+El Bandolero$/i.test(cleaned) ? "Amante" : cleaned;
+function integer(value, context) {
+  assert(/^\d+$/.test(value), `${context}: expected a positive integer, found ${JSON.stringify(value)}`);
+  return Number(value);
 }
 
-function normalizeArtists(artists) {
-  return cleanWhitespace(artists)
-    .replace(/\s*,\s*/g, " & ")
-    .replace(/\s*&\s*/g, " & ");
+function list(value, context, required = false) {
+  if (!value) {
+    assert(!required, `${context}: list is required`);
+    return [];
+  }
+  const values = value.split(";").map(cleanWhitespace);
+  assert(values.every(Boolean), `${context}: list contains an empty item`);
+  assert(new Set(values).size === values.length, `${context}: list contains duplicates`);
+  return values;
 }
 
-function artistIdentity(artists) {
-  return cleanWhitespace(artists)
-    .split(/\s*(?:&|,|\by\b)\s*/iu)
-    .map(identityPart)
-    .filter(Boolean)
-    .join("+");
+function optionalUrl(value, context) {
+  if (!value) return;
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error(`${context}: invalid URL ${JSON.stringify(value)}`);
+  }
+  assert(url.protocol === "https:", `${context}: URL must use HTTPS`);
 }
 
-function songIdentity(title, artists) {
-  return `${identityPart(normalizeTitle(title))}|${artistIdentity(artists)}`;
-}
+function readSongCatalog() {
+  const filename = join(contentDir, "songs", "catalog.csv");
+  const rows = readCsvFile(filename);
+  const requiredColumns = [
+    "id", "sourceTitle", "baseTitle", "displayTitle", "language", "primaryArtists", "featuredArtists", "remixers",
+    "versionType", "versionName", "versionStatus", "sourceName", "sourceUrl",
+  ];
+  const songs = new Map();
 
-function songId(identity, title) {
-  const slug = identityPart(title).slice(0, 36) || "song";
-  const hash = createHash("sha256").update(identity).digest("hex").slice(0, 10);
-  return `${slug}-${hash}`;
-}
-
-class SongCatalog {
-  #songs = new Map();
-  #aliases = new Map();
-
-  constructor(aliasRows) {
-    for (const row of aliasRows) {
-      assert(row.aliasTitle && row.aliasArtists && row.title && row.artists, "Song alias CSV requires aliasTitle, aliasArtists, title and artists");
-      const aliasIdentity = songIdentity(row.aliasTitle, row.aliasArtists);
-      const canonical = {
-        title: normalizeTitle(row.title),
-        artists: normalizeArtists(row.artists),
-      };
-      assert(aliasIdentity !== songIdentity(canonical.title, canonical.artists), `Redundant song alias for ${row.aliasTitle} / ${row.aliasArtists}`);
-      assert(!this.#aliases.has(aliasIdentity), `Duplicate song alias for ${row.aliasTitle} / ${row.aliasArtists}`);
-      this.#aliases.set(aliasIdentity, canonical);
+  for (const [index, row] of rows.entries()) {
+    const context = `${filename}:${index + 2}`;
+    assert(requiredColumns.every((column) => Object.hasOwn(row, column)), `${context}: catalog requires ${requiredColumns.join(", ")}`);
+    assert(/^[a-z0-9]+-[a-f0-9]{10}$/.test(row.id), `${context}: invalid song ID ${JSON.stringify(row.id)}`);
+    assert(!songs.has(row.id), `${context}: duplicate song ID ${row.id}`);
+    for (const field of ["sourceTitle", "baseTitle", "displayTitle", "language", "primaryArtists"]) {
+      assert(row[field], `${context}: ${field} is required`);
     }
-    for (const canonical of this.#aliases.values()) {
-      assert(!this.#aliases.has(songIdentity(canonical.title, canonical.artists)), `Song alias target must be canonical: ${canonical.title} / ${canonical.artists}`);
+    assert(["es", "en", "pt", "multilingual"].includes(row.language), `${context}: unsupported language ${JSON.stringify(row.language)}`);
+    assert(!row.versionType || ["remix", "version"].includes(row.versionType), `${context}: unsupported versionType ${JSON.stringify(row.versionType)}`);
+    assert(!row.versionName || row.versionType, `${context}: versionName requires versionType`);
+    assert(!row.versionStatus || row.versionType, `${context}: versionStatus requires versionType`);
+    assert(!row.versionStatus || ["independent"].includes(row.versionStatus), `${context}: unsupported versionStatus ${JSON.stringify(row.versionStatus)}`);
+    assert(!row.remixers || row.versionType === "remix", `${context}: remixers require versionType remix`);
+    assert(!row.sourceUrl || row.sourceName, `${context}: sourceUrl requires sourceName`);
+    assert(!/\b(?:feat(?:uring)?|ft)\.?\b/i.test(row.displayTitle), `${context}: displayTitle must express featured artists through featuredArtists`);
+    optionalUrl(row.sourceUrl, `${context} sourceUrl`);
+
+    const song = {
+      id: row.id,
+      sourceTitle: row.sourceTitle,
+      baseTitle: row.baseTitle,
+      title: row.displayTitle,
+      language: row.language,
+      primaryArtists: list(row.primaryArtists, `${context} primaryArtists`, true),
+    };
+    for (const field of ["featuredArtists", "remixers"]) {
+      const values = list(row[field], `${context} ${field}`);
+      if (values.length) song[field] = values;
     }
+    for (const field of ["versionType", "versionName", "versionStatus", "sourceName", "sourceUrl"]) {
+      if (row[field]) song[field] = row[field];
+    }
+    songs.set(song.id, song);
   }
 
-  register(title, artists, authoritative = false) {
-    const sourceTitle = normalizeTitle(title);
-    const sourceArtists = normalizeArtists(artists);
-    const canonical = this.#aliases.get(songIdentity(sourceTitle, sourceArtists));
-    const normalizedTitle = canonical?.title ?? sourceTitle;
-    const normalizedArtists = canonical?.artists ?? sourceArtists;
-    const identity = songIdentity(normalizedTitle, normalizedArtists);
-    let song = this.#songs.get(identity);
+  return songs;
+}
 
-    if (!song) {
-      song = {
-        id: songId(identity, normalizedTitle),
-        title: normalizedTitle,
-        artists: normalizedArtists,
-        identity,
-      };
-      this.#songs.set(identity, song);
-    } else if (authoritative) {
-      song.title = normalizedTitle;
-      song.artists = normalizedArtists;
+function addMetadata(songs) {
+  const filename = join(contentDir, "songs", "metadata.csv");
+  const seen = new Set();
+  for (const [index, row] of readCsvFile(filename).entries()) {
+    const context = `${filename}:${index + 2}`;
+    assert(Object.hasOwn(row, "songId") && Object.hasOwn(row, "authors") && Object.hasOwn(row, "youtube") && Object.hasOwn(row, "spotify"), `${context}: metadata requires songId, authors, youtube and spotify`);
+    assert(row.songId && songs.has(row.songId), `${context}: unknown songId ${JSON.stringify(row.songId)}`);
+    assert(!seen.has(row.songId), `${context}: duplicate metadata for ${row.songId}`);
+    const song = songs.get(row.songId);
+    const authors = list(row.authors, `${context} authors`);
+    if (authors.length) song.authors = authors;
+    for (const field of ["youtube", "spotify"]) {
+      optionalUrl(row[field], `${context} ${field}`);
+      if (row[field]) song[field] = row[field];
     }
-
-    return song;
-  }
-
-  addMetadata(rows) {
-    for (const row of rows) {
-      assert(row.title && row.artists, "Song metadata CSV requires title and artists");
-      const song = this.register(row.title, row.artists, true);
-      for (const key of ["authors", "youtube", "spotify"]) {
-        if (row[key]) song[key] = row[key];
-      }
-    }
-  }
-
-  output() {
-    return [...this.#songs.values()]
-      .map(({ identity: _identity, ...song }) => song)
-      .sort((left, right) => left.id.localeCompare(right.id));
+    assert(authors.length || row.youtube || row.spotify, `${context}: metadata requires authors, youtube or spotify`);
+    seen.add(row.songId);
   }
 }
 
-function readWeeklyEditions(catalog) {
+function readWeeklyEditions(songs) {
   const rows = readCsvDirectory(join(contentDir, "weekly"));
   const grouped = new Map();
 
   for (const row of rows) {
-    assert(row.date && row.number && row.category && row.rank && row.artists && row.title, "Weekly CSV requires date, number, category, rank, artists and title");
-    const year = Number(row.date.slice(0, 4));
-    const number = Number(row.number);
+    assert(row.date && row.number && row.category && row.rank && row.songId, "Weekly CSV requires date, number, category, rank and songId");
+    assert(songs.has(row.songId), `Weekly CSV references unknown songId ${row.songId}`);
+    const year = integer(row.date.slice(0, 4), `${row.date} year`);
+    const number = integer(row.number, `${row.date} number`);
     const id = `${year}-${String(number).padStart(2, "0")}`;
     const category = csvCategory(row.category);
 
@@ -204,10 +198,7 @@ function readWeeklyEditions(catalog) {
 
     const edition = grouped.get(id);
     assert(edition.date === row.date, `${id}: inconsistent dates in weekly CSV`);
-    edition.charts[category].push({
-      rank: Number(row.rank),
-      songId: catalog.register(row.title, row.artists, true).id,
-    });
+    edition.charts[category].push({ rank: integer(row.rank, `${row.date} rank`), songId: row.songId });
   }
 
   const editions = [...grouped.values()];
@@ -224,20 +215,18 @@ function readWeeklyEditions(catalog) {
   return editions;
 }
 
-function readAnnualCharts(catalog) {
+function readAnnualCharts(songs) {
   const rows = readCsvDirectory(join(contentDir, "annual"));
   const grouped = new Map();
 
   for (const row of rows) {
-    assert(row.year && row.category && row.rank && row.artists && row.title, "Annual CSV requires year, category, rank, artists and title");
-    const year = Number(row.year);
+    assert(row.year && row.category && row.rank && row.songId, "Annual CSV requires year, category, rank and songId");
+    assert(songs.has(row.songId), `Annual CSV references unknown songId ${row.songId}`);
+    const year = integer(row.year, `${row.year} year`);
     const category = csvCategory(row.category);
     const id = `${year}-${category}`;
     if (!grouped.has(id)) grouped.set(id, { id, year, category, entries: [] });
-    grouped.get(id).entries.push({
-      rank: Number(row.rank),
-      songId: catalog.register(row.title, row.artists, true).id,
-    });
+    grouped.get(id).entries.push({ rank: integer(row.rank, `${id} rank`), songId: row.songId });
   }
 
   const charts = [...grouped.values()];
@@ -348,7 +337,7 @@ function validate({ weeklyEditions, annualCharts, songs }) {
     });
   }
 
-  const forbiddenKeys = new Set(["valor", "bonus", "total", "score"]);
+  const forbiddenKeys = new Set(["valor", "bonus", "total", "score", "artists"]);
   function checkKeys(value) {
     if (!value || typeof value !== "object") return;
     for (const [key, child] of Object.entries(value)) {
@@ -360,13 +349,34 @@ function validate({ weeklyEditions, annualCharts, songs }) {
 
   const first2026 = weeklyEditions.find((edition) => edition.id === "2026-01");
   assert(first2026?.date === "2026-01-18", "2026 #1 date correction was not preserved");
-  const amante = songs.filter((song) => identityPart(song.title) === identityPart("Amante"));
-  assert(amante.length >= 1 && amante.every((song) => song.title === "Amante"), "Amante title correction was not preserved");
-  const sonriele = songs.filter((song) => identityPart(song.title) === identityPart("Sonríele"));
-  assert(sonriele.length === 1 && sonriele[0].artists === "Daddy Yankee", "Sonríele alias was not resolved to Daddy Yankee");
-  const returnEdition = weeklyEditions.find((edition) => edition.date === "2026-01-18");
-  const returnEntry = returnEdition?.charts.international.find((entry) => entry.songId === sonriele[0].id);
-  assert(returnEntry?.movement === -6, "Sonríele must move from #4 to #10 on the next published chart");
+  const sonrieleId = "sonriele-dc3a5895ca";
+  const sonriele = songs.find((song) => song.id === sonrieleId);
+  assert(sonriele?.primaryArtists.length === 1 && sonriele.primaryArtists[0] === "Daddy Yankee", "Sonríele must be credited to Daddy Yankee");
+  const sonrieleEntries = weeklyEditions.flatMap((edition) => edition.charts.international
+    .filter((entry) => entry.songId === sonrieleId)
+    .map((entry) => ({ ...entry, date: edition.date })));
+  assert(sonrieleEntries.length === 6, `Sonríele must have six weekly appearances, found ${sonrieleEntries.length}`);
+  assert(sonrieleEntries.at(-1)?.date === "2026-01-18" && sonrieleEntries.at(-1)?.movement === -6, "Sonríele must move from #4 to #10 on the next published chart");
+
+  const fortnight = songs.find((song) => song.id === "fortnightcyrilremix-227943921e");
+  assert(fortnight?.sourceTitle === "Taylor Swift - Fortnight (Feat. Post Malone) (CYRIL REMIX)", "Fortnight must preserve its source title");
+  assert(fortnight?.title === "Fortnight (remezcla de CYRIL)" && fortnight.baseTitle === "Fortnight", "Fortnight must use its Spanish editorial display title");
+  assert(JSON.stringify(fortnight?.primaryArtists) === JSON.stringify(["Taylor Swift"]), "Fortnight must keep Taylor Swift as its primary artist");
+  assert(JSON.stringify(fortnight?.featuredArtists) === JSON.stringify(["Post Malone"]), "Fortnight must credit Post Malone as featured artist");
+  assert(JSON.stringify(fortnight?.remixers) === JSON.stringify(["CYRIL"]), "Fortnight must credit CYRIL as remixer");
+  assert(JSON.stringify(fortnight?.authors) === JSON.stringify(["Taylor Swift", "Jack Antonoff", "Austin Post"]), "Fortnight authors are incorrect");
+  assert(fortnight?.versionType === "remix" && fortnight.versionStatus === "independent", "Fortnight must remain an independent remix");
+  assert(fortnight?.sourceName === "SoundCloud" && fortnight.sourceUrl === "https://soundcloud.com/cyrilriley/taylor-swift-fortnight-feat-post-malone-cyril-remix", "Fortnight source is incorrect");
+
+  const versionTitles = new Map([
+    ["cualquierasalsaversion-35bbdc0b45", "Cualquiera (versión salsa)"],
+    ["holaperdidaremix-955c118019", "Hola perdida (remezcla)"],
+    ["silencioremix-df7b7a94c2", "Silencio (remezcla)"],
+    ["tedigoadioscumbia-7a0cc06fea", "Te digo adiós (versión cumbia)"],
+  ]);
+  for (const [songId, title] of versionTitles) {
+    assert(songs.find((song) => song.id === songId)?.title === title, `${songId}: incorrect Spanish version title`);
+  }
 }
 
 function writeJson(filename, value) {
@@ -374,12 +384,12 @@ function writeJson(filename, value) {
 }
 
 function main() {
-  const catalog = new SongCatalog(readCsvFile(join(contentDir, "songs", "aliases.csv")));
+  const catalog = readSongCatalog();
+  addMetadata(catalog);
   const weeklyEditions = readWeeklyEditions(catalog);
   deriveWeeklyFields(weeklyEditions);
   const annualCharts = readAnnualCharts(catalog);
-  catalog.addMetadata(readCsvFile(join(contentDir, "songs", "metadata.csv")));
-  const songs = catalog.output();
+  const songs = [...catalog.values()].sort((left, right) => left.id.localeCompare(right.id));
   const songsWithAuthors = songs.filter((song) => song.authors).length;
 
   validate({ weeklyEditions, annualCharts, songs });
