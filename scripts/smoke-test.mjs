@@ -92,7 +92,7 @@ try {
   assert((await page.locator(".calendar-month-label").textContent())?.toLocaleLowerCase("es").includes("enero de 2025"), "Shift+PageUp must jump to the previous year.");
   await page.locator(".calendar-selected-return").click();
   assert((await page.locator(".calendar-month-label").textContent())?.includes(String(latestEdition.year)), "Selected-count shortcut did not restore the current month.");
-  assert(await page.locator('.calendar-day[aria-current="date"]').evaluate((day) => day === document.activeElement), "Selected-count shortcut must restore focus to the selected date.");
+  await page.waitForFunction(() => document.querySelector('.calendar-day[aria-current="date"]') === document.activeElement);
   assert(await page.locator(".calendar-month-next").isDisabled(), "Calendar must stop at the latest available month.");
   await page.keyboard.press("Escape");
   await page.waitForFunction(() => document.querySelector(".calendar-trigger")?.getAttribute("aria-expanded") === "false");
