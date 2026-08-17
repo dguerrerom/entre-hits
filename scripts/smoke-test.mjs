@@ -15,6 +15,11 @@ currentWeek.setUTCDate(currentWeek.getUTCDate() - Math.max(weekday, 0));
 const currentWeekDate = currentWeek.toISOString().slice(0, 10);
 const expectedCurrent = [...weeklyEditions].reverse().find((edition) => edition.date <= currentWeekDate);
 if (!expectedCurrent) throw new Error("No published weekly edition is available for the smoke test.");
+const latestEdition = weeklyEditions.reduce((latest, edition) => edition.date > latest.date ? edition : latest);
+const latestMonth = Number(latestEdition.date.slice(5, 7)) - 1;
+const latestYearMonths = new Set(weeklyEditions.filter((edition) => edition.year === latestEdition.year).map((edition) => Number(edition.date.slice(5, 7)) - 1));
+const emptyLatestYearMonth = Array.from({ length: 12 }, (_, month) => month).find((month) => !latestYearMonths.has(month));
+const weeklyYearCount = new Set(weeklyEditions.map((edition) => edition.year)).size;
 const browser = await chromium.launch({
   executablePath: process.env.CHROME_PATH ?? "/usr/bin/google-chrome",
   headless: true,
@@ -53,8 +58,8 @@ try {
   await page.waitForURL(new RegExp(`/semanal/nacional/(?:${expectedCurrent.date}/)?$`));
   assert((await page.locator(".chart-masthead h1").textContent())?.includes(`#${expectedCurrent.number}`), "Current route must select the latest chart for the current Cuban week.");
 
-  response = await page.goto(`${origin}/semanal/internacional/2026-08-09/`, { waitUntil: "networkidle" });
-  assert(response?.ok(), "The current weekly chart did not load.");
+  response = await page.goto(`${origin}/semanal/internacional/${latestEdition.date}/`, { waitUntil: "networkidle" });
+  assert(response?.ok(), "The latest weekly chart did not load.");
   assert((await page.locator(".chart-entry").count()) === 10, "Weekly chart must contain 10 entries.");
   assert((await page.locator("a.song-history-link").count()) === 10, "Every weekly song must link to its history page.");
   await assertNoOverflow("390px weekly chart");
@@ -66,11 +71,13 @@ try {
   assert((await page.locator("a.calendar-day").count()) > 0, "Calendar has no available editions.");
   assert((await page.locator('.calendar-day[aria-current="date"]').count()) === 1, "Calendar must expose the selected date.");
   assert(await page.locator('.calendar-day[aria-current="date"]').evaluate((day) => day === document.activeElement), "Calendar must focus the selected date when opened.");
-  assert((await page.locator("[data-calendar-year]").count()) === 3, "Calendar must expose every available year.");
+  assert((await page.locator("[data-calendar-year]").count()) === weeklyYearCount, "Calendar must expose every available year.");
   assert((await page.locator("[data-calendar-month]").count()) === 12, "Calendar must expose all twelve months.");
-  assert((await page.locator('[data-calendar-year="2026"]').getAttribute("aria-pressed")) === "true", "Calendar must expose the active year.");
-  assert((await page.locator('[data-calendar-month="7"]').getAttribute("aria-pressed")) === "true", "Calendar must expose the active month.");
-  assert(await page.locator('[data-calendar-month="8"]').isDisabled(), "Calendar must disable future months.");
+  assert((await page.locator(`[data-calendar-year="${latestEdition.year}"]`).getAttribute("aria-pressed")) === "true", "Calendar must expose the active year.");
+  assert((await page.locator(`[data-calendar-month="${latestMonth}"]`).getAttribute("aria-pressed")) === "true", "Calendar must expose the active month.");
+  if (emptyLatestYearMonth !== undefined) {
+    assert(await page.locator(`[data-calendar-month="${emptyLatestYearMonth}"]`).isDisabled(), "Calendar must disable months without editions.");
+  }
 
   await page.locator('[data-calendar-year="2025"]').click();
   assert((await page.locator(".calendar-month-label").textContent())?.includes("2025"), "Year shortcut did not jump to 2025.");
@@ -83,7 +90,7 @@ try {
   await page.locator('a.calendar-day[tabindex="0"]').press("Shift+PageUp");
   assert((await page.locator(".calendar-month-label").textContent())?.toLocaleLowerCase("es").includes("enero de 2025"), "Shift+PageUp must jump to the previous year.");
   await page.locator(".calendar-selected-return").click();
-  assert((await page.locator(".calendar-month-label").textContent())?.includes("2026"), "Selected-count shortcut did not restore the current month.");
+  assert((await page.locator(".calendar-month-label").textContent())?.includes(String(latestEdition.year)), "Selected-count shortcut did not restore the current month.");
   assert(await page.locator('.calendar-day[aria-current="date"]').evaluate((day) => day === document.activeElement), "Selected-count shortcut must restore focus to the selected date.");
   assert(await page.locator(".calendar-month-next").isDisabled(), "Calendar must stop at the latest available month.");
   await page.keyboard.press("Escape");
@@ -130,7 +137,7 @@ try {
 
   response = await page.goto(`${origin}/archivo/`, { waitUntil: "networkidle" });
   assert(response?.ok(), "Archive did not load.");
-  assert((await page.locator(".weekly-archive details").count()) === 3, "Archive must group three years.");
+  assert((await page.locator(".weekly-archive details").count()) === weeklyYearCount, "Archive must group every available year.");
   await assertNoOverflow("390px archive");
 
   await page.setViewportSize({ width: 320, height: 844 });

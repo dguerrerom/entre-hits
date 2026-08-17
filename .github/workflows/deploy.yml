@@ -31,6 +31,15 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Verify generated data
+        run: git diff --exit-code -- src/data
+      - name: Start preview
+        run: npm run preview -- --host 127.0.0.1 --background
+      - name: Smoke test
+        run: npm run smoke
+      - name: Stop preview
+        if: always()
+        run: npm run preview -- stop
       - name: Configure Pages
         uses: actions/configure-pages@v6
       - name: Upload artifact

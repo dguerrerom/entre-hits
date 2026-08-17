@@ -1,0 +1,60 @@
+name: Validate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Protect published chart sources
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          ALLOW_HISTORICAL_CORRECTION: ${{ contains(github.event.pull_request.labels.*.name, 'historical-correction') }}
+        run: |
+          violation=0
+          while IFS=$'\t' read -r status path rest; do
+            [[ "$status" =~ ^[MDR] ]] || continue
+            if [[ "$path" =~ ^content/weekly/[0-9]{4}/[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}\.csv$ ]] || \
+               [[ "$path" =~ ^content/annual/[0-9]{4}\.csv$ ]]; then
+              echo "Published chart source changed: $status $path"
+              violation=1
+            fi
+          done < <(git diff --name-status "$BASE_SHA"...HEAD -- content/weekly content/annual)
+
+          if [[ "$violation" -eq 1 && "$ALLOW_HISTORICAL_CORRECTION" != "true" ]]; then
+            echo "Historical chart changes require the historical-correction pull request label."
+            exit 1
+          fi
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Verify generated data
+        run: git diff --exit-code -- src/data
+      - name: Start preview
+        run: npm run preview -- --host 127.0.0.1 --background
+      - name: Smoke test
+        run: npm run smoke
+      - name: Stop preview
+        if: always()
+        run: npm run preview -- stop

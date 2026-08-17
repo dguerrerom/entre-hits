@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const outputDir = join(projectRoot, "src", "data");
 const contentDir = join(projectRoot, "content");
+const rowContextKey = Symbol("rowContext");
+const weeklyColumns = ["date", "number", "category", "rank", "songId"];
+const annualColumns = ["year", "category", "rank", "songId"];
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -19,7 +22,7 @@ function cleanWhitespace(value) {
     .trim();
 }
 
-function parseCsv(source, filename) {
+function parseCsv(source, filename, expectedHeaders) {
   const rows = [];
   let row = [];
   let field = "";
@@ -56,32 +59,51 @@ function parseCsv(source, filename) {
   const headers = rows[0].map(cleanWhitespace);
   assert(headers.every(Boolean), `${filename}: CSV headers cannot be empty`);
   assert(new Set(headers).size === headers.length, `${filename}: duplicate CSV headers`);
+  if (expectedHeaders) {
+    assert(JSON.stringify(headers) === JSON.stringify(expectedHeaders), `${filename}: expected CSV headers ${expectedHeaders.join(", ")}`);
+  }
   return rows.slice(1).map((values, rowIndex) => {
     assert(values.length === headers.length, `${filename}:${rowIndex + 2}: expected ${headers.length} fields, found ${values.length}`);
-    return Object.fromEntries(headers.map((header, index) => [header, cleanWhitespace(values[index])]));
+    const parsed = Object.fromEntries(headers.map((header, index) => [header, cleanWhitespace(values[index])]));
+    Object.defineProperty(parsed, rowContextKey, { value: `${filename}:${rowIndex + 2}` });
+    return parsed;
   });
 }
 
-function readCsvDirectory(directory) {
-  if (!existsSync(directory)) return [];
-  return readdirSync(directory)
-    .filter((filename) => filename.endsWith(".csv") && !filename.startsWith("_"))
-    .sort()
-    .flatMap((filename) => parseCsv(readFileSync(join(directory, filename), "utf8"), filename));
+function sourcePath(filename) {
+  return relative(projectRoot, filename).replaceAll("\\", "/");
 }
 
-function readCsvFile(filename) {
-  return existsSync(filename) ? parseCsv(readFileSync(filename, "utf8"), filename) : [];
+function sourceEntries(directory) {
+  assert(existsSync(directory), `${sourcePath(directory)}: source directory is required`);
+  return readdirSync(directory, { withFileTypes: true })
+    .filter((entry) => !entry.name.startsWith("."))
+    .sort((left, right) => left.name.localeCompare(right.name));
 }
 
-function csvCategory(value) {
-  assert(["national", "international"].includes(value), `Unknown CSV category: ${JSON.stringify(value)}`);
+function rowContext(row) {
+  return row[rowContextKey] ?? "CSV row";
+}
+
+function readCsvFile(filename, expectedHeaders) {
+  return existsSync(filename) ? parseCsv(readFileSync(filename, "utf8"), sourcePath(filename), expectedHeaders) : [];
+}
+
+function csvCategory(value, context = "CSV") {
+  assert(["national", "international"].includes(value), `${context}: unknown category ${JSON.stringify(value)}`);
   return value;
 }
 
 function integer(value, context) {
-  assert(/^\d+$/.test(value), `${context}: expected a positive integer, found ${JSON.stringify(value)}`);
+  assert(/^[1-9]\d*$/.test(value), `${context}: expected a positive integer, found ${JSON.stringify(value)}`);
   return Number(value);
+}
+
+function sundayDate(value, context) {
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(value), `${context}: date must use YYYY-MM-DD`);
+  const date = new Date(`${value}T12:00:00Z`);
+  assert(!Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value, `${context}: invalid calendar date ${value}`);
+  assert(date.getUTCDay() === 0, `${context}: date must be Sunday`);
 }
 
 function list(value, context, required = false) {
@@ -175,69 +197,98 @@ function addMetadata(songs) {
 }
 
 function readWeeklyEditions(songs) {
-  const rows = readCsvDirectory(join(contentDir, "weekly"));
-  const grouped = new Map();
+  const directory = join(contentDir, "weekly");
+  const editions = [];
+  const seenIds = new Set();
+  const seenDates = new Set();
 
-  for (const row of rows) {
-    assert(row.date && row.number && row.category && row.rank && row.songId, "Weekly CSV requires date, number, category, rank and songId");
-    assert(songs.has(row.songId), `Weekly CSV references unknown songId ${row.songId}`);
-    const year = integer(row.date.slice(0, 4), `${row.date} year`);
-    const number = integer(row.number, `${row.date} number`);
-    const id = `${year}-${String(number).padStart(2, "0")}`;
-    const category = csvCategory(row.category);
+  for (const yearEntry of sourceEntries(directory)) {
+    const yearContext = sourcePath(join(directory, yearEntry.name));
+    assert(yearEntry.isDirectory() && /^\d{4}$/.test(yearEntry.name), `${yearContext}: weekly sources must use YYYY directories`);
+    const directoryYear = Number(yearEntry.name);
+    const yearDirectory = join(directory, yearEntry.name);
+    const files = sourceEntries(yearDirectory);
+    assert(files.length > 0, `${yearContext}: weekly year directory cannot be empty`);
 
-    if (!grouped.has(id)) {
-      grouped.set(id, {
-        id,
-        year,
-        number,
-        date: row.date,
-        charts: { national: [], international: [] },
-      });
+    for (const fileEntry of files) {
+      const filename = join(yearDirectory, fileEntry.name);
+      const fileContext = sourcePath(filename);
+      const match = /^(\d{4}-\d{2}-\d{2})-(\d{2})\.csv$/.exec(fileEntry.name);
+      assert(fileEntry.isFile() && match, `${fileContext}: weekly filename must use YYYY-MM-DD-NN.csv`);
+      const [, date, numberText] = match;
+      const year = integer(date.slice(0, 4), `${fileContext} year`);
+      const number = Number(numberText);
+      assert(number > 0, `${fileContext}: weekly number must be greater than zero`);
+      const id = `${year}-${numberText}`;
+      assert(year === directoryYear, `${fileContext}: filename year must match its directory`);
+      sundayDate(date, fileContext);
+      assert(!seenIds.has(id), `${fileContext}: duplicate weekly edition ${id}`);
+      assert(!seenDates.has(date), `${fileContext}: duplicate weekly date ${date}`);
+
+      const rows = readCsvFile(filename, weeklyColumns);
+      assert(rows.length === 20, `${fileContext}: weekly edition must contain exactly 20 rows`);
+      const edition = { id, year, number, date, charts: { national: [], international: [] } };
+      const chartSongIds = { national: new Set(), international: new Set() };
+
+      for (const row of rows) {
+        const context = rowContext(row);
+        assert(weeklyColumns.every((column) => row[column]), `${context}: weekly row requires ${weeklyColumns.join(", ")}`);
+        assert(row.date === date, `${context}: date must match filename date ${date}`);
+        assert(integer(row.number, `${context} number`) === number, `${context}: number must match filename number ${number}`);
+        assert(songs.has(row.songId), `${context}: unknown songId ${row.songId}`);
+        const category = csvCategory(row.category, context);
+        assert(!chartSongIds[category].has(row.songId), `${context}: duplicate song ${row.songId} in ${category}`);
+        chartSongIds[category].add(row.songId);
+        const rank = integer(row.rank, `${context} rank`);
+        assert(rank === edition.charts[category].length + 1, `${context}: ${category} rows must be ordered by rank`);
+        edition.charts[category].push({ rank, songId: row.songId });
+      }
+
+      for (const category of ["national", "international"]) {
+        assert(edition.charts[category].length === 10, `${fileContext}: ${category} chart must contain exactly 10 songs`);
+      }
+
+      seenIds.add(id);
+      seenDates.add(date);
+      editions.push(edition);
     }
-
-    const edition = grouped.get(id);
-    assert(edition.date === row.date, `${id}: inconsistent dates in weekly CSV`);
-    edition.charts[category].push({ rank: integer(row.rank, `${row.date} rank`), songId: row.songId });
   }
-
-  const editions = [...grouped.values()];
-  for (const edition of editions) {
-    for (const category of ["national", "international"]) {
-      edition.charts[category].sort((left, right) => left.rank - right.rank);
-      assert(edition.charts[category].length === 10, `${edition.date} ${category}: weekly CSV requires 10 songs`);
-      edition.charts[category].forEach((entry, index) => {
-        assert(entry.rank === index + 1, `${edition.date} ${category}: ranks must be 1-10`);
-      });
-    }
-  }
-
   return editions;
 }
 
 function readAnnualCharts(songs) {
-  const rows = readCsvDirectory(join(contentDir, "annual"));
-  const grouped = new Map();
+  const directory = join(contentDir, "annual");
+  const charts = [];
 
-  for (const row of rows) {
-    assert(row.year && row.category && row.rank && row.songId, "Annual CSV requires year, category, rank and songId");
-    assert(songs.has(row.songId), `Annual CSV references unknown songId ${row.songId}`);
-    const year = integer(row.year, `${row.year} year`);
-    const category = csvCategory(row.category);
-    const id = `${year}-${category}`;
-    if (!grouped.has(id)) grouped.set(id, { id, year, category, entries: [] });
-    grouped.get(id).entries.push({ rank: integer(row.rank, `${id} rank`), songId: row.songId });
+  for (const fileEntry of sourceEntries(directory)) {
+    const filename = join(directory, fileEntry.name);
+    const fileContext = sourcePath(filename);
+    const match = /^(\d{4})\.csv$/.exec(fileEntry.name);
+    assert(fileEntry.isFile() && match, `${fileContext}: annual filename must use YYYY.csv`);
+    const year = Number(match[1]);
+    const rows = readCsvFile(filename, annualColumns);
+    assert(rows.length === 40, `${fileContext}: annual closing must contain exactly 40 rows`);
+    const entries = { national: [], international: [] };
+    const chartSongIds = { national: new Set(), international: new Set() };
+
+    for (const row of rows) {
+      const context = rowContext(row);
+      assert(annualColumns.every((column) => row[column]), `${context}: annual row requires ${annualColumns.join(", ")}`);
+      assert(integer(row.year, `${context} year`) === year, `${context}: year must match filename year ${year}`);
+      assert(songs.has(row.songId), `${context}: unknown songId ${row.songId}`);
+      const category = csvCategory(row.category, context);
+      assert(!chartSongIds[category].has(row.songId), `${context}: duplicate song ${row.songId} in ${category}`);
+      chartSongIds[category].add(row.songId);
+      const rank = integer(row.rank, `${context} rank`);
+      assert(rank === entries[category].length + 1, `${context}: ${category} rows must be ordered by rank`);
+      entries[category].push({ rank, songId: row.songId });
+    }
+
+    for (const category of ["international", "national"]) {
+      assert(entries[category].length === 20, `${fileContext}: ${category} closing must contain exactly 20 songs`);
+      charts.push({ id: `${year}-${category}`, year, category, entries: entries[category] });
+    }
   }
-
-  const charts = [...grouped.values()];
-  for (const chart of charts) {
-    chart.entries.sort((left, right) => left.rank - right.rank);
-    assert(chart.entries.length === 20, `${chart.id}: annual CSV requires 20 songs`);
-    chart.entries.forEach((entry, index) => {
-      assert(entry.rank === index + 1, `${chart.id}: ranks must be 1-20`);
-    });
-  }
-
   return charts;
 }
 
@@ -271,9 +322,9 @@ function validate({ weeklyEditions, annualCharts, songs }) {
   const expectedNumbers = {
     2024: [...Array.from({ length: 20 }, (_, index) => index + 1), ...Array.from({ length: 18 }, (_, index) => index + 23)],
     2025: Array.from({ length: 26 }, (_, index) => index + 1),
-    2026: Array.from({ length: 30 }, (_, index) => index + 1),
+    2026: Array.from({ length: 31 }, (_, index) => index + 1),
   };
-  assert(weeklyEditions.length >= 94, `Expected at least 94 weekly editions, found ${weeklyEditions.length}`);
+  assert(weeklyEditions.length >= 95, `Expected at least 95 weekly editions, found ${weeklyEditions.length}`);
   assert(annualCharts.length >= 4, `Expected at least 4 annual charts, found ${annualCharts.length}`);
 
   const songIds = new Set(songs.map((song) => song.id));
@@ -287,16 +338,30 @@ function validate({ weeklyEditions, annualCharts, songs }) {
       .filter((edition) => edition.year === Number(yearText))
       .map((edition) => edition.number);
     if (yearText === "2026") {
-      assert(JSON.stringify(actual.slice(0, 30)) === JSON.stringify(numbers), `${yearText}: unexpected initial edition numbers ${actual.join(", ")}`);
-      assert(actual.every((number, index) => index === 0 || number > actual[index - 1]), `${yearText}: edition numbers must increase`);
+      assert(JSON.stringify(actual.slice(0, numbers.length)) === JSON.stringify(numbers), `${yearText}: unexpected initial edition numbers ${actual.join(", ")}`);
+      assert(actual.every((number, index) => number === index + 1), `${yearText}: edition numbers must be consecutive`);
     } else {
       assert(JSON.stringify(actual) === JSON.stringify(numbers), `${yearText}: unexpected edition numbers ${actual.join(", ")}`);
     }
   }
 
+  const weeklyYears = [...new Set(weeklyEditions.map((edition) => edition.year))].sort((left, right) => left - right);
+  weeklyYears.forEach((year, index) => {
+    assert(year === 2024 + index, `Weekly years must be consecutive from 2024, found ${weeklyYears.join(", ")}`);
+    if (!Object.hasOwn(expectedNumbers, year)) {
+      const actual = weeklyEditions.filter((edition) => edition.year === year).map((edition) => edition.number);
+      assert(actual.every((number, numberIndex) => number === numberIndex + 1), `${year}: edition numbers must start at 1 and be consecutive`);
+    }
+  });
+
+  for (const requiredYear of [2024, 2025]) {
+    for (const category of ["national", "international"]) {
+      assert(annualCharts.some((chart) => chart.id === `${requiredYear}-${category}`), `Missing published annual chart ${requiredYear}-${category}`);
+    }
+  }
+
   for (const edition of weeklyEditions) {
-    assert(/^\d{4}-\d{2}-\d{2}$/.test(edition.date), `${edition.id}: invalid date`);
-    assert(new Date(`${edition.date}T12:00:00Z`).getUTCDay() === 0, `${edition.id}: date must be Sunday`);
+    sundayDate(edition.date, edition.id);
     assert(edition.id === `${edition.year}-${String(edition.number).padStart(2, "0")}`, `${edition.id}: invalid ID`);
 
     for (const category of ["national", "international"]) {
