@@ -13,13 +13,14 @@ const currentWeek = new Date(`${cubaPart("year")}-${cubaPart("month")}-${cubaPar
 const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(cubaPart("weekday"));
 currentWeek.setUTCDate(currentWeek.getUTCDate() - Math.max(weekday, 0));
 const currentWeekDate = currentWeek.toISOString().slice(0, 10);
-const expectedCurrent = [...weeklyEditions].reverse().find((edition) => edition.date <= currentWeekDate);
+const publishedWeeklyEditions = weeklyEditions.filter((edition) => edition.date <= currentWeekDate);
+const expectedCurrent = publishedWeeklyEditions.at(-1);
 if (!expectedCurrent) throw new Error("No published weekly edition is available for the smoke test.");
-const latestEdition = weeklyEditions.reduce((latest, edition) => edition.date > latest.date ? edition : latest);
+const latestEdition = expectedCurrent;
 const latestMonth = Number(latestEdition.date.slice(5, 7)) - 1;
-const latestYearMonths = new Set(weeklyEditions.filter((edition) => edition.year === latestEdition.year).map((edition) => Number(edition.date.slice(5, 7)) - 1));
+const latestYearMonths = new Set(publishedWeeklyEditions.filter((edition) => edition.year === latestEdition.year).map((edition) => Number(edition.date.slice(5, 7)) - 1));
 const emptyLatestYearMonth = Array.from({ length: 12 }, (_, month) => month).find((month) => !latestYearMonths.has(month));
-const weeklyYearCount = new Set(weeklyEditions.map((edition) => edition.year)).size;
+const weeklyYearCount = new Set(publishedWeeklyEditions.map((edition) => edition.year)).size;
 const browser = await chromium.launch({
   executablePath: process.env.CHROME_PATH ?? "/usr/bin/google-chrome",
   headless: true,
