@@ -13,13 +13,14 @@ const currentWeek = new Date(`${cubaPart("year")}-${cubaPart("month")}-${cubaPar
 const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(cubaPart("weekday"));
 currentWeek.setUTCDate(currentWeek.getUTCDate() - Math.max(weekday, 0));
 const currentWeekDate = currentWeek.toISOString().slice(0, 10);
-const expectedCurrent = [...weeklyEditions].reverse().find((edition) => edition.date <= currentWeekDate);
+const publishedWeeklyEditions = weeklyEditions.filter((edition) => edition.date <= currentWeekDate);
+const expectedCurrent = publishedWeeklyEditions.at(-1);
 if (!expectedCurrent) throw new Error("No published weekly edition is available for the smoke test.");
-const latestEdition = weeklyEditions.reduce((latest, edition) => edition.date > latest.date ? edition : latest);
+const latestEdition = expectedCurrent;
 const latestMonth = Number(latestEdition.date.slice(5, 7)) - 1;
-const latestYearMonths = new Set(weeklyEditions.filter((edition) => edition.year === latestEdition.year).map((edition) => Number(edition.date.slice(5, 7)) - 1));
+const latestYearMonths = new Set(publishedWeeklyEditions.filter((edition) => edition.year === latestEdition.year).map((edition) => Number(edition.date.slice(5, 7)) - 1));
 const emptyLatestYearMonth = Array.from({ length: 12 }, (_, month) => month).find((month) => !latestYearMonths.has(month));
-const weeklyYearCount = new Set(weeklyEditions.map((edition) => edition.year)).size;
+const weeklyYearCount = new Set(publishedWeeklyEditions.map((edition) => edition.year)).size;
 const browser = await chromium.launch({
   executablePath: process.env.CHROME_PATH ?? "/usr/bin/google-chrome",
   headless: true,
@@ -91,7 +92,7 @@ try {
   assert((await page.locator(".calendar-month-label").textContent())?.toLocaleLowerCase("es").includes("enero de 2025"), "Shift+PageUp must jump to the previous year.");
   await page.locator(".calendar-selected-return").click();
   assert((await page.locator(".calendar-month-label").textContent())?.includes(String(latestEdition.year)), "Selected-count shortcut did not restore the current month.");
-  assert(await page.locator('.calendar-day[aria-current="date"]').evaluate((day) => day === document.activeElement), "Selected-count shortcut must restore focus to the selected date.");
+  await page.waitForFunction(() => document.querySelector('.calendar-day[aria-current="date"]') === document.activeElement);
   assert(await page.locator(".calendar-month-next").isDisabled(), "Calendar must stop at the latest available month.");
   await page.keyboard.press("Escape");
   await page.waitForFunction(() => document.querySelector(".calendar-trigger")?.getAttribute("aria-expanded") === "false");
