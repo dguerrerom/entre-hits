@@ -170,14 +170,14 @@ try {
   assert((await appearanceMetric.locator("dd").textContent()) === "6", "Canonical song history must combine six appearances.");
   await assertNoOverflow("390px canonical song history");
 
-  response = await page.goto(`${origin}/cancion/dalmation-ec0a1e6f39/`, { waitUntil: "networkidle" });
+  response = await page.goto(`${origin}/cancion/youngmikobzrpmusicsessionsvol58-8f3d7a3efd/`, { waitUntil: "networkidle" });
   assert(response?.ok(), "Single-appearance song-history route did not load.");
   assert((await page.locator(".performance-date-label").count()) === 1, "Single-appearance history must render one date label.");
-  assert((await page.locator(".song-page-authors").textContent())?.includes("José Álvaro Osorio Balvín"), "New song history must render its author credits.");
+  assert((await page.locator(".song-page-authors").textContent())?.includes("Gonzalo Julián Conde"), "Single-appearance song history must render its author credits.");
   const detailPlatformLink = page.locator(".platform-links--detail .platform-link");
   assert((await detailPlatformLink.count()) === 1, "The song history must expose its verified platform link.");
   assert((await detailPlatformLink.textContent())?.trim() === "Ver en YouTube", "Detailed platform links must state their action and destination.");
-  assert((await detailPlatformLink.getAttribute("aria-label")) === "Ver Dalmation en YouTube (abre en una pestaña nueva)", "Detailed platform links must identify the song, destination, and new-tab behavior.");
+  assert((await detailPlatformLink.getAttribute("aria-label")) === "Ver Young Miko: Bzrp Music Sessions, Vol. 58 en YouTube (abre en una pestaña nueva)", "Detailed platform links must identify the song, destination, and new-tab behavior.");
   const detailPlatformBox = await detailPlatformLink.boundingBox();
   assert(detailPlatformBox && detailPlatformBox.height >= 44, "Detailed platform links must provide a target at least 44px high.");
   await assertNoOverflow("390px song history with platform link");
